@@ -1,0 +1,9 @@
+@import "./global-styles.scss";
+
+main {
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    background-color: $secondary-background-color;
+    box-sizing: border-box;
+}

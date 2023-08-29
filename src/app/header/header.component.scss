@@ -1,0 +1,24 @@
+@import "../global-styles.scss";
+
+header.header-container {
+    background-color: $primary-background-color;
+    display: flex;
+    justify-content: space-between;
+    div.container__div {
+        display: flex;
+
+        h1 {
+            font-size: 20px;
+            align-self: center;
+            color: $primary-font-color;
+        }
+    }
+}
+
+nav {
+    display: flex;
+    a {
+        padding: 0.7rem;
+        color: $primary-font-color;
+    }
+}

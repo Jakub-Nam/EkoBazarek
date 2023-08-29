@@ -1,0 +1,12 @@
+<p>categories works!</p>
+<div>
+    <ul class="card-container" >
+        <!-- <ng-container *ngIf="i < 15"> -->
+        <li *ngFor="let productCategory of productCategories; let i = index">
+            <app-category-card [productCategory]="productCategory" *ngIf="i < 12"></app-category-card>
+        </li>
+        <!--  -->
+        <!-- </ng-container> -->
+
+    </ul>
+</div>

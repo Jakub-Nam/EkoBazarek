@@ -1,0 +1,7 @@
+main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #F6F5F1;
+  box-sizing: border-box;
+}
