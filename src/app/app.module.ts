@@ -13,6 +13,7 @@ import { CategoryCardComponent } from './category-card/category-card.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
 import { HomeComponent } from './home/home.component';
+import { AuthModule } from './auth/auth.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { HomeComponent } from './home/home.component';
     BrowserAnimationsModule,
     BrowserModule,
     CarouselModule,
+    AuthModule,
     AppRoutingModule,
   ],
   providers: [],

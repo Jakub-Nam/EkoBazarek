@@ -21,6 +21,8 @@ var http_1 = require("@angular/common/http");
 var category_card_component_1 = require("./category-card/category-card.component");
 var products_component_1 = require("./products/products.component");
 var product_component_1 = require("./product/product.component");
+var home_component_1 = require("./home/home.component");
+var auth_module_1 = require("./auth/auth.module");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -34,13 +36,15 @@ var AppModule = /** @class */ (function () {
                 categories_component_1.CategoriesComponent,
                 category_card_component_1.CategoryCardComponent,
                 products_component_1.ProductsComponent,
-                product_component_1.ProductComponent
+                product_component_1.ProductComponent,
+                home_component_1.HomeComponent
             ],
             imports: [
                 http_1.HttpClientModule,
                 animations_1.BrowserAnimationsModule,
                 platform_browser_1.BrowserModule,
                 angular_1.CarouselModule,
+                auth_module_1.AuthModule,
                 app_routing_module_1.AppRoutingModule,
             ],
             providers: [],

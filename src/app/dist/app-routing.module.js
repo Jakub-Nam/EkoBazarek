@@ -13,9 +13,10 @@ var home_component_1 = require("./home/home.component");
 var routes = [
     { path: 'home', component: home_component_1.HomeComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: 'auth', loadChildren: function () { return Promise.resolve().then(function () { return require('./authentication/authentication.module'); }).then(function (m) { return m.AuthenticationModule; }); } },
+    { path: 'auth', loadChildren: function () { return Promise.resolve().then(function () { return require('./auth/auth.module'); }).then(function (m) { return m.AuthModule; }); } },
+    { path: 'profile', loadChildren: function () { return Promise.resolve().then(function () { return require('./profile/profile.module'); }).then(function (m) { return m.ProfileModule; }); } },
     { path: '**', component: home_component_1.HomeComponent }
-    // ^ -infuture page not found comp!
+    // ^ -in future page not found comp!
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

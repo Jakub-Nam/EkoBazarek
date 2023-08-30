@@ -13,7 +13,9 @@ export class ProductsComponent implements OnInit {
     this.http.get<any>('https://api-eko-bazarek.azurewebsites.net/api/products')
       .subscribe({
         next: (productTypes) => {
+          console.log(productTypes.type, 'TYPE')
           console.log(productTypes)
+          console.log(productTypes.category, 'category')
         },
         error: (err: Error) => console.error('Observer got an error: ' + err),
       });
