@@ -1,0 +1,39 @@
+@import "../../global-styles.scss";
+
+form {
+    width: 40%;
+    margin-top: 3rem;
+    margin-left: 7rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        font-size: 48px;
+        color: $third-font-color;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2rem;
+        input {
+            border: 0;
+            font-size: 12px;
+            height: 42px;
+        }
+    }
+    .btn-group {
+        display: flex;
+        justify-content: end;
+        button {
+            border: none;
+            margin-top: 2rem;
+            padding: 0.5rem 1.8rem;
+            border-radius: 2px;
+            margin-left: 1rem;
+        }
+    }
+}

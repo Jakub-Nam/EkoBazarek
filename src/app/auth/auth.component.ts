@@ -1,11 +1,14 @@
 // import { AlertComponent } from '../shared/alert/alert.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './shared/auth.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
 import { specialCharacterValidator, upperCaseValidator } from './validators/validators';
+import { HttpClient } from '@angular/common/http';
+import { Observable, catchError } from 'rxjs';
 // import { PlaceholderDirective } from '../shared/placeholder/placeholder.directive';
 // import { Subscription } from 'rxjs';
-// import { User } from './user.model';
+// import { User } from './user.model'
+
 
 @Component({
     selector: 'app-auth',
@@ -14,48 +17,38 @@ import { specialCharacterValidator, upperCaseValidator } from './validators/vali
 })
 
 export class AuthComponent {
-    public registrationView: boolean = true;
-    public profileForm = this.fb.group({
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        eMail: ['', [Validators.required]],
-        phoneNumber: ['', [Validators.required]],
-        password: ['',
-            [
-                Validators.required,
-                Validators.minLength(8),
-                upperCaseValidator(/[A-Z]/),
-                specialCharacterValidator(/[!@#$%^&*(),.?":{}|<>]/)
-            ],
-        ],
-        repeatPassword: ['', [Validators.required]],
-        farmName: ['', [Validators.required]],
-        farmDescritpion: ['', [Validators.required]],
-        street: ['', [Validators.required]],
-        houseNumber: ['', [Validators.required]],
-        apartmentNumber: ['', [Validators.required]],
-        cityVillage: ['', [Validators.required]],
-        postalCode: ['', [Validators.required]],
-        voivodeship: ['', [Validators.required]],
-        poviat: ['', [Validators.required]],
-        commune: ['', [Validators.required]],
-    });
+    public registrationView: boolean = false;
+    
 
-    constructor(private fb: FormBuilder) { }
+    constructor(private fb: FormBuilder, private http: HttpClient) { }
 
-    get firstName() { return this.profileForm.get('firstName'); }
-    get lastName() { return this.profileForm.get('lastName'); }
-    get email() { return this.profileForm.get('email'); }
-    get phoneNumber() { return this.profileForm.get('phoneNumber'); }
-    get password() { return this.profileForm.get('password'); }
-    get repeatPassword() { return this.profileForm.get('repeatPassword'); }
 
-    onSubmit() {
-        if (this.profileForm.value.password === this.profileForm.value.repeatPassword) {
-
-            console.log(this.profileForm.value)
-        }
+    viewToggler(){
+        this.registrationView = !this.registrationView
     }
+
+   
+
+    // this.http.get<any>('https://api-eko-bazarek.azurewebsites.net/api/users')
+
+
+
+
+    // service
+    // getConfig() {
+    //     // now returns an Observable of Config
+    //     return this.http.get<Config>(this.configUrl);
+    //   }
+    //compt 
+    // config: Config | undefined;
+    // showConfig() {
+    //     this.configService.getConfig()
+    //       // clone the data object, using its known Config shape
+    //       .subscribe((data: Config) => this.config = { ...data });
+    //   }
+
+
+
     //   @ViewChild(PlaceholderDirective, { static: false }) alertHost!: PlaceholderDirective;
 
     //   adminInterface = false;

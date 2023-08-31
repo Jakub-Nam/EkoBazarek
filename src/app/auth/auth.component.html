@@ -1,110 +1,11 @@
 <div *ngIf="registrationView">
-    <h3>REJESTRACJA</h3>
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-        <div>
-            <label for="firstName">Imię* </label>
-            <input id="firstName" type="text" formControlName="firstName">
-            <label for="lastName">Nazwisko* </label>
-            <input id="lastName" type="text" formControlName="lastName">
-        </div>
-        <div>
-            <label for="eMail">Email* </label>
-            <input id="eMail" type="email" formControlName="eMail">
-            <label for="phoneNumber">Telefon* </label>
-            <input id="phoneNumber" type="number" formControlName="phoneNumber">
-        </div>
-        <div>
-            <label for="password">Hasło* </label>
-            <input id="password" type="text" formControlName="password">
-
-            <label for="repeatPassword">Powtórz hasło* </label>
-            <input id="repeatPassword" type="text" formControlName="repeatPassword">
-        </div>
-        <div *ngIf="password && (password.dirty || password.touched)">
-
-            <div *ngIf="password.errors?.['required']">
-                Password is required.
-            </div>
-            <div *ngIf="password.errors?.['minlength']">
-                Przynajmniej 8 znaków
-            </div>
-            <div *ngIf="password.errors?.['upperCase']">
-                Przynajmniej jedna duża litera
-            </div>
-            <div *ngIf="password.errors?.['specialCharacter']">
-                speciaaala chaistmasss
-            </div>
-        </div>
-
-        <h4>ADRES I INFORMACJE O GOSPODARSTWIE</h4>
-      
-        
-        <label for="farmName">Nazwa gospodarstwa*</label>
-        <input id="farmName" type="text" formControlName="farmName">
-
-        <label for="farmDescritpion">Opis gospodarstwa*</label>
-        <input id="farmDescritpion" type="text" formControlName="farmDescritpion">
-
-        <label for="street">Ulica*</label>
-        <input id="street" type="text" formControlName="street">
-
-        <label for="houseNumber">Numer domu*</label>
-        <input id="houseNumber" type="number" formControlName="houseNumber">
-
-        <label for="apartmentNumber">Numer mieszkania</label>
-        <input id="apartmentNumber" type="text" formControlName="apartmentNumber">
-
-        <label for="cityVillage">Miasto/Wieś*</label>
-        <input id="cityVillage" type="text" formControlName="cityVillage">
-
-        <label for="postalCode">Kod pocztowy*</label>
-        <input id="postalCode" type="text" formControlName="postalCode">
-
-        <label for="voivodeship">Województwo*</label>
-        <input id="voivodeship" type="text" formControlName="voivodeship">
-
-        <label for="poviat">Powiat*</label>
-        <input id="poviat" type="text" formControlName="poviat">
-
-        <label for="commune">Gmina*</label>
-        <input id="commune" type="text" formControlName="commune">
-
-        <button>Reset</button>
-        <br>
-        <button type="submit">Zapisz</button>
-    </form>
+    <app-registration></app-registration>
 </div>
-<!-- <div *ngIf='!registrationView' class='mt-2'>
-    <form class='col-10 col-lg-8 mx-auto' #authForm="ngForm" (ngSubmit)='onSubmit(authForm)'>
-        <h3 class='col-8 text-start px-0 py-2'>Logowanie</h3>
-        <label for="inputEmail">Adres e-mail</label>
-        <div class="input-group mb-1">
-            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
-                placeholder="Wprowadz e-mail" ngModel name='email' #email='ngModel' required email>
-
-        </div>
-        <small class='float-right text-danger' *ngIf="email.errors?.['email']">
-            Niepoprawny email
-        </small>
-        <label for="inputPassword">Hasło</label>
-
-        <div class='row '>
-            <div class="col">
-                <div *ngIf="password.invalid && (password.dirty || password.touched)">
-                    <small class='float-right text-danger' *ngIf="password.errors?.['minlength']">Hasło musi posiadać
-                        conajmniej 6 znaków</small>
-                </div>
-            </div>
-        </div>
-        <div class="text-danger" *ngIf='error'> {{ error }} </div>
-        <div class="col col-sm-5 mx-auto my-2">
-            <div class='d-flex justify-content-center'>
-                <button type="submit" mat-raised-button color="primary" [disabled]='!authForm.valid'>
-                    Zaloguj
-                </button>
-            </div>
-        </div>
-    </form>
+<div *ngIf="!registrationView" >
+    <app-login></app-login>
 </div>
+
+<button (click)="viewToggler()">zmien widok</button>
+
 
 <ng-template appPlaceholder=""></ng-template> -->

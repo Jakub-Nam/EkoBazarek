@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "@coreui/coreui/scss/coreui";
+@import "./app/global-styles.scss";
 
 * {
     margin: 0;
@@ -9,3 +10,7 @@
 }
 
 
+.primary-btn {
+    color: $secondary-font-color;
+    background-color: $primary-background-color;
+}

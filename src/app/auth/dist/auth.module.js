@@ -13,6 +13,7 @@ var registration_component_1 = require("./registration/registration.component");
 var auth_routing_module_1 = require("./auth-routing.module");
 var forms_1 = require("@angular/forms");
 var auth_component_1 = require("./auth.component");
+var http_1 = require("@angular/common/http");
 var AuthModule = /** @class */ (function () {
     function AuthModule() {
     }
@@ -26,6 +27,8 @@ var AuthModule = /** @class */ (function () {
                 common_1.CommonModule,
                 forms_1.ReactiveFormsModule,
                 forms_1.FormsModule,
+                // BrowserModule,
+                http_1.HttpClientModule,
                 auth_routing_module_1.AuthRoutingModule
             ]
         })

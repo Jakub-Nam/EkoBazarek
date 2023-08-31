@@ -1,60 +1,75 @@
 <h3>REJESTRACJA</h3>
-<form [formGroup]="profileForm">
-    <div>
-        <label for="first-name">Imię* </label>
-        <input id="first-name" type="text" formControlName="firstName">
-        <label for="last-name">Nazwisko* </label>
-        <input id="last-name" type="text" formControlName="lastName">
-    </div>
-    <div>
-        <label for="last-name">Email* </label>
-        <input id="last-name" type="text" formControlName="lastName">
-        <label for="last-name">Telefon* </label>
-        <input id="last-name" type="text" formControlName="lastName">
-    </div>
-   <div>
-    <label for="first-name">Hasło* </label>
-    <input id="first-name" type="text" formControlName="firstName">
+    <form [formGroup]="profileForm" (ngSubmit)="createAccount()">
+        <div>
+            <label for="firstName">Imię* </label>
+            <input id="firstName" type="text" formControlName="firstName">
+            <label for="lastName">Nazwisko* </label>
+            <input id="lastName" type="text" formControlName="lastName">
+        </div>
+        <div>
+            <label for="email">Email* </label>
+            <input id="email" type="email" formControlName="email">
+            <label for="phone">Telefon* </label>
+            <input id="phone" type="number" formControlName="phone">
+        </div>
+        <div>
+            <label for="password">Hasło* </label>
+            <input id="password" type="text" formControlName="password">
 
-    <label for="last-name">Powtórz hasło* </label>
-    <input id="last-name" type="text" formControlName="lastName">
-   </div>
-   
+            <label for="repeatPassword">Powtórz hasło* </label>
+            <input id="repeatPassword" type="text" formControlName="repeatPassword">
+        </div>
+        <div *ngIf="password && (password.dirty || password.touched)">
+
+            <div *ngIf="password.errors?.['required']">
+                Password is required.
+            </div>
+            <div *ngIf="password.errors?.['minlength']">
+                Przynajmniej 8 znaków
+            </div>
+            <div *ngIf="password.errors?.['upperCase']">
+                Przynajmniej jedna duża litera
+            </div>
+            <div *ngIf="password.errors?.['specialCharacter']">
+                speciaaala chaistmasss
+            </div>
+        </div>
+
+        <h4>ADRES I INFORMACJE O GOSPODARSTWIE</h4>
 
 
+        <label for="farmName">Nazwa gospodarstwa*</label>
+        <input id="farmName" type="text" formControlName="farmName">
 
+        <label for="farmDesc">Opis gospodarstwa*</label>
+        <input id="farmDesc" type="text" formControlName="farmDesc">
 
-    
+        <label for="street">Ulica*</label>
+        <input id="street" type="text" formControlName="street">
 
-    <!-- DRUGA CZESC FORMULARZE PONIZEJ -->
-    <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="lastName">
+        <label for="streetNumber">Numer domu*</label>
+        <input id="streetNumber" type="number" formControlName="streetNumber">
 
-    <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="lastName">
+        <label for="flatNumber">Numer mieszkania</label>
+        <input id="flatNumber" type="text" formControlName="flatNumber">
 
-    <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="lastName">
+        <label for="city">Miasto/Wieś*</label>
+        <input id="city" type="text" formControlName="city">
 
-    <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="lastName">
+        <label for="postCode">Kod pocztowy*</label>
+        <input id="postCode" type="text" formControlName="postCode">
 
-    <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="lastName">
+        <label for="voivodeship">Województwo*</label>
+        <input id="voivodeship" type="text" formControlName="voivodeship">
 
-    <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="lastName">
+        <label for="county">Powiat*</label>
+        <input id="county" type="text" formControlName="county">
 
-    <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="lastName">
+        <label for="district">Gmina*</label>
+        <input id="district" type="text" formControlName="district">
 
-    <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="lastName">
+        <button>Reset</button>
+        <br>
+        <button type="submit">Zapisz</button>
 
-    <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="lastName">
-
-    <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="lastName">
-
-</form>
+    </form>
