@@ -10,16 +10,17 @@ exports.RegistrationComponent = void 0;
 var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
+var rxjs_1 = require("rxjs");
 var validators_1 = require("../validators/validators");
 var RegistrationComponent = /** @class */ (function () {
     function RegistrationComponent(fb, http) {
         this.fb = fb;
         this.http = http;
         this.profileForm = this.fb.group({
-            firstName: ['kuba', forms_1.Validators.required],
-            lastName: ['namysl', forms_1.Validators.required],
+            firstName: ['Jakub', forms_1.Validators.required],
+            lastName: ['Namysl', forms_1.Validators.required],
             email: ['kubanam1995@gmail.com', [forms_1.Validators.required]],
-            phone: ['793742209', [forms_1.Validators.required]],
+            phone: ['793793793', [forms_1.Validators.required]],
             password: ['Namysl1234!',
                 [
                     forms_1.Validators.required,
@@ -29,7 +30,7 @@ var RegistrationComponent = /** @class */ (function () {
                 ],
             ],
             repeatPassword: ['Namysl1234!', [forms_1.Validators.required]],
-            farmName: ['Farma12', [forms_1.Validators.required]],
+            farmName: ['FarmaZycia', [forms_1.Validators.required]],
             farmDesc: ['lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum', [forms_1.Validators.required]],
             street: ['Farmerska', [forms_1.Validators.required]],
             streetNumber: ['12', [forms_1.Validators.required]],
@@ -73,8 +74,28 @@ var RegistrationComponent = /** @class */ (function () {
     });
     RegistrationComponent.prototype.createAccount = function () {
         if (this.profileForm.value.password === this.profileForm.value.repeatPassword) {
-            console.log(this.profileForm.value);
-            this.addUser(this.profileForm.value)
+            var requestBody = {
+                user: {
+                    city: this.profileForm.value.city,
+                    country: "Polska",
+                    county: this.profileForm.value.county,
+                    district: this.profileForm.value.district,
+                    email: this.profileForm.value.email,
+                    farmDesc: this.profileForm.value.farmDesc,
+                    farmName: this.profileForm.value.farmName,
+                    firstName: this.profileForm.value.firstName,
+                    flatNumber: this.profileForm.value.flatNumber,
+                    id: '',
+                    lastName: this.profileForm.value.lastName,
+                    phone: this.profileForm.value.phone,
+                    postCode: this.profileForm.value.postCode,
+                    street: this.profileForm.value.street,
+                    streetNumber: this.profileForm.value.streetNumber,
+                    voivodeship: this.profileForm.value.voivodeship,
+                    password: this.profileForm.value.password
+                }
+            };
+            this.addUser(requestBody)
                 .subscribe({
                 next: function (res) {
                     console.log(res);
@@ -83,17 +104,21 @@ var RegistrationComponent = /** @class */ (function () {
             });
         }
     };
-    RegistrationComponent.prototype.addUser = function (userData) {
+    RegistrationComponent.prototype.addUser = function (reqBody) {
         var httpOptions = {
             headers: new http_1.HttpHeaders({
                 'Content-Type': 'application/json'
             })
         };
         var url = 'https://api-eko-bazarek.azurewebsites.net/api/users';
-        return this.http.post(url, userData, httpOptions);
-        // .pipe(
-        //     catchError(this.handleError('addHero'))
-        // );
+        return this.http.post(url, reqBody.user, httpOptions)
+            .pipe(rxjs_1.map(function (data) {
+            console.log(data);
+            return data;
+        }), rxjs_1.catchError(function (err) {
+            console.log(err);
+            throw err; // Lub obsłuż błąd, zwróć coś innego lub rzuc błąd dalej
+        }));
     };
     RegistrationComponent = __decorate([
         core_1.Component({
@@ -105,3 +130,4 @@ var RegistrationComponent = /** @class */ (function () {
     return RegistrationComponent;
 }());
 exports.RegistrationComponent = RegistrationComponent;
+// catchError(this.handleError('addHero'))

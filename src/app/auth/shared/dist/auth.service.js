@@ -51,39 +51,6 @@ var AuthService = /** @class */ (function () {
         };
         return this.http.post(url, form, httpOptions);
     };
-    // autoLogin() {
-    //     const localStorageData = JSON.parse(localStorage.getItem('userData') || '{}');
-    //     if (localStorageData) {
-    //         const userData: {
-    //             email: string;
-    //             password: string;
-    //             id: string;
-    //             _token: string;
-    //             _tokenExpirationDate: string;
-    //         } = JSON.parse(localStorage.getItem('userData') || '{}');
-    //         if (!userData) {
-    //             return;
-    //         }
-    //         const loadedUser = new User(
-    //             userData.email,
-    //             userData.password,
-    //             userData.id,
-    //             userData._token,
-    //             new Date(userData._tokenExpirationDate)
-    //         );
-    //         if (loadedUser.token) {
-    //             this.user.next(loadedUser);
-    //         }
-    //         this.login(userData.email, userData.password);
-    //     } else {
-    //         return;
-    //     }
-    // }
-    AuthService.prototype.logout = function () {
-        this.user.next(this.emptyUser);
-        // this.afAuth.signOut();
-        localStorage.clear();
-    };
     AuthService = __decorate([
         core_1.Injectable({ providedIn: 'root' })
     ], AuthService);

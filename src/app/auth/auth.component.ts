@@ -17,7 +17,7 @@ import { Observable, catchError } from 'rxjs';
 })
 
 export class AuthComponent {
-    public registrationView: boolean = false;
+    public registrationView: boolean = true;
     
 
     constructor(private fb: FormBuilder, private http: HttpClient) { }

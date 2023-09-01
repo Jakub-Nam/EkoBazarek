@@ -15,7 +15,7 @@ var AuthComponent = /** @class */ (function () {
     function AuthComponent(fb, http) {
         this.fb = fb;
         this.http = http;
-        this.registrationView = false;
+        this.registrationView = true;
     }
     AuthComponent.prototype.viewToggler = function () {
         this.registrationView = !this.registrationView;

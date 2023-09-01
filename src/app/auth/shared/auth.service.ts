@@ -87,9 +87,9 @@ export class AuthService {
   //     }
   // }
 
-  logout() {
-    this.user.next(this.emptyUser);
-    // this.afAuth.signOut();
-    localStorage.clear();
-  }
+  // logout() {
+  //   this.user.next(this.emptyUser);
+  //   // this.afAuth.signOut();
+  //   localStorage.clear();
+  // }
 }

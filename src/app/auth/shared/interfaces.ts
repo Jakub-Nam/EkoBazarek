@@ -12,7 +12,6 @@ export interface UserData {
     farmName: string,
     farmDesc: string,
     street: string,
-    streetNumber: string,
     flatNumber: string,
     city: string,
     postCode: string,
@@ -22,3 +21,20 @@ export interface UserData {
     district: string,
     id?: string,
 }
+// user: {
+//     city: string,
+//     country: string,
+//     county: string,
+//     district: string,
+//     email: string,
+//     farmDesc: string,
+//     farmName: string,
+//     firstName: string,
+//     id: string,
+//     lastName: string,
+//     phone: string,
+//     postCode: string,
+//     street: string,
+//     streetNumber: string,
+//     voivodeship: string,
+// }

@@ -1,75 +1,120 @@
-<h3>REJESTRACJA</h3>
-    <form [formGroup]="profileForm" (ngSubmit)="createAccount()">
-        <div>
-            <label for="firstName">Imię* </label>
-            <input id="firstName" type="text" formControlName="firstName">
-            <label for="lastName">Nazwisko* </label>
-            <input id="lastName" type="text" formControlName="lastName">
-        </div>
-        <div>
-            <label for="email">Email* </label>
-            <input id="email" type="email" formControlName="email">
-            <label for="phone">Telefon* </label>
-            <input id="phone" type="number" formControlName="phone">
-        </div>
-        <div>
-            <label for="password">Hasło* </label>
-            <input id="password" type="text" formControlName="password">
-
-            <label for="repeatPassword">Powtórz hasło* </label>
-            <input id="repeatPassword" type="text" formControlName="repeatPassword">
-        </div>
-        <div *ngIf="password && (password.dirty || password.touched)">
-
-            <div *ngIf="password.errors?.['required']">
-                Password is required.
+<form [formGroup]="profileForm" (ngSubmit)="createAccount()">
+    <div class="container">
+        <h3>REJESTRACJA</h3>
+        <div class="form-group">
+            <div class="group__form-input">
+                <label for="firstName">Imię* </label>
+                <input id="firstName" type="text" formControlName="firstName">
             </div>
-            <div *ngIf="password.errors?.['minlength']">
-                Przynajmniej 8 znaków
+            <div class="group__form-input">
+                <label for="lastName">Nazwisko* </label>
+                <input id="lastName" type="text" formControlName="lastName">
             </div>
-            <div *ngIf="password.errors?.['upperCase']">
-                Przynajmniej jedna duża litera
+
+            <div class="group__form-input">
+                <label for="email">Email* </label>
+                <input id="email" type="email" formControlName="email">
             </div>
-            <div *ngIf="password.errors?.['specialCharacter']">
-                speciaaala chaistmasss
+            <div class="group__form-input">
+                <label for="phone">Telefon* </label>
+                <input id="phone" type="number" formControlName="phone">
             </div>
+
+            <div class="group__form-input">
+                <label for="password">Hasło* </label>
+                <input id="password" type="text" formControlName="password">
+            </div>
+            <div class="group__form-input">
+                <label for="repeatPassword">Powtórz hasło* </label>
+                <input id="repeatPassword" type="text" formControlName="repeatPassword">
+            </div>
+
+
+            <div *ngIf="password && (password.dirty || password.touched)">
+
+                <div *ngIf="password.errors?.['required']">
+                    Password is required.
+                </div>
+                <div *ngIf="password.errors?.['minlength']">
+                    Przynajmniej 8 znaków
+                </div>
+                <div *ngIf="password.errors?.['upperCase']">
+                    Przynajmniej jedna duża litera
+                </div>
+                <div *ngIf="password.errors?.['specialCharacter']">
+                    speciaaala chaistmasss
+                </div>
+            </div>
+
+            <h4>ADRES I INFORMACJE O GOSPODARSTWIE</h4>
+
+            <br>
+            <br>
+            <div class="group__form-input">
+                <label for="farmName">Nazwa gospodarstwa*</label>
+                <input id="farmName" type="text" formControlName="farmName">
+                <label for="farmDesc">Opis gospodarstwa*</label>
+                <input id="farmDesc" type="text" formControlName="farmDesc">
+            </div>
+
+            <br>
+
+            <div class="group__form-input"><label for="street">Ulica*</label>
+                <input id="street" type="text" formControlName="street">
+            </div>
+
+
+
+            <div class="group__form-input"> 
+                <label for="streetNumber">Numer domu*</label>
+                <input id="streetNumber" type="number" formControlName="streetNumber">
+            </div>
+
+
+
+            <div class="group__form-input">
+                <label for="flatNumber">Numer mieszkania</label>
+                <input id="flatNumber" type="text" formControlName="flatNumber">
+            </div>
+
+
+            <div class="group__form-input">
+
+                <label for="city">Miasto/Wieś*</label>
+                <input id="city" type="text" formControlName="city">
+            </div>
+
+
+            <div class="group__form-input">
+                <label for="postCode">Kod pocztowy*</label>
+                <input id="postCode" type="text" formControlName="postCode">
+
+            </div>
+
+
+            <div class="group__form-input">
+                <label for="voivodeship">Województwo*</label>
+                <input id="voivodeship" type="text" formControlName="voivodeship">
+
+            </div>
+
+
+            <div class="group__form-input">
+
+                <label for="county">Powiat*</label>
+                <input id="county" type="text" formControlName="county">
+            </div>
+
+
+            <div class="group__form-input">
+
+                <label for="district">Gmina*</label>
+                <input id="district" type="text" formControlName="district">
+            </div>
+
+            <button>Reset</button>
+            <br>
+            <button type="submit">Zapisz</button>
         </div>
-
-        <h4>ADRES I INFORMACJE O GOSPODARSTWIE</h4>
-
-
-        <label for="farmName">Nazwa gospodarstwa*</label>
-        <input id="farmName" type="text" formControlName="farmName">
-
-        <label for="farmDesc">Opis gospodarstwa*</label>
-        <input id="farmDesc" type="text" formControlName="farmDesc">
-
-        <label for="street">Ulica*</label>
-        <input id="street" type="text" formControlName="street">
-
-        <label for="streetNumber">Numer domu*</label>
-        <input id="streetNumber" type="number" formControlName="streetNumber">
-
-        <label for="flatNumber">Numer mieszkania</label>
-        <input id="flatNumber" type="text" formControlName="flatNumber">
-
-        <label for="city">Miasto/Wieś*</label>
-        <input id="city" type="text" formControlName="city">
-
-        <label for="postCode">Kod pocztowy*</label>
-        <input id="postCode" type="text" formControlName="postCode">
-
-        <label for="voivodeship">Województwo*</label>
-        <input id="voivodeship" type="text" formControlName="voivodeship">
-
-        <label for="county">Powiat*</label>
-        <input id="county" type="text" formControlName="county">
-
-        <label for="district">Gmina*</label>
-        <input id="district" type="text" formControlName="district">
-
-        <button>Reset</button>
-        <br>
-        <button type="submit">Zapisz</button>
-
-    </form>
+    </div>
+</form>
