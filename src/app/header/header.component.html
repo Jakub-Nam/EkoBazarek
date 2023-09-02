@@ -9,17 +9,25 @@
         <a routerLink="/profile" href="#">Produkty</a>
         <a href="#">Kontakt</a>
     </nav>
-    <div class=" ">
-        <i class="">szukaj</i>
+    <div class="links-container ">
+        <a class="">szukaj</a>
+
         <a routerLink="/profile" href="#">
             <i>ulubione</i>
         </a>
-        <a routerLink="/auth/registration">
-            <i class="">profil</i>
-        </a>
 
         
-        
-        <i class="">Icon 3</i>
+        <a class='icon-container'>
+            <button mat-button [matMenuTriggerFor]="menu">
+                <mat-icon>person_outline</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button (click)="showUserState()" mat-menu-item>Wyloguj</button>
+                <button (click)="redicrectToProfile()" mat-menu-item>Profil</button>
+                <button (click)="redicrectToAuth()" mat-menu-item>Zaloguj</button>
+            </mat-menu>
+        </a>
+
+        <a class="">Icon 3</a>
     </div>
 </header>

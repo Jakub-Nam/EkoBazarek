@@ -11,17 +11,28 @@ var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var profile_routing_module_1 = require("./profile-routing.module");
 var profile_component_1 = require("./profile.component");
+var tabs_1 = require("@angular/material/tabs");
+var shared_module_1 = require("../shared/shared.module");
+var change_pass_component_1 = require("./ui/change-pass/change-pass.component");
+var forms_1 = require("@angular/forms");
+var materialComponents = [
+    tabs_1.MatTabsModule
+];
 var ProfileModule = /** @class */ (function () {
     function ProfileModule() {
     }
     ProfileModule = __decorate([
         core_1.NgModule({
             declarations: [
-                profile_component_1.ProfileComponent
+                profile_component_1.ProfileComponent,
+                change_pass_component_1.ChangePassComponent,
             ],
             imports: [
                 common_1.CommonModule,
-                profile_routing_module_1.ProfileRoutingModule
+                profile_routing_module_1.ProfileRoutingModule,
+                forms_1.ReactiveFormsModule,
+                materialComponents,
+                shared_module_1.SharedModule
             ]
         })
     ], ProfileModule);

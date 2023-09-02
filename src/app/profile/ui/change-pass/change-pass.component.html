@@ -1,0 +1,34 @@
+<form [formGroup]="changePassForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+        <div class="form-group">
+            <div class="group__form-input">
+                <label for="oldPassword">Stare hasło*</label>
+                <input id="oldPassword" type="text" formControlName="oldPassword">
+            </div>
+            <div class="group__form-input">
+                <label for="newPassword">Nowe hasło*</label>
+                <input id="newPassword" type="text" formControlName="newPassword">
+            </div>
+            <div class="group__form-input">
+                <label for="repNewPassword">Powtórz nowe hasło*</label>
+                <input id="repNewPassword" type="text" formControlName="repNewPassword">
+            </div>
+            <div *ngIf="password && (password.dirty || password.touched)">
+
+                <div *ngIf="password.errors?.['required']">
+                    Password is required.
+                </div>
+                <div *ngIf="password.errors?.['minlength']">
+                    Przynajmniej 8 znaków
+                </div>
+                <div *ngIf="password.errors?.['upperCase']">
+                    Przynajmniej jedna duża litera
+                </div>
+                <div *ngIf="password.errors?.['specialCharacter']">
+                    speciaaala chaistmasss
+                </div>
+            </div> 
+            <button type="submit">Zapisz</button>
+        </div>
+    </div>
+</form>

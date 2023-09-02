@@ -9,6 +9,7 @@ exports.__esModule = true;
 exports.AuthService = void 0;
 var rxjs_1 = require("rxjs");
 var core_1 = require("@angular/core");
+// import { User } from '../user.model';
 var http_1 = require("@angular/common/http");
 var AuthService = /** @class */ (function () {
     function AuthService(http) {
@@ -18,7 +19,7 @@ var AuthService = /** @class */ (function () {
             firstName: '',
             lastName: '',
             email: '',
-            publicphone: '',
+            phone: '',
             password: '',
             farmName: '',
             farmDesc: '',

@@ -1,0 +1,33 @@
+@import "../global-styles.scss";
+
+.container {
+    margin-top: 3rem;
+    margin-left: 7rem;
+    h3 {
+        font-size: 48px;
+        color: $third-font-color;
+    }
+    a {
+        margin-right: 1rem;
+    }
+}
+.custom-tab-group ::ng-deep .mat-ink-bar {
+    background-color: green; /* Kolor podkreślenia */
+  }
+.tab-container{
+    border-bottom: 1px solid green;
+}
+// .mdc-tab__content {
+//     display: flex;
+//     align-items: center;
+//     justify-content: start !important; 
+//     height: inherit;
+//     pointer-events: none;
+// }
+
+// .mdc-tab {
+//     justify-content: start !important;
+// }
+.registration-wrapper {
+    width: 80%;
+}

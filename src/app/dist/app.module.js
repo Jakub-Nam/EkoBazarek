@@ -18,11 +18,17 @@ var animations_1 = require("@angular/platform-browser/animations");
 var angular_1 = require("@coreui/angular");
 var categories_component_1 = require("./categories/categories.component");
 var http_1 = require("@angular/common/http");
-var category_card_component_1 = require("./category-card/category-card.component");
 var products_component_1 = require("./products/products.component");
-var product_component_1 = require("./product/product.component");
+var product_component_1 = require("./products/ui/product-card/product.component");
 var home_component_1 = require("./home/home.component");
 var auth_module_1 = require("./auth/auth.module");
+var icon_1 = require("@angular/material/icon");
+var menu_1 = require("@angular/material/menu");
+var category_card_component_1 = require("./categories/ui/category-card/category-card.component");
+var materialComponents = [
+    icon_1.MatIconModule,
+    menu_1.MatMenuModule,
+];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -46,6 +52,7 @@ var AppModule = /** @class */ (function () {
                 angular_1.CarouselModule,
                 auth_module_1.AuthModule,
                 app_routing_module_1.AppRoutingModule,
+                materialComponents
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]

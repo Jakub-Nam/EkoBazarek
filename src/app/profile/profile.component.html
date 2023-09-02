@@ -1,1 +1,36 @@
-<p>profile works!</p>
+<div class="container">
+    <h3>PROFIL</h3>
+    <mat-tab-group class="custom-tab-group">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                DANE GOSPODARSTWA
+            </ng-template>
+            <div class="registration-wrapper">
+                <app-registration [isHeader]="false" [profileForm]="profileForm"></app-registration>
+            </div>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                ZMIANA HASŁA
+            </ng-template>
+            <app-change-pass [changePassForm]="changePassForm" (activateChangePassEvent)="checkOldNewPass()"></app-change-pass>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                TWOJE PRODUKTY
+            </ng-template>
+            Content 3
+        </mat-tab>
+    </mat-tab-group>
+
+
+    <!-- <nav>
+        <a href="" routerLinkActive="active">DANE GOSPODARSTWA</a>
+        <a href="" routerLinkActive="active">ZMIANA HASLA</a>
+        <a href="" routerLinkActive="active">TWOJE PRODUKTY</a>
+        <hr class="active-line">
+    </nav> -->
+    
+</div>

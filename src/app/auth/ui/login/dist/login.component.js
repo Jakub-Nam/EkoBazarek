@@ -10,34 +10,26 @@ exports.LoginComponent = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(fb, userService, authService) {
-        this.fb = fb;
-        this.userService = userService;
-        this.authService = authService;
-        this.loginForm = this.fb.group({
-            email: ['', [forms_1.Validators.required]],
-            password: ['', [forms_1.Validators.required]]
-            // email: ['kubanam1995@gmail.com', [Validators.required]],
-            // password: ['Namysl1234!', [Validators.required]]
-        });
+    function LoginComponent() {
+        this.activateParentButtonEvent = new core_1.EventEmitter();
+        this.activateLoginEvent = new core_1.EventEmitter();
+        this.loginForm = new forms_1.FormGroup({});
     }
+    LoginComponent.prototype.activateParentButton = function () {
+        this.activateParentButtonEvent.emit();
+    };
     LoginComponent.prototype.onSubmit = function () {
-        var formValues = this.loginForm.value;
-        this.login(formValues);
+        this.activateLoginEvent.emit();
     };
-    LoginComponent.prototype.login = function (formValues) {
-        var _this = this;
-        this.authService.login(formValues).subscribe({
-            next: function (res) {
-                console.log(res);
-                _this.userService.updateResponseData(res);
-            },
-            error: function (err) { return console.error('Observer got an error: ' + err); }
-        });
-    };
-    LoginComponent.prototype.test = function () {
-        this.userService.consoleLog();
-    };
+    __decorate([
+        core_1.Output()
+    ], LoginComponent.prototype, "activateParentButtonEvent");
+    __decorate([
+        core_1.Output()
+    ], LoginComponent.prototype, "activateLoginEvent");
+    __decorate([
+        core_1.Input()
+    ], LoginComponent.prototype, "loginForm");
     LoginComponent = __decorate([
         core_1.Component({
             selector: 'app-login',

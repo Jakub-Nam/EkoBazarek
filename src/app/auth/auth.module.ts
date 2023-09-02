@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RegistrationComponent } from './registration/registration.component';
+// import { RegistrationComponent } from '../shared/ui/registration/registration.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from './auth.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './ui/login/login.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
 @NgModule({
   declarations: [
-    RegistrationComponent,
+    // RegistrationComponent,
     AuthComponent,
     LoginComponent
   ],
@@ -22,7 +23,8 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     // BrowserModule,
     HttpClientModule,
-    AuthRoutingModule
+    SharedModule,
+    AuthRoutingModule,
   ]
 })
 export class AuthModule { }

@@ -1,9 +1,10 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { User } from '../user.model';
+// import { User } from '../user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserCred, UserData } from './interfaces';
-import { ReponseLoginData } from 'src/app/shared/interfaces';
+import { UserCred } from './userCred.interface';
+import { ReponseLoginData } from 'src/app/shared/interfaces/response-log-data';
+import { User } from 'src/app/shared/interfaces/user';
 
 @Injectable({ providedIn: 'root' })
 
@@ -14,7 +15,7 @@ export class AuthService {
     firstName: '',
     lastName: '',
     email: '',
-    publicphone: '',
+    phone: '',
     password: '',
     farmName: '',
     farmDesc: '',
@@ -27,6 +28,7 @@ export class AuthService {
     voivodeship: '',
     county: '',
     district: '',
+  
 
 
   };

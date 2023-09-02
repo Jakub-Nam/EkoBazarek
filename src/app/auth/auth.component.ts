@@ -1,14 +1,13 @@
-// import { AlertComponent } from '../shared/alert/alert.component';
 import { AuthService } from './shared/auth.service';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
-import { specialCharacterValidator, upperCaseValidator } from './validators/validators';
-import { HttpClient } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
-// import { PlaceholderDirective } from '../shared/placeholder/placeholder.directive';
-// import { Subscription } from 'rxjs';
-// import { User } from './user.model'
-
+import { Validators, FormBuilder } from '@angular/forms';
+import { specialCharacterValidator, upperCaseValidator } from './shared/validators/validators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, catchError, map } from 'rxjs';
+import { UserCred } from './shared/userCred.interface';
+import { UserService } from '../shared/services/user-service/user.service';
+import { ReponseLoginData } from '../shared/interfaces/response-log-data';
+import { User } from '../shared/interfaces/user';
 
 @Component({
     selector: 'app-auth',
@@ -17,128 +16,112 @@ import { Observable, catchError } from 'rxjs';
 })
 
 export class AuthComponent {
-    public registrationView: boolean = true;
-    
+    public registrationView: boolean = false;
+    public loginForm = this.fb.group({
+        email: ['', [Validators.required]],
+        password: ['', [Validators.required]]
+    })
 
-    constructor(private fb: FormBuilder, private http: HttpClient) { }
+    public profileForm = this.fb.group({
+        firstName: ['Jakub', Validators.required],
+        lastName: ['Namysl', Validators.required],
+        email: ['kubanam1995@gmail.com', [Validators.required]],
+        phone: ['793793793', [Validators.required]],
+        password: ['Namysl1234!',
+            [
+                Validators.required,
+                Validators.minLength(8),
+                upperCaseValidator(/[A-Z]/),
+                specialCharacterValidator(/[!@#$%^&*(),.?":{}|<>]/)
+            ],
+        ],
+        repeatPassword: ['Namysl1234!', [Validators.required]],
+        farmName: ['FarmaZycia', [Validators.required]],
+        farmDesc: ['lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum', [Validators.required]],
+        street: ['Farmerska', [Validators.required]],
+        streetNumber: ['12', [Validators.required]],
+        flatNumber: ['13', [Validators.required]],
+        city: ['Glisnica', [Validators.required]],
+        postCode: ['63-430', [Validators.required]],
+        voivodeship: ['wielkopolskie', [Validators.required]],
+        county: ['Ostrów Wielkopolski', [Validators.required]],
+        district: ['Odolanów', [Validators.required]],
+    });
 
+    constructor(private fb: FormBuilder, private http: HttpClient, private authService: AuthService, private userService: UserService) { }
 
-    viewToggler(){
+    public viewToggler(): void {
         this.registrationView = !this.registrationView
     }
 
-   
+    public login(): void {
+        let formValues: UserCred = this.loginForm.value
+        this.authService.login(formValues).subscribe({
+            next: (res) => {
+                console.log(res)
+                this.userService.updateResponseData(res);
+            },
+            error: (err: Error) => console.error('Observer got an error: ' + err),
+        });
+    }
 
-    // this.http.get<any>('https://api-eko-bazarek.azurewebsites.net/api/users')
+    get firstName() { return this.profileForm.get('firstName'); }
+    get lastName() { return this.profileForm.get('lastName'); }
+    get email() { return this.profileForm.get('email'); }
+    get phoneNumber() { return this.profileForm.get('phoneNumber'); }
+    get password() { return this.profileForm.get('password'); }
+    get repeatPassword() { return this.profileForm.get('repeatPassword'); }
 
+    public createAccount(): void {
+        if (this.profileForm.value.password === this.profileForm.value.repeatPassword) {
+            const requestBody: User = {
+                city: this.profileForm.value.city,
+                country: "Polska",
+                county: this.profileForm.value.county,
+                district: this.profileForm.value.district,
+                email: this.profileForm.value.email,
+                farmDesc: this.profileForm.value.farmDesc,
+                farmName: this.profileForm.value.farmName,
+                firstName: this.profileForm.value.firstName,
+                flatNumber: this.profileForm.value.flatNumber,
+                id: '',
+                lastName: this.profileForm.value.lastName,
+                phone: this.profileForm.value.phone,
+                postCode: this.profileForm.value.postCode,
+                street: this.profileForm.value.street,
+                streetNumber: this.profileForm.value.streetNumber,
+                voivodeship: this.profileForm.value.voivodeship,
+                password: this.profileForm.value.password,
+            }
 
+            this.addUser(requestBody)
+                .subscribe({
+                    next: (res) => {
+                        console.log(res)
+                        this.viewToggler()
+                    },
+                    error: (err: Error) => console.error('Observer got an error: ' + err),
+                });
+        }
+    }
 
-
-    // service
-    // getConfig() {
-    //     // now returns an Observable of Config
-    //     return this.http.get<Config>(this.configUrl);
-    //   }
-    //compt 
-    // config: Config | undefined;
-    // showConfig() {
-    //     this.configService.getConfig()
-    //       // clone the data object, using its known Config shape
-    //       .subscribe((data: Config) => this.config = { ...data });
-    //   }
-
-
-
-    //   @ViewChild(PlaceholderDirective, { static: false }) alertHost!: PlaceholderDirective;
-
-    //   adminInterface = false;
-    //   error = '';
-    //   faEnvelope = faEnvelope;
-    //   faEye = faEye;
-    //   faEyeSlash = faEyeSlash;
-    //   hidePassword = true;
-    //   hideSpinner = true;
-    //   message = '';
-    //   passwordStrengthmeter: any;
-    //   registrationView = false;
-
-    //   private closeSub!: Subscription;
-
-
-    //   constructor(
-    //     private authService: AuthService,
-    //     private router: Router
-    //   ) { }
-
-
-    //   public togglePassword() {
-    //     this.hidePassword = !this.hidePassword;
-    //   }
-
-    //   public onSubmit(form: NgForm) {
-    //     if (!form.valid) {
-    //       return;
-    //     }
-    //     const email = form.value.email;
-    //     const password = form.value.password;
-
-    //     this.authService.login(email, password)
-    //       .then(async userCredential => {
-    //         let token = '';
-    //         let date: Date =
-    //           await userCredential.user.getIdTokenResult().then(
-    //             (response: { token: string; }) => token = response.token
-    //           );
-
-    //         await userCredential.user.getIdTokenResult().then(
-    //           (response: { expirationTime: Date; }) => date = response.expirationTime
-    //         );
-
-    //         const user = new User(
-    //           userCredential.user.email,
-    //           password,
-    //           userCredential.user.uid,
-    //           token,
-    //           date
-    //         );
-
-    //         this.authService.user.next(user);
-    //         localStorage.setItem('userData', JSON.stringify(user));
-    //         this.router.navigate(['/']);
-    //       })
-
-
-    //       .catch(error => {
-    //         this.message = 'Niepoprawne dane';
-    //         this.showErrorAlert(this.message);
-    //       });
-
-    //     form.reset();
-    //   }
-    //   public onSwitchMode(form: NgForm) {
-    //     this.registrationView = true;
-    //   }
-    //   public showRegistrationView() {
-    //     this.registrationView = true;
-    //   }
-    //   public onHandleError() {
-    //     this.message = '';
-    //   }
-
-    //   ngOnDestroy() {
-    //     if (this.closeSub) {
-    //       this.closeSub.unsubscribe();
-    //     }
-    //   }
-
-    //   private showErrorAlert(message: string) {
-    //     const alertCmpFactory = this.alertHost.viewContainerRef.createComponent(AlertComponent);
-    //     const hostViewContainerRef = this.alertHost.viewContainerRef;
-    //     alertCmpFactory.instance.message = message;
-
-    //     this.closeSub = alertCmpFactory.instance.closeMessage.subscribe(() => {
-    //       this.closeSub.unsubscribe();
-    //       hostViewContainerRef.clear();
-    //     });
-    //   }
+    addUser(reqBody: User): Observable<ReponseLoginData> {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        };
+        const url = 'https://api-eko-bazarek.azurewebsites.net/api/users'
+        return this.http.post<ReponseLoginData>(url, reqBody, httpOptions)
+            .pipe(
+                map((data) => {
+                    console.log(data);
+                    return data;
+                }),
+                catchError(err => {
+                    console.log(err);
+                    throw err;
+                })
+            );
+    }
 }

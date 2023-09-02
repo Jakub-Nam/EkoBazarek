@@ -9,11 +9,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from '@coreui/angular';
 import { CategoriesComponent } from './categories/categories.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CategoryCardComponent } from './category-card/category-card.component';
 import { ProductsComponent } from './products/products.component';
-import { ProductComponent } from './product/product.component';
+import { ProductComponent } from './products/ui/product-card/product.component';
 import { HomeComponent } from './home/home.component';
 import { AuthModule } from './auth/auth.module';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { CategoryCardComponent } from './categories/ui/category-card/category-card.component';
+
+
+const materialComponents: unknown[] = 
+[
+  MatIconModule,
+  MatMenuModule,
+]
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +42,7 @@ import { AuthModule } from './auth/auth.module';
     CarouselModule,
     AuthModule,
     AppRoutingModule,
+    materialComponents
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
-<form [formGroup]="profileForm" (ngSubmit)="createAccount()">
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
     <div class="container">
-        <h3>REJESTRACJA</h3>
+        <h3 [hidden]="!isHeader">REJESTRACJA</h3>
         <div class="form-group">
             <div class="group__form-input">
                 <label for="firstName">Imię* </label>

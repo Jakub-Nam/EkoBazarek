@@ -1,28 +1,30 @@
-@import "../../global-styles.scss";
-
-form {
-    width: 40%;
-    margin-top: 3rem;
-    margin-left: 7rem;
-}
-
 .container {
     display: flex;
     flex-direction: column;
 
-    h3 {
-        font-size: 48px;
-        color: $third-font-color;
-    }
 
     .form-group {
         display: flex;
         flex-direction: column;
         margin-top: 2rem;
+        // flex-wrap: wrap;
+        label {
+            font-weight: 600;
+        }
         input {
             border: 0;
             font-size: 12px;
-            height: 42px;
+            height: 36px;
+        }
+        .group__form-input {
+            display: flex;
+            flex-direction: column;
+            width: 515px;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+            label {
+                font-size: 12px;
+            }
         }
     }
     .btn-group {
@@ -36,4 +38,5 @@ form {
             margin-left: 1rem;
         }
     }
+ 
 }
