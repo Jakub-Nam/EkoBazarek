@@ -4,17 +4,30 @@
         <h1 class="">EkoBazarek</h1>
     </div>
     <nav class="">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
-        <a href="#">Link 4</a>
+        <a routerLink="/home" href="#">Home</a>
+        <a href="#">O nas</a>
+        <a routerLink="/profile" href="#">Produkty</a>
+        <a href="#">Kontakt</a>
     </nav>
-    <div class=" ">
-        <a routerLink="/auth/registration">
-            <i class="">Mhaha</i>
+    <div class="links-container ">
+        <a class="">szukaj</a>
+
+        <a routerLink="/profile" href="#">
+            <i>ulubione</i>
         </a>
 
-        <i class="">Icon 2</i>
-        <i class="">Icon 3</i>
+        
+        <a class='icon-container'>
+            <button mat-button [matMenuTriggerFor]="menu">
+                <mat-icon>person_outline</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button (click)="showUserState()" mat-menu-item>Wyloguj</button>
+                <button (click)="redicrectToProfile()" mat-menu-item>Profil</button>
+                <button (click)="redicrectToAuth()" mat-menu-item>Zaloguj</button>
+            </mat-menu>
+        </a>
+
+        <a class="">Icon 3</a>
     </div>
 </header>

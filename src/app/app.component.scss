@@ -1,7 +1,7 @@
 @import "./global-styles.scss";
 
 main {
-    height:100%;
+    min-height: 45vh;
     display: flex;
     flex-direction: column;
     background-color: $secondary-background-color;

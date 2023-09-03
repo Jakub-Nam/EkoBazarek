@@ -16,7 +16,9 @@ var ProductsComponent = /** @class */ (function () {
         this.http.get('https://api-eko-bazarek.azurewebsites.net/api/products')
             .subscribe({
             next: function (productTypes) {
+                console.log(productTypes.type, 'TYPE');
                 console.log(productTypes);
+                console.log(productTypes.category, 'category');
             },
             error: function (err) { return console.error('Observer got an error: ' + err); }
         });

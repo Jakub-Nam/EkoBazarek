@@ -6,22 +6,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.AuthRoutingModule = void 0;
+exports.ProfileRoutingModule = void 0;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var registration_component_1 = require("./registration/registration.component");
+var profile_component_1 = require("./profile.component");
 var routes = [
-    { path: 'registration', component: registration_component_1.RegistrationComponent },
+    { path: '', component: profile_component_1.ProfileComponent },
 ];
-var AuthRoutingModule = /** @class */ (function () {
-    function AuthRoutingModule() {
+var ProfileRoutingModule = /** @class */ (function () {
+    function ProfileRoutingModule() {
     }
-    AuthRoutingModule = __decorate([
+    ProfileRoutingModule = __decorate([
         core_1.NgModule({
             imports: [router_1.RouterModule.forChild(routes)],
             exports: [router_1.RouterModule]
         })
-    ], AuthRoutingModule);
-    return AuthRoutingModule;
+    ], ProfileRoutingModule);
+    return ProfileRoutingModule;
 }());
-exports.AuthRoutingModule = AuthRoutingModule;
+exports.ProfileRoutingModule = ProfileRoutingModule;

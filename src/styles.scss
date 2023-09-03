@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "@coreui/coreui/scss/coreui";
+@import "./app/global-styles.scss";
 
 * {
     margin: 0;
@@ -9,3 +10,22 @@
 }
 
 
+.primary-btn {
+    color: $secondary-font-color;
+    background-color: $primary-background-color;
+}
+
+h3 {
+    font-size: 48px;
+    color: $third-font-color;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mdc-tab {
+    justify-content: start !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    max-width: 220px !important;
+    flex: 0 0 auto !important;
+}

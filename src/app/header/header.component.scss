@@ -10,7 +10,7 @@ header.header-container {
         h1 {
             font-size: 20px;
             align-self: center;
-            color: $primary-font-color;
+            color: $secondary-font-color;
         }
     }
 }
@@ -19,6 +19,22 @@ nav {
     display: flex;
     a {
         padding: 0.7rem;
-        color: $primary-font-color;
+        color: $secondary-font-color;
+    }
+}
+.links-container {
+    display: flex;
+}
+.icon-container {
+    display: flex;
+    align-items: center;
+    button {
+        border: none;
+        background-color: transparent;
+        mat-icon {
+            width: 24px;
+            height: 24px;
+            color: $secondary-font-color;
+        }
     }
 }

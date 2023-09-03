@@ -6,23 +6,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.RegistrationComponent = void 0;
+exports.SharedModule = void 0;
 var core_1 = require("@angular/core");
+var common_1 = require("@angular/common");
+var registration_component_1 = require("./ui/registration/registration.component");
 var forms_1 = require("@angular/forms");
-var RegistrationComponent = /** @class */ (function () {
-    function RegistrationComponent() {
-        this.profileForm = new forms_1.FormGroup({
-            firstName: new forms_1.FormControl(''),
-            lastName: new forms_1.FormControl('')
-        });
+var SharedModule = /** @class */ (function () {
+    function SharedModule() {
     }
-    RegistrationComponent = __decorate([
-        core_1.Component({
-            selector: 'app-registration',
-            templateUrl: './registration.component.html',
-            styleUrls: ['./registration.component.scss']
+    SharedModule = __decorate([
+        core_1.NgModule({
+            declarations: [
+                registration_component_1.RegistrationComponent,
+            ],
+            imports: [
+                common_1.CommonModule,
+                forms_1.ReactiveFormsModule,
+            ],
+            exports: [
+                registration_component_1.RegistrationComponent
+            ]
         })
-    ], RegistrationComponent);
-    return RegistrationComponent;
+    ], SharedModule);
+    return SharedModule;
 }());
-exports.RegistrationComponent = RegistrationComponent;
+exports.SharedModule = SharedModule;
