@@ -2,6 +2,8 @@
 @import "@coreui/coreui/scss/coreui";
 @import "./app/global-styles.scss";
 
+
+
 * {
     margin: 0;
     padding: 0;
@@ -29,14 +31,21 @@ body {
 
 // Angular material
 // Tabk
-.mdc-tab {
-    justify-content: start !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    max-width: 220px !important;
-    flex: 0 0 auto !important;
-}
+// .mdc-tab {
+//     justify-content: start !important;
+//     padding-left: 1rem !important;
+//     padding-right: 1rem !important;
+//     max-width: 220px !important;
+//     flex: 0 0 auto !important;
+// }
 
-.mdc-list-item {
-    padding-left: 0px !important;
+// .mdc-list-item {
+//     padding-left: 0px !important;
+// }
+mat-tab-header div.mdc-tab {
+    justify-content: start;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 220px;
+    flex: 0 0 auto;
 }

@@ -36,8 +36,8 @@ export class UserService {
     return this.reponseLoginData.asObservable();
   }
 
-  public updateResponseData(newData: ReponseLoginData): void {
-    return this.reponseLoginData.next(newData);
+  public updateResponseData(data: ReponseLoginData): void {
+    return this.reponseLoginData.next(data);
   }
   
   public logout(): void {

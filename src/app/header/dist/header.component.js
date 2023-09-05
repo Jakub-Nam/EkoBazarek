@@ -28,9 +28,6 @@ var HeaderComponent = /** @class */ (function () {
             error: function (err) { return console.error('Observer got an error: ' + err); }
         });
     };
-    HeaderComponent.prototype.showUserState = function () {
-        console.log(this.userService.getResponseData(), 'header check');
-    };
     HeaderComponent.prototype.redicrectToProfile = function () {
         this.router.navigate(['/profile']);
     };
@@ -39,6 +36,7 @@ var HeaderComponent = /** @class */ (function () {
     };
     HeaderComponent.prototype.logout = function () {
         this.userService.logout();
+        this.router.navigate(['/home']);
     };
     HeaderComponent = __decorate([
         core_1.Component({

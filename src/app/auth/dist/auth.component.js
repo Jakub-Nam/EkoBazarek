@@ -10,12 +10,9 @@ exports.AuthComponent = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var validators_1 = require("./shared/validators/validators");
-var http_1 = require("@angular/common/http");
-var rxjs_1 = require("rxjs");
 var AuthComponent = /** @class */ (function () {
-    function AuthComponent(fb, http, authService, userService, route) {
+    function AuthComponent(fb, authService, userService, route) {
         this.fb = fb;
-        this.http = http;
         this.authService = authService;
         this.userService = userService;
         this.route = route;
@@ -61,8 +58,9 @@ var AuthComponent = /** @class */ (function () {
         var formValues = this.loginForm.value;
         this.authService.login(formValues).subscribe({
             next: function (res) {
-                console.log(res);
                 _this.userService.updateResponseData(res);
+                _this.route.navigateByUrl('/home');
+                // pomyslnie zalogowano toast
             },
             error: function (err) { return console.error('Observer got an error: ' + err); }
         });
@@ -119,7 +117,7 @@ var AuthComponent = /** @class */ (function () {
                 voivodeship: this.profileForm.value.voivodeship,
                 password: this.profileForm.value.password
             };
-            this.addUser(requestBody)
+            this.authService.addUser(requestBody)
                 .subscribe({
                 next: function (res) {
                     console.log(res);
@@ -128,22 +126,6 @@ var AuthComponent = /** @class */ (function () {
                 error: function (err) { return console.error('Observer got an error: ' + err); }
             });
         }
-    };
-    AuthComponent.prototype.addUser = function (reqBody) {
-        var httpOptions = {
-            headers: new http_1.HttpHeaders({
-                'Content-Type': 'application/json'
-            })
-        };
-        var url = 'https://api-eko-bazarek.azurewebsites.net/api/users';
-        return this.http.post(url, reqBody, httpOptions)
-            .pipe(rxjs_1.map(function (data) {
-            console.log(data);
-            return data;
-        }), rxjs_1.catchError(function (err) {
-            console.log(err);
-            throw err;
-        }));
     };
     AuthComponent = __decorate([
         core_1.Component({

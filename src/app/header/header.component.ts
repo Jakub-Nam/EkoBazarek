@@ -16,30 +16,27 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.userService.getResponseData().subscribe({
       next: (res) => {
-       if(res.user.farmName !== ''){
-        this.isUser = true;
-       } else {
-        this.isUser = false;
-       }
+        if (res.user.farmName !== '') {
+          this.isUser = true;
+        } else {
+          this.isUser = false;
+        }
       },
       error: (err: Error) => console.error('Observer got an error: ' + err),
     });
 
   }
 
-  showUserState() {
-    console.log(this.userService.getResponseData(), 'header check')
-  }
-
-  redicrectToProfile() {
+  public redicrectToProfile(): void {
     this.router.navigate(['/profile']);
   }
 
-  redicrectToAuth() {
+  public redicrectToAuth(): void {
     this.router.navigate(['/auth']);
   }
 
-  logout() {
+  public logout(): void {
     this.userService.logout();
+    this.router.navigate(['/home']);
   }
 }

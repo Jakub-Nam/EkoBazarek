@@ -14,7 +14,7 @@
             <mat-icon>search</mat-icon>
         </a>
 
-        <a routerLink="/profile" href="#">
+        <a routerLink="/home" href="#">
             <i>ulubione</i>
         </a>
         <a class='icon-container'>
@@ -22,7 +22,7 @@
                 <mat-icon>person_outline</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <button (click)="showUserState()" mat-menu-item [hidden]="!isUser">Wyloguj</button>
+                <button (click)="logout()" mat-menu-item [hidden]="!isUser">Wyloguj</button>
                 <button (click)="redicrectToProfile()" mat-menu-item [hidden]="!isUser">Profil</button>
                 <button (click)="redicrectToAuth()" mat-menu-item [hidden]="isUser">Zaloguj</button>
             </mat-menu>

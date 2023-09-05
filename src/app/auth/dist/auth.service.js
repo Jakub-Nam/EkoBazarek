@@ -7,80 +7,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 exports.AuthService = void 0;
-var rxjs_1 = require("rxjs");
+var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
+var rxjs_1 = require("rxjs");
 var AuthService = /** @class */ (function () {
-    function AuthService() {
-        this.emptyUser = {
-            id: '',
-            firstName: '',
-            lastName: '',
-            email: '',
-            publicphone: '',
-            password: '',
-            farmName: '',
-            farmDesc: '',
-            street: '',
-            streetNumber: '',
-            flatNumber: '',
-            city: '',
-            postCode: '',
-            country: '',
-            voivodeship: '',
-            county: '',
-            district: ''
-        };
-        // get token() {
-        //     if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
-        //         return null;
-        //     }
-        //     return this._token;
-        // }
-        //  _token: '',
-        //  _tokenExpirationDate: Date | null,
-        this.user = new rxjs_1.BehaviorSubject(this.emptyUser);
+    function AuthService(http) {
+        this.http = http;
     }
-    // login(email: string, password: string) {
-    //     if (email !== undefined) {
-    //         // return this.afAuth.signInWithEmailAndPassword(email, password);
-    //     }
-    //     return this.login(email, password);
-    // }
-    // autoLogin() {
-    //     const localStorageData = JSON.parse(localStorage.getItem('userData') || '{}');
-    //     if (localStorageData) {
-    //         const userData: {
-    //             email: string;
-    //             password: string;
-    //             id: string;
-    //             _token: string;
-    //             _tokenExpirationDate: string;
-    //         } = JSON.parse(localStorage.getItem('userData') || '{}');
-    //         if (!userData) {
-    //             return;
-    //         }
-    //         const loadedUser = new User(
-    //             userData.email,
-    //             userData.password,
-    //             userData.id,
-    //             userData._token,
-    //             new Date(userData._tokenExpirationDate)
-    //         );
-    //         if (loadedUser.token) {
-    //             this.user.next(loadedUser);
-    //         }
-    //         this.login(userData.email, userData.password);
-    //     } else {
-    //         return;
-    //     }
-    // }
-    AuthService.prototype.logout = function () {
-        this.user.next(this.emptyUser);
-        // this.afAuth.signOut();
-        localStorage.clear();
+    AuthService.prototype.addUser = function (reqBody) {
+        var httpOptions = {
+            headers: new http_1.HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        };
+        var url = 'https://api-eko-bazarek.azurewebsites.net/api/users';
+        return this.http.post(url, reqBody, httpOptions)
+            .pipe(rxjs_1.map(function (data) {
+            console.log(data, 'to zwraca zal uzytk');
+            return data;
+        }), rxjs_1.catchError(function (err) {
+            console.log(err);
+            throw err;
+        }));
     };
     AuthService = __decorate([
-        core_1.Injectable({ providedIn: 'root' })
+        core_1.Injectable({
+            providedIn: 'root'
+        })
     ], AuthService);
     return AuthService;
 }());

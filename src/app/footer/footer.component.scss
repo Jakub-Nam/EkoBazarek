@@ -1,6 +1,80 @@
 @import "./../global-styles.scss";
 
 footer {
-    height: 45vh;
+    min-height: 45vh;
     background-color: $third-background-color;
+    color: $secondary-font-color;
+
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        .envelope-icon {
+            align-self: center;
+            margin-bottom: 1rem;
+            margin-top: 3rem;
+            height: 65px;
+            width: 65px;
+        }
+        span {
+            margin: 0.5rem 0rem 2rem 0rem;
+        }
+        h3 {
+            color: $secondary-font-color;
+            font-size: 28px;
+        }
+        hr {
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: $secondary-font-color;
+    }
 }
+.icons-wrapper {
+    padding: 1.2rem 0rem 0.7rem 0rem;
+    mat-icon {
+        margin: 0 1rem;
+    }
+}
+
+.input-wrapper {
+    display: flex;
+    justify-content: center;
+
+    button {
+        border: none;
+        background-color: $primary-background-color;
+        color: $secondary-font-color;
+        width: 142px;
+        height: 42px;
+        margin-left: 1.2rem;
+    }
+    input {
+        width: 420px;
+        height: 42px;
+    }
+}
+nav {
+    .nav__ul-list {
+        display: flex;
+        flex-direction: row;
+        padding: 1rem 0rem;
+        justify-content: center;
+        list-style-type: none;
+        margin: 0;
+        li {
+            margin: 0 1rem;
+        }
+    }
+    .nav__span-wrapper {
+        margin: 0.8rem 0rem;
+    }
+    
+}
+

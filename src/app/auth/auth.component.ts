@@ -2,13 +2,10 @@ import { AuthService } from './shared/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { specialCharacterValidator, upperCaseValidator } from './shared/validators/validators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, map } from 'rxjs';
 import { UserCred } from './shared/userCred.interface';
 import { UserService } from '../shared/services/user-service/user.service';
-import { ReponseLoginData } from '../shared/interfaces/interfaces';
 import { User } from '../shared/interfaces/user';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-auth',
@@ -51,10 +48,9 @@ export class AuthComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private http: HttpClient,
         private authService: AuthService,
         private userService: UserService,
-        private route: ActivatedRoute
+        private route: Router
     ) { }
 
     ngOnInit() {
@@ -69,8 +65,9 @@ export class AuthComponent implements OnInit {
         let formValues: UserCred = this.loginForm.value
         this.authService.login(formValues).subscribe({
             next: (res) => {
-                console.log(res)
                 this.userService.updateResponseData(res);
+                this.route.navigateByUrl('/home');
+                // pomyslnie zalogowano toast
             },
             error: (err: Error) => console.error('Observer got an error: ' + err),
         });
@@ -105,7 +102,7 @@ export class AuthComponent implements OnInit {
                 password: this.profileForm.value.password,
             }
 
-            this.addUser(requestBody)
+            this.authService.addUser(requestBody)
                 .subscribe({
                     next: (res) => {
                         console.log(res)
@@ -114,25 +111,5 @@ export class AuthComponent implements OnInit {
                     error: (err: Error) => console.error('Observer got an error: ' + err),
                 });
         }
-    }
-
-    addUser(reqBody: User): Observable<ReponseLoginData> {
-        const httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            })
-        };
-        const url = 'https://api-eko-bazarek.azurewebsites.net/api/users'
-        return this.http.post<ReponseLoginData>(url, reqBody, httpOptions)
-            .pipe(
-                map((data) => {
-                    console.log(data);
-                    return data;
-                }),
-                catchError(err => {
-                    console.log(err);
-                    throw err;
-                })
-            );
     }
 }

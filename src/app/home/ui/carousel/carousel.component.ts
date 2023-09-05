@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { Component } from '@angular/core';
 export class CarouselComponent {
   slides: any[] = new Array(3).fill({ id: -1, src: '', title: '', subtitle: '' });
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.slides[0] = {
@@ -30,5 +31,9 @@ export class CarouselComponent {
       title: 'Third slide',
       subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
     }
+  }
+  
+  redicrectToProduct(){
+    this.router.navigate(['/product']);
   }
 }

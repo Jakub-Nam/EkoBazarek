@@ -13,6 +13,7 @@ export class LoginComponent {
   public activateViewToggler(): void {
     this.activateViewTogglerEvent.emit();
   }
+  
   public onSubmit(): void {
     this.activateLoginEvent.emit();
   }

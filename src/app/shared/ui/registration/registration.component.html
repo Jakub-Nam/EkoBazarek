@@ -1,4 +1,4 @@
-<!-- <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
     <div class="container">
         <h3 [hidden]="!isHeader">REJESTRACJA</h3>
         <div class="input-label-wrapper">
@@ -110,110 +110,6 @@
 
             <div class="group__form-input">
 
-                <label for="district">Gmina*</label>
-                <input id="district" type="text" formControlName="district">
-            </div>
-
-            <button (click)="resetForm()">Reset</button>
-            <br>
-            <button type="submit">Zapisz</button>
-        </div>
-    </div>
-</form> -->
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <div class="container">
-        <h3 [hidden]="!isHeader">REJESTRACJA</h3>
-        <div class="input-label-wrapper">
-            <div class="group__form-input">
-                <label for="firstName">Imię* </label>
-                <input id="firstName" type="text" formControlName="firstName">
-            </div>
-            <div class="group__form-input">
-                <label for="lastName">Nazwisko* </label>
-                <input id="lastName" type="text" formControlName="lastName">
-            </div>
-
-            <div class="group__form-input">
-                <label for="email">Email* </label>
-                <input id="email" type="email" formControlName="email">
-            </div>
-            <div class="group__form-input">
-                <label for="phone">Telefon* </label>
-                <input id="phone" type="number" formControlName="phone">
-            </div>
-
-            <div class="group__form-input">
-                <label for="password">Hasło* </label>
-                <input id="password" type="password" formControlName="password">
-            </div>
-            <div class="group__form-input">
-                <label for="repeatPassword">Powtórz hasło* </label>
-                <input id="repeatPassword" type="password" formControlName="repeatPassword">
-            </div>
-
-            <div *ngIf="password && (password.dirty || password.touched)">
-                <div *ngIf="password.hasError('required')">
-                    Password is required.
-                </div>
-                <div *ngIf="password.hasError('minlength')">
-                    Minimum 8 characters required.
-                </div>
-                <div *ngIf="password.hasError('upperCase')">
-                    At least one uppercase letter required.
-                </div>
-                <div *ngIf="password.hasError('specialCharacter')">
-                    At least one special character required.
-                </div>
-            </div>
-
-            <div class="second-part">
-                <h4>ADRES I INFORMACJE O GOSPODARSTWIE</h4>
-                <div class="group__form-input">
-                    <label for="farmName">Nazwa gospodarstwa*</label>
-                    <input id="farmName" type="text" formControlName="farmName">
-                </div>
-                <div class="group__form-input">
-                    <label for="farmDesc">Opis gospodarstwa*</label>
-                    <input id="farmDesc" type="text" formControlName="farmDesc">
-                </div>
-            </div>
-
-            <div>
-                <div class="group__form-input">
-                    <label for="street">Ulica*</label>
-                    <input id="street" type="text" formControlName="street">
-                </div>
-                <div class="group__form-input">
-                    <label for="streetNumber">Numer domu*</label>
-                    <input id="streetNumber" type="text" formControlName="streetNumber">
-                </div>
-                <div class="group__form-input">
-                    <label for="flatNumber">Numer mieszkania</label>
-                    <input id="flatNumber" type="text" formControlName="flatNumber">
-                </div>
-            </div>
-
-            <div class="group__form-input">
-                <label for="city">Miasto/Wieś*</label>
-                <input id="city" type="text" formControlName="city">
-            </div>
-
-            <div class="group__form-input">
-                <label for="postCode">Kod pocztowy*</label>
-                <input id="postCode" type="text" formControlName="postCode">
-            </div>
-
-            <div class="group__form-input">
-                <label for="voivodeship">Województwo*</label>
-                <input id="voivodeship" type="text" formControlName="voivodeship">
-            </div>
-
-            <div class="group__form-input">
-                <label for="county">Powiat*</label>
-                <input id="county" type="text" formControlName="county">
-            </div>
-
-            <div class="group__form-input">
                 <label for="district">Gmina*</label>
                 <input id="district" type="text" formControlName="district">
             </div>

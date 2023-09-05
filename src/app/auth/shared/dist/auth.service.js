@@ -9,39 +9,10 @@ exports.__esModule = true;
 exports.AuthService = void 0;
 var rxjs_1 = require("rxjs");
 var core_1 = require("@angular/core");
-// import { User } from '../user.model';
 var http_1 = require("@angular/common/http");
 var AuthService = /** @class */ (function () {
     function AuthService(http) {
         this.http = http;
-        this.emptyUser = {
-            id: '',
-            firstName: '',
-            lastName: '',
-            email: '',
-            phone: '',
-            password: '',
-            farmName: '',
-            farmDesc: '',
-            street: '',
-            streetNumber: '',
-            flatNumber: '',
-            city: '',
-            postCode: '',
-            country: '',
-            voivodeship: '',
-            county: '',
-            district: ''
-        };
-        // get token() {
-        //     if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
-        //         return null;
-        //     }
-        //     return this._token;
-        // }
-        //  _token: '',
-        //  _tokenExpirationDate: Date | null,
-        this.user = new rxjs_1.BehaviorSubject(this.emptyUser);
     }
     AuthService.prototype.login = function (form) {
         var url = 'https://api-eko-bazarek.azurewebsites.net/api/users/login';
@@ -50,7 +21,28 @@ var AuthService = /** @class */ (function () {
                 'Content-Type': 'application/json'
             })
         };
-        return this.http.post(url, form, httpOptions);
+        return this.http.post(url, form, httpOptions)
+            .pipe(rxjs_1.map(function (data) {
+            return data;
+        }), rxjs_1.catchError(function (err) {
+            console.log(err);
+            throw err;
+        }));
+    };
+    AuthService.prototype.addUser = function (reqBody) {
+        var httpOptions = {
+            headers: new http_1.HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        };
+        var url = 'https://api-eko-bazarek.azurewebsites.net/api/users';
+        return this.http.post(url, reqBody, httpOptions)
+            .pipe(rxjs_1.map(function (data) {
+            return data;
+        }), rxjs_1.catchError(function (err) {
+            console.log(err);
+            throw err;
+        }));
     };
     AuthService = __decorate([
         core_1.Injectable({ providedIn: 'root' })

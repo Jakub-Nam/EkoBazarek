@@ -37,8 +37,8 @@ var UserService = /** @class */ (function () {
     UserService.prototype.getResponseData = function () {
         return this.reponseLoginData.asObservable();
     };
-    UserService.prototype.updateResponseData = function (newData) {
-        return this.reponseLoginData.next(newData);
+    UserService.prototype.updateResponseData = function (data) {
+        return this.reponseLoginData.next(data);
     };
     UserService.prototype.logout = function () {
         this.updateResponseData(this.emptyResponseData);
