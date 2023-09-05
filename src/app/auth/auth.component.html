@@ -2,7 +2,7 @@
     <app-registration (sendingProfileEvent)="createAccount()" [profileForm]="profileForm"></app-registration>
 </div>
 <div *ngIf="!registrationView" >
-    <app-login (activateParentButtonEvent)="viewToggler()" (activateLoginEvent)="login()" [loginForm]="loginForm"></app-login>
+    <app-login (activateViewTogglerEvent)="viewToggler()" (activateLoginEvent)="login()" [loginForm]="loginForm"></app-login>
 </div>
 
 <button (click)="viewToggler()">zmien widok</button>

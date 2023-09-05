@@ -1,0 +1,20 @@
+.container-categories {
+    width: 90%;
+    margin: 0 auto;
+    h3 {
+        text-align: center;
+        font-weight: 500;
+        font-size: 36px;
+        padding: 3rem 0rem;
+        margin-bottom: 0px;
+    }
+}
+div > ul.card-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: 10px;
+    max-width: 1106px;
+    margin: 0 auto;
+}

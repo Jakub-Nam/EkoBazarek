@@ -11,7 +11,7 @@ var core_1 = require("@angular/core");
 var rxjs_1 = require("rxjs");
 var UserService = /** @class */ (function () {
     function UserService() {
-        this.reponseLoginData = new rxjs_1.BehaviorSubject({
+        this.emptyResponseData = {
             token: '',
             user: {
                 city: '',
@@ -31,16 +31,17 @@ var UserService = /** @class */ (function () {
                 streetNumber: '',
                 voivodeship: ''
             }
-        });
+        };
+        this.reponseLoginData = new rxjs_1.BehaviorSubject(this.emptyResponseData);
     }
     UserService.prototype.getResponseData = function () {
         return this.reponseLoginData.asObservable();
     };
     UserService.prototype.updateResponseData = function (newData) {
-        this.reponseLoginData.next(newData);
+        return this.reponseLoginData.next(newData);
     };
-    UserService.prototype.consoleLog = function () {
-        console.log(this.reponseLoginData);
+    UserService.prototype.logout = function () {
+        this.updateResponseData(this.emptyResponseData);
     };
     UserService = __decorate([
         core_1.Injectable({

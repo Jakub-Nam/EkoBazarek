@@ -1,47 +1,52 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
 .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-row {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
 }
-.container h3 {
-  font-size: 48px;
-  color: #412F22;
+
+.form-row input {
+  flex: 1;
+  margin-right: 10px;
 }
-.container .form-group {
-  display: flex;
-  flex-direction: row;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-}
-.container .form-group label {
-  font-weight: 600;
-}
-.container .form-group input {
-  border: 0;
-  font-size: 12px;
-  height: 36px;
-}
-.container .form-group .group__form-input {
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-}
-.container .form-group .group__form-input label {
-  font-size: 12px;
-}
-.container .btn-group {
-  display: flex;
-  justify-content: end;
-}
-.container .btn-group button {
+
+button {
+  background-color: #007bff;
+  color: #fff;
   border: none;
-  margin-top: 2rem;
-  padding: 0.5rem 1.8rem;
-  border-radius: 2px;
-  margin-left: 1rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
 }
-.container h4 {
-  font-size: 14px;
-  color: #412F22;
+
+button.secondary {
+  background-color: #ccc;
 }

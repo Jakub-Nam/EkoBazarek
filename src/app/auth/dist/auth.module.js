@@ -9,7 +9,6 @@ exports.__esModule = true;
 exports.AuthModule = void 0;
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
-// import { RegistrationComponent } from '../shared/ui/registration/registration.component';
 var auth_routing_module_1 = require("./auth-routing.module");
 var forms_1 = require("@angular/forms");
 var auth_component_1 = require("./auth.component");
@@ -22,7 +21,6 @@ var AuthModule = /** @class */ (function () {
     AuthModule = __decorate([
         core_1.NgModule({
             declarations: [
-                // RegistrationComponent,
                 auth_component_1.AuthComponent,
                 login_component_1.LoginComponent
             ],
@@ -30,7 +28,6 @@ var AuthModule = /** @class */ (function () {
                 common_1.CommonModule,
                 forms_1.ReactiveFormsModule,
                 forms_1.FormsModule,
-                // BrowserModule,
                 http_1.HttpClientModule,
                 shared_module_1.SharedModule,
                 auth_routing_module_1.AuthRoutingModule,

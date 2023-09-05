@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ReponseLoginData } from '../../interfaces/response-log-data';
+import { ReponseLoginData } from '../../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
-
-  constructor() { }
-
-  private reponseLoginData: BehaviorSubject<ReponseLoginData> = new BehaviorSubject<ReponseLoginData>({
+  private emptyResponseData: ReponseLoginData = {
     token: '',
     user: {
       city: '',
@@ -30,18 +27,20 @@ export class UserService {
       streetNumber: '',
       voivodeship: '',
     }
-  });
+  }
+  constructor() { }
 
-  getResponseData(): Observable<ReponseLoginData> {
+  private reponseLoginData: BehaviorSubject<ReponseLoginData> = new BehaviorSubject<ReponseLoginData>(this.emptyResponseData);
+
+  public getResponseData(): Observable<ReponseLoginData> {
     return this.reponseLoginData.asObservable();
   }
 
-  updateResponseData(newData: ReponseLoginData) {
-    this.reponseLoginData.next(newData);
+  public updateResponseData(newData: ReponseLoginData): void {
+    return this.reponseLoginData.next(newData);
   }
-
-  consoleLog() {
-    console.log(this.reponseLoginData)
+  
+  public logout(): void {
+    this.updateResponseData(this.emptyResponseData)
   }
-
 }

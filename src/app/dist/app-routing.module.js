@@ -11,11 +11,35 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var home_component_1 = require("./home/home.component");
 var routes = [
-    { path: 'home', component: home_component_1.HomeComponent },
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: 'auth', loadChildren: function () { return Promise.resolve().then(function () { return require('./auth/auth.module'); }).then(function (m) { return m.AuthModule; }); } },
-    { path: 'profile', loadChildren: function () { return Promise.resolve().then(function () { return require('./profile/profile.module'); }).then(function (m) { return m.ProfileModule; }); } },
-    { path: '**', component: home_component_1.HomeComponent }
+    {
+        path: 'home',
+        component: home_component_1.HomeComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
+    },
+    {
+        path: 'auth',
+        loadChildren: function () { return Promise.resolve().then(function () { return require('./auth/auth.module'); }).then(function (m) { return m.AuthModule; }); },
+        pathMatch: 'full'
+    },
+    {
+        path: 'profile',
+        loadChildren: function () { return Promise.resolve().then(function () { return require('./profile/profile.module'); }).then(function (m) { return m.ProfileModule; }); },
+        pathMatch: 'full'
+    },
+    {
+        path: 'product',
+        loadChildren: function () { return Promise.resolve().then(function () { return require('./product/product.module'); }).then(function (m) { return m.ProductModule; }); },
+        pathMatch: 'full'
+    },
+    {
+        path: '**',
+        component: home_component_1.HomeComponent
+    }
     // ^ -in future page not found comp!
 ];
 var AppRoutingModule = /** @class */ (function () {

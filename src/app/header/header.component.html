@@ -1,33 +1,32 @@
 <header class="header-container">
-    <div class="container__div">
+    <div class="container__header-logo">
         <div class="">Logo</div>
         <h1 class="">EkoBazarek</h1>
     </div>
     <nav class="">
         <a routerLink="/home" href="#">Home</a>
         <a href="#">O nas</a>
-        <a routerLink="/profile" href="#">Produkty</a>
+        <a routerLink="/product" href="#">Produkty</a>
         <a href="#">Kontakt</a>
     </nav>
     <div class="links-container ">
-        <a class="">szukaj</a>
+        <a class="">
+            <mat-icon>search</mat-icon>
+        </a>
 
         <a routerLink="/profile" href="#">
             <i>ulubione</i>
         </a>
-
-        
         <a class='icon-container'>
             <button mat-button [matMenuTriggerFor]="menu">
                 <mat-icon>person_outline</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <button (click)="showUserState()" mat-menu-item>Wyloguj</button>
-                <button (click)="redicrectToProfile()" mat-menu-item>Profil</button>
-                <button (click)="redicrectToAuth()" mat-menu-item>Zaloguj</button>
+                <button (click)="showUserState()" mat-menu-item [hidden]="!isUser">Wyloguj</button>
+                <button (click)="redicrectToProfile()" mat-menu-item [hidden]="!isUser">Profil</button>
+                <button (click)="redicrectToAuth()" mat-menu-item [hidden]="isUser">Zaloguj</button>
             </mat-menu>
         </a>
 
-        <a class="">Icon 3</a>
     </div>
 </header>

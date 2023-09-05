@@ -3,13 +3,14 @@ header.header-container {
   display: flex;
   justify-content: space-between;
 }
-header.header-container div.container__div {
+header.header-container div.container__header-logo {
   display: flex;
 }
-header.header-container div.container__div h1 {
+header.header-container div.container__header-logo h1 {
   font-size: 20px;
   align-self: center;
   color: #FFFFFF;
+  margin: 0px;
 }
 
 nav {
@@ -18,6 +19,10 @@ nav {
 nav a {
   padding: 0.7rem;
   color: #FFFFFF;
+  text-decoration: none;
+}
+nav a:hover {
+  color: #fcfe7f;
 }
 
 .links-container {

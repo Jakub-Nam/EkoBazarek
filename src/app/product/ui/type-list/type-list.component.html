@@ -1,0 +1,19 @@
+<!-- <mat-selection-list>
+    <mat-list-option *ngFor="let type of productTypes" checkboxPosition="before">
+        {{type.name}}
+    </mat-list-option>
+</mat-selection-list> -->
+<div>
+    <button mat-button [matMenuTriggerFor]="menu" *ngFor="let type of productTypes" checkboxPosition="before">
+        {{type.name}}
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>Wyloguj</button>
+        <button mat-menu-item>Profil</button>
+        <button mat-menu-item>Zaloguj</button>
+    </mat-menu>
+</div>
+
+<p>
+    <!-- Options selected: {{productTypes.name.selected.length}} -->
+</p>

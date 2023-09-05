@@ -13,11 +13,12 @@ var validators_1 = require("./shared/validators/validators");
 var http_1 = require("@angular/common/http");
 var rxjs_1 = require("rxjs");
 var AuthComponent = /** @class */ (function () {
-    function AuthComponent(fb, http, authService, userService) {
+    function AuthComponent(fb, http, authService, userService, route) {
         this.fb = fb;
         this.http = http;
         this.authService = authService;
         this.userService = userService;
+        this.route = route;
         this.registrationView = false;
         this.loginForm = this.fb.group({
             email: ['', [forms_1.Validators.required]],
@@ -49,6 +50,9 @@ var AuthComponent = /** @class */ (function () {
             district: ['Odolanów', [forms_1.Validators.required]]
         });
     }
+    AuthComponent.prototype.ngOnInit = function () {
+        this.registrationView = false;
+    };
     AuthComponent.prototype.viewToggler = function () {
         this.registrationView = !this.registrationView;
     };

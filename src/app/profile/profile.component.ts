@@ -62,10 +62,6 @@ export class ProfileComponent {
 
   }
 
-  activeLink() {
-    console.log('asdasd')
-  }
-
   public checkOldNewPass(): void {
     if (this.changePassForm.value.newPassword === this.changePassForm.value.repNewPassword) {
       let requestBody: OldNewPasswords =
@@ -73,14 +69,14 @@ export class ProfileComponent {
         "oldPassword": this.changePassForm.value.oldPassword,
         "newPassword": this.changePassForm.value.newPassword
       }
-      console.log(requestBody, 'reqBod')
+
       this.userService.getResponseData().subscribe({
         next: (res) => {
           this.token = res.token
         },
         error: (err: Error) => console.error('Observer got an error: ' + err),
       });
-      console.log(this.token)
+
       this.changePassword(requestBody)
         .subscribe({
           next: (res) => {

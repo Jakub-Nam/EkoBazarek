@@ -57,9 +57,6 @@ var ProfileComponent = /** @class */ (function () {
             repNewPassword: ['Namysl1234!5', [forms_1.Validators.required]]
         });
     }
-    ProfileComponent.prototype.activeLink = function () {
-        console.log('asdasd');
-    };
     ProfileComponent.prototype.checkOldNewPass = function () {
         var _this = this;
         if (this.changePassForm.value.newPassword === this.changePassForm.value.repNewPassword) {
@@ -67,14 +64,12 @@ var ProfileComponent = /** @class */ (function () {
                 "oldPassword": this.changePassForm.value.oldPassword,
                 "newPassword": this.changePassForm.value.newPassword
             };
-            console.log(requestBody, 'reqBod');
             this.userService.getResponseData().subscribe({
                 next: function (res) {
                     _this.token = res.token;
                 },
                 error: function (err) { return console.error('Observer got an error: ' + err); }
             });
-            console.log(this.token);
             this.changePassword(requestBody)
                 .subscribe({
                 next: function (res) {

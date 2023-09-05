@@ -11,7 +11,11 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var auth_component_1 = require("./auth.component");
 var routes = [
-    { path: 'auth', component: auth_component_1.AuthComponent },
+    {
+        path: 'auth',
+        component: auth_component_1.AuthComponent,
+        pathMatch: "full"
+    },
 ];
 var AuthRoutingModule = /** @class */ (function () {
     function AuthRoutingModule() {

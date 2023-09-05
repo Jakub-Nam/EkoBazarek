@@ -17,4 +17,7 @@ export class RegistrationComponent {
   public onSubmit(): void {
     this.sendingProfileEvent.emit();
   }
+  public resetForm():void {
+    this.profileForm.reset();
+  }
 }
