@@ -6,9 +6,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
-
 
 .primary-btn {
     color: $secondary-font-color;
@@ -19,13 +18,25 @@ h3 {
     font-size: 48px;
     color: $third-font-color;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
+// Angular material
+// Tabk
 .mdc-tab {
     justify-content: start !important;
     padding-left: 1rem !important;
     padding-right: 1rem !important;
     max-width: 220px !important;
     flex: 0 0 auto !important;
+}
+
+.mdc-list-item {
+    padding-left: 0px !important;
 }

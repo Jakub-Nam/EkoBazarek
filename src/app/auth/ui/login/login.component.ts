@@ -6,12 +6,12 @@ import { FormGroup  } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  @Output() activateParentButtonEvent: EventEmitter<void> = new EventEmitter();
+  @Output() activateViewTogglerEvent: EventEmitter<void> = new EventEmitter();
   @Output() activateLoginEvent: EventEmitter<void> = new EventEmitter();
   @Input() loginForm: FormGroup = new FormGroup({})
   
-  public activateParentButton(): void {
-    this.activateParentButtonEvent.emit();
+  public activateViewToggler(): void {
+    this.activateViewTogglerEvent.emit();
   }
   public onSubmit(): void {
     this.activateLoginEvent.emit();

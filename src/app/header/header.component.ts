@@ -8,20 +8,38 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  public isUser: boolean = false;
 
-  constructor(public user: UserService, private router: Router) {
+  constructor(public userService: UserService, private router: Router) {
   }
 
   ngOnInit() {
-    console.log(this.user.getResponseData(), 'header onInit')
+    this.userService.getResponseData().subscribe({
+      next: (res) => {
+       if(res.user.farmName !== ''){
+        this.isUser = true;
+       } else {
+        this.isUser = false;
+       }
+      },
+      error: (err: Error) => console.error('Observer got an error: ' + err),
+    });
+
   }
-  showUserState(){
-    console.log(this.user.getResponseData(), 'header check')
+
+  showUserState() {
+    console.log(this.userService.getResponseData(), 'header check')
   }
-  redicrectToProfile(){
+
+  redicrectToProfile() {
     this.router.navigate(['/profile']);
   }
-  redicrectToAuth(){
+
+  redicrectToAuth() {
     this.router.navigate(['/auth']);
+  }
+
+  logout() {
+    this.userService.logout();
   }
 }

@@ -11,19 +11,19 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var LoginComponent = /** @class */ (function () {
     function LoginComponent() {
-        this.activateParentButtonEvent = new core_1.EventEmitter();
+        this.activateViewTogglerEvent = new core_1.EventEmitter();
         this.activateLoginEvent = new core_1.EventEmitter();
         this.loginForm = new forms_1.FormGroup({});
     }
-    LoginComponent.prototype.activateParentButton = function () {
-        this.activateParentButtonEvent.emit();
+    LoginComponent.prototype.activateViewToggler = function () {
+        this.activateViewTogglerEvent.emit();
     };
     LoginComponent.prototype.onSubmit = function () {
         this.activateLoginEvent.emit();
     };
     __decorate([
         core_1.Output()
-    ], LoginComponent.prototype, "activateParentButtonEvent");
+    ], LoginComponent.prototype, "activateViewTogglerEvent");
     __decorate([
         core_1.Output()
     ], LoginComponent.prototype, "activateLoginEvent");

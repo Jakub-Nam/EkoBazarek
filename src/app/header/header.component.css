@@ -1,0 +1,39 @@
+header.header-container {
+  background-color: #46aa42;
+  display: flex;
+  justify-content: space-between;
+}
+header.header-container div.container__div {
+  display: flex;
+}
+header.header-container div.container__div h1 {
+  font-size: 20px;
+  align-self: center;
+  color: #FFFFFF;
+}
+
+nav {
+  display: flex;
+}
+nav a {
+  padding: 0.7rem;
+  color: #FFFFFF;
+}
+
+.links-container {
+  display: flex;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+.icon-container button {
+  border: none;
+  background-color: transparent;
+}
+.icon-container button mat-icon {
+  width: 24px;
+  height: 24px;
+  color: #FFFFFF;
+}/*# sourceMappingURL=header.component.css.map */

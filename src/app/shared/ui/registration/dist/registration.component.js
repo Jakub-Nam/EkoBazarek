@@ -20,6 +20,9 @@ var RegistrationComponent = /** @class */ (function () {
     RegistrationComponent.prototype.onSubmit = function () {
         this.sendingProfileEvent.emit();
     };
+    RegistrationComponent.prototype.resetForm = function () {
+        this.profileForm.reset();
+    };
     __decorate([
         core_1.Input()
     ], RegistrationComponent.prototype, "profileForm");

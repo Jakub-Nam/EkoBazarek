@@ -4,13 +4,14 @@ header.header-container {
     background-color: $primary-background-color;
     display: flex;
     justify-content: space-between;
-    div.container__div {
+    div.container__header-logo {
         display: flex;
 
         h1 {
             font-size: 20px;
             align-self: center;
             color: $secondary-font-color;
+            margin: 0px;
         }
     }
 }
@@ -20,6 +21,10 @@ nav {
     a {
         padding: 0.7rem;
         color: $secondary-font-color;
+        text-decoration: none;
+        &:hover {
+            color: #fcfe7f;
+        }
     }
 }
 .links-container {

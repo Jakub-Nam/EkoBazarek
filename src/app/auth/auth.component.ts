@@ -1,13 +1,14 @@
 import { AuthService } from './shared/auth.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { specialCharacterValidator, upperCaseValidator } from './shared/validators/validators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, map } from 'rxjs';
 import { UserCred } from './shared/userCred.interface';
 import { UserService } from '../shared/services/user-service/user.service';
-import { ReponseLoginData } from '../shared/interfaces/response-log-data';
+import { ReponseLoginData } from '../shared/interfaces/interfaces';
 import { User } from '../shared/interfaces/user';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-auth',
@@ -15,7 +16,7 @@ import { User } from '../shared/interfaces/user';
     styleUrls: ['./auth.component.scss']
 })
 
-export class AuthComponent {
+export class AuthComponent implements OnInit {
     public registrationView: boolean = false;
     public loginForm = this.fb.group({
         email: ['', [Validators.required]],
@@ -48,7 +49,17 @@ export class AuthComponent {
         district: ['Odolanów', [Validators.required]],
     });
 
-    constructor(private fb: FormBuilder, private http: HttpClient, private authService: AuthService, private userService: UserService) { }
+    constructor(
+        private fb: FormBuilder,
+        private http: HttpClient,
+        private authService: AuthService,
+        private userService: UserService,
+        private route: ActivatedRoute
+    ) { }
+
+    ngOnInit() {
+       this.registrationView = false;
+    }
 
     public viewToggler(): void {
         this.registrationView = !this.registrationView

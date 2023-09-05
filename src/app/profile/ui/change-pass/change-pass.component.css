@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.container .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+.container .form-group label {
+  font-weight: 600;
+}
+.container .form-group input {
+  border: 0;
+  font-size: 12px;
+  height: 36px;
+}
+.container .form-group .group__form-input {
+  display: flex;
+  flex-direction: column;
+  width: 515px;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+.container .form-group .group__form-input label {
+  font-size: 12px;
+}
+.container .btn-group {
+  display: flex;
+  justify-content: end;
+}
+.container .btn-group button {
+  border: none;
+  margin-top: 2rem;
+  padding: 0.5rem 1.8rem;
+  border-radius: 2px;
+  margin-left: 1rem;
+}/*# sourceMappingURL=change-pass.component.css.map */
