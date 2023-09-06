@@ -38,6 +38,10 @@ body {
 //     max-width: 220px !important;
 //     flex: 0 0 auto !important;
 // }
+// .mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled)
+button .mdc-button__label {
+    color: $secondary-font-color;
+}
 
 // .mdc-list-item {
 //     padding-left: 0px !important;
