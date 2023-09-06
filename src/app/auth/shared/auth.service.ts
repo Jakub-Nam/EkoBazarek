@@ -32,7 +32,7 @@ export class AuthService {
       )
   }
 
-  public addUser(reqBody: User): Observable<ReponseLoginData> {
+  public postUser(reqBody: User): Observable<ReponseLoginData> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

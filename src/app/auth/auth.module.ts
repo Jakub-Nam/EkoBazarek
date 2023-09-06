@@ -6,8 +6,16 @@ import { AuthComponent } from './auth.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './ui/login/login.component';
 import { SharedModule } from '../shared/shared.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 
+
+const materialComponents: unknown[] = 
+[
+  MatSnackBarModule,
+  MatIconModule,
+]
 
 @NgModule({
   declarations: [
@@ -20,6 +28,7 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     HttpClientModule,
     SharedModule,
+    materialComponents,
     AuthRoutingModule,
   ]
 })

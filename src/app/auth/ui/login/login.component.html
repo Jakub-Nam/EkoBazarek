@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" (ngSubmit)='onSubmit()' >
+<form [formGroup]="loginForm" (ngSubmit)='onSubmit()'>
     <div class="container">
         <h3>Zaloguj się</h3>
         <div class="form-group">
@@ -13,12 +13,58 @@
             <button (click)="activateViewToggler()" type="button">
                 Zarejestruj sie
             </button>
-            <button class="primary-btn" type="submit">
+            <button class="primary-btn" type="submit" [disabled]="!loginForm.valid">
                 Zaloguj
             </button>
         </div>
     </div>
+    <div *ngIf="password && (password.dirty || password.touched)">
+        <div class="span-wrapper">
+            <span>Hasło musi spełniać następujące wymagania:</span>
+        </div>
+        <div *ngIf="password.errors?.['minlength']">
+            <span class='red-validator'>
+                <mat-icon>clear</mat-icon>
+                Przynajmniej 8 znaków
+            </span>
+        </div>
+        <div *ngIf="!password.errors?.['minlength']">
+            <span class='green-validator'>
+                <mat-icon>check</mat-icon>
+                Przynajmniej 8 znaków
+            </span>
+        </div>
+        <div *ngIf="password.errors?.['upperCase']">
+            <span class='red-validator'>
+                <mat-icon>
+                    clear
+                </mat-icon>
+                Przynajmniej jedna duża litera
+            </span>
+        </div>
+        <div *ngIf="!password.errors?.['upperCase']">
+            <span class='green-validator'>
+                <mat-icon>
+                    check
+                </mat-icon>
+                Przynajmniej jedna duża litera
+            </span>
+        </div>
+        <div *ngIf="password.errors?.['specialCharacter']">
+            <span class='red-validator'>
+                <mat-icon>
+                    clear
+                </mat-icon>
+                Znak specjalny
+            </span>
+        </div>
+        <div *ngIf="!password.errors?.['specialCharacter']">
+            <span class='green-validator'>
+                <mat-icon>
+                    check
+                </mat-icon>
+                Znak specjalny
+            </span>
+        </div>
+    </div>
 </form>
-
-
-

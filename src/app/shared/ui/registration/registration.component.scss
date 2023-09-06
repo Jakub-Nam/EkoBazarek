@@ -1,111 +1,133 @@
-// @import "../../../global-styles.scss";
+@import "../../../global-styles.scss";
 
-// .container {
-//     display: flex;
-//     flex-direction: column;
-
-//     h3 {
-//         font-size: 48px;
-//         color: $third-font-color;
-//     }
-
-//     .input-label-wrapper {
-//         display: flex;
-//         flex-direction: row;
-//         margin-top: 2rem;
-//         flex-wrap: wrap;
-//         label {
-//             font-weight: 500;
-//         }
-//         input {
-//             border: 0;
-//             font-size: 12px;
-//             height: 36px;
-//         }
-//         .group__form-input {
-//             display: flex;
-//             flex-direction: column;
-//             width: 45%;
-//             margin-right: 1rem;
-//             margin-bottom: 1rem;
-//             label {
-//                 font-size: 12px;
-//             }
-//         }
-//     }
-//     .btn-group {
-//         display: flex;
-//         justify-content: end;
-//         button {
-//             border: none;
-//             margin-top: 2rem;
-//             padding: 0.5rem 1.8rem;
-//             border-radius: 2px;
-//             margin-left: 1rem;
-//         }
-//     }
-//     h4 {
-//         font-size: 14px;
-//         color: $third-font-color;
-//     }
-// }
-// .second-part {
-//     display: flex;
-//     flex-direction: column;
-//     width: 100%;
-//     input {
-//         padding-right: 1rem;
-//     }
-// }
-body {
-    font-family: Arial, sans-serif;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.form-row {
+form {
+    margin-top: 4rem;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    width: 50%;
+    margin-left: 160px;
+
+    h3 {
+        font-size: 48px;
+        font-weight: 500;
+        color: $third-font-color;
+    }
+    label {
+        font-size: 12px;
+    }
+    .form-group {
+        display: flex;
+        flex-direction: row;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+        label {
+            font-weight: 500;
+        }
+        input {
+            border: 0;
+            font-size: 12px;
+            height: 36px;
+        }
+        .group__form-input {
+            display: flex;
+            flex-direction: column;
+            width: 45%;
+            margin-right: 5%;
+            margin-bottom: 1rem;
+        }
+    }
+    .btn-group {
+        display: flex;
+        justify-content: end;
+        button {
+            border: none;
+            margin-top: 2rem;
+            padding: 0.5rem 1.8rem;
+            border-radius: 2px;
+            margin-left: 1rem;
+        }
+    }
+    h4 {
+        font-size: 14px;
+        color: $third-font-color;
+    }
+
+
+
+    .button-wrapper {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        button {
+            border: none;
+            color: $secondary-font-color;
+            background-color: $primary-background-color;
+        }
+    }
 }
 
-.form-row input {
-    flex: 1;
-    margin-right: 10px;
+.form-group-inline {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    margin-top: 2rem;
+    input {
+        padding-right: 1rem;
+        margin-bottom: 2rem;
+    }
+    textarea {
+        border: none;
+        resize: none;
+        outline: none;
+    }
+}
+.form-input-row {
+    display: flex;
+    flex-direction: row;
+    min-width: 100%;
+    margin-top: 2rem;
+    .street {
+        display: flex;
+        align-self: center;
+        flex-direction: column;
+        width: 51%;
+        margin-right: 5%;
+    }
+    .house-accomodation-number {
+        display: flex;
+        width: 17%;
+        flex-direction: column;
+        align-self: center;
+
+        margin-right: 5%;
+
+        input {
+            width: 100%;
+        }
+    }
 }
 
-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+.span-wrapper {
+    margin-top: 1rem;
+    span {
+        padding-left: 4px;
+        font-weight: 450;
+    }
 }
-
-button.secondary {
-    background-color: #ccc;
+.red-validator {
+    color: red;
+    font-size: 12px;
+    font-weight: 550;
+    display: flex;
+    align-items: center;
+}
+.green-validator {
+    color: green;
+    font-size: 12px;
+    font-weight: 550;
+    display: flex;
+    align-items: center;
+    mat-icon {
+        margin-right: 0.2rem;
+    }
 }

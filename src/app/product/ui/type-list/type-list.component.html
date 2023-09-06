@@ -4,14 +4,11 @@
     </mat-list-option>
 </mat-selection-list> -->
 <div>
-    <button mat-button [matMenuTriggerFor]="menu" *ngFor="let type of productTypes" checkboxPosition="before">
+    <!-- <button mat-button [matMenuTriggerFor]="menu" *ngFor="let type of productTypes" checkboxPosition="before">
         {{type.name}}
     </button>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item>Wyloguj</button>
-        <button mat-menu-item>Profil</button>
-        <button mat-menu-item>Zaloguj</button>
-    </mat-menu>
+    -->
+    <button *ngFor="let productType of productTypes" (click)="changeSelectedType(productType.id)">{{ productType.id }}</button>
 </div>
 
 <p>

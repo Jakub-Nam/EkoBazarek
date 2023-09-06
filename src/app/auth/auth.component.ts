@@ -6,6 +6,7 @@ import { UserCred } from './shared/userCred.interface';
 import { UserService } from '../shared/services/user-service/user.service';
 import { User } from '../shared/interfaces/user';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-auth',
@@ -17,7 +18,12 @@ export class AuthComponent implements OnInit {
     public registrationView: boolean = false;
     public loginForm = this.fb.group({
         email: ['', [Validators.required]],
-        password: ['', [Validators.required]]
+        password: ['', [
+            Validators.required,
+            Validators.minLength(8),
+            upperCaseValidator(/[A-Z]/),
+            specialCharacterValidator(/[!@#$%^&*(),.?":{}|<>]/)
+        ]]
     })
 
     public profileForm = this.fb.group({
@@ -50,11 +56,20 @@ export class AuthComponent implements OnInit {
         private fb: FormBuilder,
         private authService: AuthService,
         private userService: UserService,
-        private route: Router
+        private route: Router,
+        private _snackBar: MatSnackBar
     ) { }
 
     ngOnInit() {
-       this.registrationView = false;
+        this.registrationView = false;
+    }
+
+    public openSnackBar(message: string): void {
+        this._snackBar.open(message, 'Zamknij', {
+            // duration: 2000,
+            horizontalPosition: 'start',
+            verticalPosition: 'top',
+        });
     }
 
     public viewToggler(): void {
@@ -67,18 +82,15 @@ export class AuthComponent implements OnInit {
             next: (res) => {
                 this.userService.updateResponseData(res);
                 this.route.navigateByUrl('/home');
-                // pomyslnie zalogowano toast
+                this.openSnackBar('Pomyślnie zalogowano.');
             },
-            error: (err: Error) => console.error('Observer got an error: ' + err),
+            error: (err: Error) => {
+                console.error('Observer got an error: ' + err),
+                    this.openSnackBar('Wystąpił błąd podczas logowania.');
+            }
+
         });
     }
-
-    get firstName() { return this.profileForm.get('firstName'); }
-    get lastName() { return this.profileForm.get('lastName'); }
-    get email() { return this.profileForm.get('email'); }
-    get phoneNumber() { return this.profileForm.get('phoneNumber'); }
-    get password() { return this.profileForm.get('password'); }
-    get repeatPassword() { return this.profileForm.get('repeatPassword'); }
 
     public createAccount(): void {
         if (this.profileForm.value.password === this.profileForm.value.repeatPassword) {
@@ -102,10 +114,9 @@ export class AuthComponent implements OnInit {
                 password: this.profileForm.value.password,
             }
 
-            this.authService.addUser(requestBody)
+            this.authService.postUser(requestBody)
                 .subscribe({
                     next: (res) => {
-                        console.log(res)
                         this.viewToggler()
                     },
                     error: (err: Error) => console.error('Observer got an error: ' + err),

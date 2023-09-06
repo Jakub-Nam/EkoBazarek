@@ -1,6 +1,7 @@
 
-<mat-selection-list>
+<!-- <mat-selection-list>
     <mat-list-option *ngFor="let product of productCategories" checkboxPosition="before">
         {{product.name}}
     </mat-list-option>
-</mat-selection-list>
+</mat-selection-list>   -->
+<button *ngFor="let productCategory of filteredProductCategories" (click)="emitSelectedCategory(productCategory.id)">{{ productCategory.id }}</button>

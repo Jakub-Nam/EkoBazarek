@@ -5,12 +5,10 @@ export interface ProductCategory {
     name: string,
     type: string,
 };
-
 export interface ProductTypes {
     id: string,
     name: string
 }
-
 export interface User {
     city: string | null | undefined,
     county: string | null | undefined,
@@ -30,9 +28,18 @@ export interface User {
     country?: string | null | undefined,
     password?: string | null | undefined,
 }
-
 export interface ReponseLoginData {
     token: string,
     user: User
 }
-
+export interface Product {
+    id: string,
+    name: string,
+    desc: string,
+    price: number,
+    type: string,
+    category: string,
+    unit: string,
+    createdBy: string,
+    createDate: number
+}
