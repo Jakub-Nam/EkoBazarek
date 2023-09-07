@@ -1,0 +1,22 @@
+@import "../global-styles.scss";
+
+.container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3rem;
+    margin-left: 7rem;
+
+    h3 {
+        font-size: 48px;
+        color: $third-font-color;
+    }
+    .container-filters {
+        display: flex;
+        flex-direction: column;
+        max-width: 25%;
+    }
+    .container-products {
+        display: flex;
+        flex-direction: row;
+    }
+}

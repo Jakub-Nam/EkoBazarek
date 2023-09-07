@@ -1,0 +1,23 @@
+@import "../../../global-styles.scss";
+a {
+    color: $third-font-color;
+    border: none;
+    &:hover {
+        cursor: pointer;
+    }
+}
+.product-card {
+    width: 249px;
+    height: 276px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $secondary-font-color;
+    .mat-icon {
+        height: 55px;
+        width: 55px;
+    }
+    .material-icons {
+        font-size: 55px;
+    }
+}

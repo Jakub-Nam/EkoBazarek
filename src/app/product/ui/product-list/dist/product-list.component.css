@@ -1,0 +1,23 @@
+a {
+  color: #412F22;
+  border: none;
+}
+a:hover {
+  cursor: pointer;
+}
+
+.product-card {
+  width: 249px;
+  height: 276px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+}
+.product-card .mat-icon {
+  height: 55px;
+  width: 55px;
+}
+.product-card .material-icons {
+  font-size: 55px;
+}

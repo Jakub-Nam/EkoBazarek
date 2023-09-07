@@ -9,28 +9,99 @@ exports.__esModule = true;
 exports.ProductComponent = void 0;
 var core_1 = require("@angular/core");
 var ProductComponent = /** @class */ (function () {
-    function ProductComponent(data) {
-        this.data = data;
+    function ProductComponent(dataAccess, cdr) {
+        this.dataAccess = dataAccess;
+        this.cdr = cdr;
+        this.isProducts = true;
         this.productTypes = [];
         this.productCategories = [];
+        this.filteredProductCategories = [];
+        this.filteredProducts = [];
+        this.products = [
+            {
+                id: "4cf938da-51cc-41c6-b7b1-763433bbce83",
+                name: "Jęczmień eko",
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis auctor arcu. Vivamus interdum diam turpis, ac rutrum sem facilisis eget. Proin enim odio, egestas eget tellus ut, vestibulum lobortis felis. Nunc tortor felis, dignissim at purus at, auctor vehicula leo. Donec ornare mattis mauris non volutpat. Vestibulum faucibus fermentum tellus, non sagittis tortor ultrices et. Quisque et elementum quam.",
+                price: 0,
+                type: "CEREALS",
+                category: "BARLEY",
+                unit: "t",
+                createdBy: "4cf938da-51cc-41c6-b7b1-763433bbce83",
+                createDate: 1690093259833
+            },
+            {
+                id: "4cf938da-51cc-41c6-b7b1-763433bbce83",
+                name: "Jęczmień eko",
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis auctor arcu. Vivamus interdum diam turpis, ac rutrum sem facilisis eget. Proin enim odio, egestas eget tellus ut, vestibulum lobortis felis. Nunc tortor felis, dignissim at purus at, auctor vehicula leo. Donec ornare mattis mauris non volutpat. Vestibulum faucibus fermentum tellus, non sagittis tortor ultrices et. Quisque et elementum quam.",
+                price: 0,
+                type: "CEREALS",
+                category: "RYE",
+                unit: "t",
+                createdBy: "4cf938da-51cc-41c6-b7b1-763433bbce83",
+                createDate: 1690093259833
+            },
+            {
+                id: "4cf938da-51cc-41c6-b7b1-763433bbce83",
+                name: "Skrzydełka",
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis auctor arcu. Vivamus interdum diam turpis, ac rutrum sem facilisis eget. Proin enim odio, egestas eget tellus ut, vestibulum lobortis felis. Nunc tortor felis, dignissim at purus at, auctor vehicula leo. Donec ornare mattis mauris non volutpat. Vestibulum faucibus fermentum tellus, non sagittis tortor ultrices et. Quisque et elementum quam.",
+                price: 0,
+                type: "MEAT",
+                category: "PORK",
+                unit: "t",
+                createdBy: "4cf938da-51cc-41c6-b7b1-763433bbce83",
+                createDate: 1690093259833
+            }
+        ];
+        this.selectedCategory = "CHICKEN";
     }
     ProductComponent.prototype.ngOnInit = function () {
-        // this.http.get<any>('https://api-eko-bazarek.azurewebsites.net/api/products')
         var _this = this;
-        this.data.getProductTypes$.subscribe({
+        this.dataAccess.getProductTypes$.subscribe({
             next: function (productTypes) {
+                console.log(productTypes);
                 _this.productTypes = productTypes;
+                _this.filteredProducts = _this.products;
             },
             error: function (err) { return console.error('Observer got an error: ' + err); }
         });
-        // this.http.get<ProductCategory[]>('https://api-eko-bazarek.azurewebsites.net/api/products/categories')
-        //   .subscribe({
-        //     next: (productCategories) => {
-        //       console.log(productCategories)
-        //       this.productCategories = productCategories
-        //     },
-        //     error: (err: Error) => console.error('Observer got an error: ' + err),
-        //   });
+        this.dataAccess.getProductCategories$.subscribe({
+            next: function (productCategories) {
+                _this.productCategories = productCategories;
+                _this.filteredProductCategories = _this.productCategories;
+            },
+            error: function (err) { return console.error('Observer got an error: ' + err); }
+        });
+    };
+    ProductComponent.prototype.filter = function (selectedType) {
+        this.filterProductsByType(selectedType);
+        this.filterCategories(selectedType);
+    };
+    ProductComponent.prototype.filterProductsByType = function (selectedType) {
+        return this.filteredProducts = this.products.filter(function (product) {
+            if (product.type !== selectedType) {
+                return false;
+            }
+            return true;
+        });
+    };
+    ProductComponent.prototype.filterCategories = function (selectedType) {
+        return this.filteredProductCategories = this.productCategories.filter(function (category) {
+            if (category.type !== selectedType) {
+                return false;
+            }
+            return true;
+        });
+    };
+    ProductComponent.prototype.filterByCategories = function (selectedCategory) {
+        return this.filteredProducts = this.products.filter(function (product) {
+            if (product.category !== selectedCategory) {
+                return false;
+            }
+            return true;
+        });
+    };
+    ProductComponent.prototype.toggleView = function (boolean) {
+        this.isProducts = boolean;
     };
     ProductComponent = __decorate([
         core_1.Component({
@@ -42,3 +113,11 @@ var ProductComponent = /** @class */ (function () {
     return ProductComponent;
 }());
 exports.ProductComponent = ProductComponent;
+// this.http.get<ProductCategory[]>('https://api-eko-bazarek.azurewebsites.net/api/products/categories')
+//   .subscribe({
+//     next: (productCategories) => {
+//       console.log(productCategories)
+//       this.productCategories = productCategories
+//     },
+//     error: (err: Error) => console.error('Observer got an error: ' + err),
+//   });

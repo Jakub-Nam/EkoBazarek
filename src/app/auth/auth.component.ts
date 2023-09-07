@@ -4,7 +4,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { specialCharacterValidator, upperCaseValidator } from './shared/validators/validators';
 import { UserCred } from './shared/userCred.interface';
 import { UserService } from '../shared/services/user-service/user.service';
-import { User } from '../shared/interfaces/user';
+import { User } from '../shared/interfaces/interfaces';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

@@ -47,8 +47,8 @@ var AppModule = /** @class */ (function () {
                 angular_1.CarouselModule,
                 auth_module_1.AuthModule,
                 product_module_1.ProductModule,
+                materialComponents,
                 app_routing_module_1.AppRoutingModule,
-                materialComponents
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]

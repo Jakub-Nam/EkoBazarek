@@ -1,0 +1,81 @@
+<div class="container">
+
+
+	<h3>Dodaj Produkty</h3>
+
+
+	<div class="container-dropzone" appDnd (fileDropped)="onFileDropped($event)">
+		<input type="file" #fileDropRef id="fileDropRef" (change)="fileBrowseHandler($event)" />
+		<img src="../../../../assets/pictures/mountain-64.png" alt="">
+		<span>Kliknij lub upuść plik</span>
+	</div>
+
+	<mat-form-field MatFormFieldControl="productName" appearance="outline">
+		<mat-label>Nazwa Produktu*</mat-label>
+		<input matInput placeholder="Placeholder">
+		<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+
+	</mat-form-field>
+
+	<mat-form-field>
+		<mat-label>Opis</mat-label>
+		<textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMaxRows="7"></textarea>
+	</mat-form-field>
+	<div class="container__inline">
+		<!-- <mat-form-field MatFormFieldControl="productName" appearance="outline">
+			<mat-label>Typ Produktu*</mat-label>
+			<input matInput placeholder="Placeholder">
+			<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+			<mat-hint>Hint</mat-hint> 
+		</mat-form-field> -->
+		<!-- <mat-form-field>
+			 <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> 
+			<mat-label>Typ Produktu*</mat-label>
+			<mat-select [(value)]="selectedType">
+				<mat-option *ngFor="let type of productTypes"value="type.id" >{{type.name}}</mat-option>
+			</mat-select>
+		</mat-form-field> -->
+		<div>
+			<p>apsdpaspdaspdpa</p>
+			<div *ngFor="let type of  this.productTypes ">
+				<p>	{{type.name}}</p>
+				
+				<p>	type</p>
+			</div>
+		</div>	
+
+			
+		<!-- <mat-form-field MatFormFieldControl="productName" appearance="outline">
+			<mat-label>Kategoria*</mat-label>
+			<input matInput placeholder="Placeholder">
+			<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+		</mat-form-field> -->
+		<mat-form-field>
+			<mat-label>Kategoria*</mat-label>
+			<mat-select>
+				<mat-option value="option">Option</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<mat-form-field MatFormFieldControl="productName" appearance="outline">
+			<mat-label>Cena za jednostkę w PLN</mat-label>
+			<input matInput placeholder="Placeholder">
+			<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+		</mat-form-field>
+
+		<!-- 
+		<mat-form-field MatFormFieldControl="productName" appearance="outline">
+			<mat-label>Jednostka*</mat-label>
+			<input matInput placeholder="Placeholder">
+			<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+		</mat-form-field> -->
+		<mat-form-field>
+			<mat-label>Jednostka*</mat-label>
+			<mat-select>
+				<mat-option value="option">Option</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+
+
+</div>		<button (click)="check()">aASDASD</button>

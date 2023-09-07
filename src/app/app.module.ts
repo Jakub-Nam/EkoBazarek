@@ -36,9 +36,9 @@ const materialComponents: unknown[] =
     BrowserModule,
     CarouselModule,
     AuthModule,
-    ProductModule,
+    ProductModule,    
+    materialComponents,
     AppRoutingModule,
-    materialComponents
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,8 +10,18 @@ exports.ProductRoutingModule = void 0;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var product_component_1 = require("./product.component");
+var add_product_component_1 = require("./ui/add-product/add-product.component");
 var routes = [
-    { path: 'product', component: product_component_1.ProductComponent },
+    {
+        path: 'product',
+        component: product_component_1.ProductComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'add-product',
+        component: add_product_component_1.AddProductComponent,
+        pathMatch: 'full'
+    },
 ];
 var ProductRoutingModule = /** @class */ (function () {
     function ProductRoutingModule() {

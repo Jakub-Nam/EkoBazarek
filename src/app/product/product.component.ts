@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ProductCategory, ProductTypes, Product } from '../shared/interfaces/interfaces';
 import { shareReplay, tap } from 'rxjs';
 import { DataAccessService } from '../shared/services/data-access/data-access.service';
@@ -11,7 +11,8 @@ import { DataAccessService } from '../shared/services/data-access/data-access.se
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-  public productTypes: ProductTypes[] = [];
+  public isProducts: boolean = true;
+  public productTypes: ProductTypes[] =[];
   public productCategories: ProductCategory[] = [];
   public filteredProductCategories: ProductCategory[] = [];
   public filteredProducts: Product[] = [];
@@ -54,13 +55,12 @@ export class ProductComponent implements OnInit {
 
   public selectedCategory: string | null = "CHICKEN";
 
-  constructor(public dataAccess: DataAccessService) { }
+  constructor(public dataAccess: DataAccessService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
-    // this.http.get<any>('https://api-eko-bazarek.azurewebsites.net/api/products')
-
     this.dataAccess.getProductTypes$.subscribe({
       next: (productTypes) => {
+        console.log(productTypes)
         this.productTypes = productTypes
         this.filteredProducts = this.products;
       },
@@ -75,17 +75,17 @@ export class ProductComponent implements OnInit {
       error: (err: Error) => console.error('Observer got an error: ' + err),
     });
 
-   
-  
+
+
   }
 
-  public filter(selectedType: string){
-    this.filterProducts(selectedType)
+  public filter(selectedType: string) {
+    this.filterProductsByType(selectedType)
     this.filterCategories(selectedType);
   }
 
-  public filterProducts(selectedType?: string): Product[] {
-    return  this.filteredProducts = this.products.filter(product => {
+  public filterProductsByType(selectedType?: string): Product[] {
+    return this.filteredProducts = this.products.filter(product => {
       if (product.type !== selectedType) {
         return false;
       }
@@ -93,8 +93,8 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  public filterCategories(selectedType: string): ProductCategory[]{
-    return  this.filteredProductCategories = this.productCategories.filter(category => {
+  public filterCategories(selectedType: string): ProductCategory[] {
+    return this.filteredProductCategories = this.productCategories.filter(category => {
       if (category.type !== selectedType) {
         return false;
       }
@@ -102,9 +102,9 @@ export class ProductComponent implements OnInit {
       return true;
     });
   }
-  
-  public filterPerCategories(selectedCategory: string): Product[]{
-    return  this.filteredProducts = this.products.filter(product => {
+
+  public filterByCategories(selectedCategory: string): Product[] {
+    return this.filteredProducts = this.products.filter(product => {
       if (product.category !== selectedCategory) {
         return false;
       }
@@ -113,7 +113,10 @@ export class ProductComponent implements OnInit {
     });
   }
 
- 
+  public toggleView(boolean: boolean): void {
+    this.isProducts = boolean;
+  }
+
 }
 
 

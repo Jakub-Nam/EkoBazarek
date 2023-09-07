@@ -11,15 +11,21 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var validators_1 = require("./shared/validators/validators");
 var AuthComponent = /** @class */ (function () {
-    function AuthComponent(fb, authService, userService, route) {
+    function AuthComponent(fb, authService, userService, route, _snackBar) {
         this.fb = fb;
         this.authService = authService;
         this.userService = userService;
         this.route = route;
+        this._snackBar = _snackBar;
         this.registrationView = false;
         this.loginForm = this.fb.group({
             email: ['', [forms_1.Validators.required]],
-            password: ['', [forms_1.Validators.required]]
+            password: ['', [
+                    forms_1.Validators.required,
+                    forms_1.Validators.minLength(8),
+                    validators_1.upperCaseValidator(/[A-Z]/),
+                    validators_1.specialCharacterValidator(/[!@#$%^&*(),.?":{}|<>]/)
+                ]]
         });
         this.profileForm = this.fb.group({
             firstName: ['Jakub', forms_1.Validators.required],
@@ -50,6 +56,13 @@ var AuthComponent = /** @class */ (function () {
     AuthComponent.prototype.ngOnInit = function () {
         this.registrationView = false;
     };
+    AuthComponent.prototype.openSnackBar = function (message) {
+        this._snackBar.open(message, 'Zamknij', {
+            // duration: 2000,
+            horizontalPosition: 'start',
+            verticalPosition: 'top'
+        });
+    };
     AuthComponent.prototype.viewToggler = function () {
         this.registrationView = !this.registrationView;
     };
@@ -60,41 +73,14 @@ var AuthComponent = /** @class */ (function () {
             next: function (res) {
                 _this.userService.updateResponseData(res);
                 _this.route.navigateByUrl('/home');
-                // pomyslnie zalogowano toast
+                _this.openSnackBar('Pomyślnie zalogowano.');
             },
-            error: function (err) { return console.error('Observer got an error: ' + err); }
+            error: function (err) {
+                console.error('Observer got an error: ' + err),
+                    _this.openSnackBar('Wystąpił błąd podczas logowania.');
+            }
         });
     };
-    Object.defineProperty(AuthComponent.prototype, "firstName", {
-        get: function () { return this.profileForm.get('firstName'); },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(AuthComponent.prototype, "lastName", {
-        get: function () { return this.profileForm.get('lastName'); },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(AuthComponent.prototype, "email", {
-        get: function () { return this.profileForm.get('email'); },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(AuthComponent.prototype, "phoneNumber", {
-        get: function () { return this.profileForm.get('phoneNumber'); },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(AuthComponent.prototype, "password", {
-        get: function () { return this.profileForm.get('password'); },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(AuthComponent.prototype, "repeatPassword", {
-        get: function () { return this.profileForm.get('repeatPassword'); },
-        enumerable: false,
-        configurable: true
-    });
     AuthComponent.prototype.createAccount = function () {
         var _this = this;
         if (this.profileForm.value.password === this.profileForm.value.repeatPassword) {
@@ -117,10 +103,9 @@ var AuthComponent = /** @class */ (function () {
                 voivodeship: this.profileForm.value.voivodeship,
                 password: this.profileForm.value.password
             };
-            this.authService.addUser(requestBody)
+            this.authService.postUser(requestBody)
                 .subscribe({
                 next: function (res) {
-                    console.log(res);
                     _this.viewToggler();
                 },
                 error: function (err) { return console.error('Observer got an error: ' + err); }

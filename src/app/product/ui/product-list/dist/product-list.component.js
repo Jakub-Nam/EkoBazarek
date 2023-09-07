@@ -10,7 +10,14 @@ exports.ProductListComponent = void 0;
 var core_1 = require("@angular/core");
 var ProductListComponent = /** @class */ (function () {
     function ProductListComponent() {
+        this.viewTogglerEvent = new core_1.EventEmitter();
     }
+    ProductListComponent.prototype.viewTogglerEmit = function () {
+        this.viewTogglerEvent.emit(false);
+    };
+    __decorate([
+        core_1.Output()
+    ], ProductListComponent.prototype, "viewTogglerEvent");
     ProductListComponent = __decorate([
         core_1.Component({
             selector: 'app-product-list',

@@ -29,7 +29,7 @@ var AuthService = /** @class */ (function () {
             throw err;
         }));
     };
-    AuthService.prototype.addUser = function (reqBody) {
+    AuthService.prototype.postUser = function (reqBody) {
         var httpOptions = {
             headers: new http_1.HttpHeaders({
                 'Content-Type': 'application/json'

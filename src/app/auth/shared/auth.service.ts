@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserCred } from './userCred.interface';
 import { ReponseLoginData } from 'src/app/shared/interfaces/interfaces';
-import { User } from 'src/app/shared/interfaces/user';
+import { User } from 'src/app/shared/interfaces/interfaces';
 
 @Injectable({ providedIn: 'root' })
 
