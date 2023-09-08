@@ -1,11 +1,13 @@
 @import "../../../global-styles.scss";
 
 form {
-    margin-top: 4rem;
+    // margin-top: 4rem;
+    // width: 50%
+    // margin-left: 160px;
     display: flex;
     flex-direction: column;
-    width: 50%;
-    margin-left: 160px;
+    width: 100%;    
+    margin-bottom: 5rem;
 
     h3 {
         font-size: 48px;
@@ -20,6 +22,7 @@ form {
         flex-direction: row;
         margin-top: 2rem;
         flex-wrap: wrap;
+        gap: 1rem;
         label {
             font-weight: 500;
         }
@@ -27,12 +30,12 @@ form {
             border: 0;
             font-size: 12px;
             height: 36px;
+            width: 100%
         }
         .group__form-input {
             display: flex;
             flex-direction: column;
-            width: 45%;
-            margin-right: 5%;
+            min-width: 48.7%;
             margin-bottom: 1rem;
         }
     }
@@ -50,16 +53,26 @@ form {
     h4 {
         font-size: 14px;
         color: $third-font-color;
+        font-weight: 600;
     }
-
-
 
     .button-wrapper {
         display: flex;
         flex-direction: row;
         flex: 1;
+        min-width: 100%;
+        justify-content: end;
         button {
             border: none;
+            width: 99px;
+            height: 42px;
+        }
+        .reset-btn {
+            color: black;
+            border: none;
+            background-color: transparent;
+        }
+        .save-btn {
             color: $secondary-font-color;
             background-color: $primary-background-color;
         }
@@ -69,16 +82,16 @@ form {
 .form-group-inline {
     display: flex;
     flex-direction: column;
-    width: 95%;
+    width: 100%;
     margin-top: 2rem;
     input {
-        padding-right: 1rem;
         margin-bottom: 2rem;
     }
     textarea {
         border: none;
         resize: none;
         outline: none;
+        padding: 0.7rem;
     }
 }
 .form-input-row {
@@ -86,20 +99,18 @@ form {
     flex-direction: row;
     min-width: 100%;
     margin-top: 2rem;
+    gap: 1rem;
     .street {
         display: flex;
         align-self: center;
         flex-direction: column;
-        width: 51%;
-        margin-right: 5%;
+        width: 50%;
     }
     .house-accomodation-number {
         display: flex;
-        width: 17%;
+        width: 25%;
         flex-direction: column;
         align-self: center;
-
-        margin-right: 5%;
 
         input {
             width: 100%;

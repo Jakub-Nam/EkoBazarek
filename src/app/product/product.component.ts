@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ProductCategory, ProductTypes, Product } from '../shared/interfaces/interfaces';
+import { ProductCategory, ProductTypes, ProductUnit, ProductResponseData } from '../shared/interfaces/interfaces';
 import { shareReplay, tap } from 'rxjs';
 import { DataAccessService } from '../shared/services/data-access/data-access.service';
 
@@ -12,11 +12,12 @@ import { DataAccessService } from '../shared/services/data-access/data-access.se
 })
 export class ProductComponent implements OnInit {
   public isProducts: boolean = true;
-  public productTypes: ProductTypes[] =[];
+  public productTypes: ProductTypes[] = [];
   public productCategories: ProductCategory[] = [];
   public filteredProductCategories: ProductCategory[] = [];
-  public filteredProducts: Product[] = [];
-  public products: Product[] =
+  public filteredProducts: ProductResponseData[] = [];
+  public productUnits: ProductUnit[] = [];
+  public products: ProductResponseData[] =
     [
       {
         id: "4cf938da-51cc-41c6-b7b1-763433bbce83",
@@ -55,12 +56,12 @@ export class ProductComponent implements OnInit {
 
   public selectedCategory: string | null = "CHICKEN";
 
-  constructor(public dataAccess: DataAccessService, private cdr: ChangeDetectorRef) { }
+  constructor(public dataAccess: DataAccessService) { }
 
   ngOnInit() {
+    this.filteredProducts = this.products
     this.dataAccess.getProductTypes$.subscribe({
       next: (productTypes) => {
-        console.log(productTypes)
         this.productTypes = productTypes
         this.filteredProducts = this.products;
       },
@@ -75,16 +76,40 @@ export class ProductComponent implements OnInit {
       error: (err: Error) => console.error('Observer got an error: ' + err),
     });
 
+    this.dataAccess.getProductUnits$.subscribe({
+      next: (productUnits) => {
+        this.productUnits = productUnits
+        console.log(this.productUnits)
+      },
+      error: (err: Error) => console.error('Observer got an error: ' + err),
+    });
+
 
 
   }
 
-  public filter(selectedType: string) {
-    this.filterProductsByType(selectedType)
-    this.filterCategories(selectedType);
+  public filter(selectedType: string[]) {
+
+    
+      selectedType.forEach(type => {
+        console.log(type);
+        // Wykonaj operacje na wybranych typach
+      });
+
+
+   
+      // Jeśli selectedType jest null, możesz obsłużyć ten przypadek lub zostawić go pusty
+    
+    // selectedType?.forEach(type => {
+    //   console.log(type)
+    //   // this.filterProductsByType(type)
+    // })
+    
+    // console.log(selectedTypes)
+    // this.filterCategoriesByType(selectedType);
   }
 
-  public filterProductsByType(selectedType?: string): Product[] {
+  public filterProductsByType(selectedType?: string): ProductResponseData[] {
     return this.filteredProducts = this.products.filter(product => {
       if (product.type !== selectedType) {
         return false;
@@ -93,7 +118,7 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  public filterCategories(selectedType: string): ProductCategory[] {
+  public filterCategoriesByType(selectedType: string): ProductCategory[] {
     return this.filteredProductCategories = this.productCategories.filter(category => {
       if (category.type !== selectedType) {
         return false;
@@ -103,7 +128,7 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  public filterByCategories(selectedCategory: string): Product[] {
+  public filterByCategories(selectedCategory: string): ProductResponseData[] {
     return this.filteredProducts = this.products.filter(product => {
       if (product.category !== selectedCategory) {
         return false;

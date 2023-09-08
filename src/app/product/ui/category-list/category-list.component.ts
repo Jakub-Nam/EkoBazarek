@@ -11,10 +11,10 @@ export class CategoryListComponent {
   @Output() selectedCategoryEmit = new EventEmitter<string>();
   public selectedCategory!: string;
 
-
   public emitSelectedCategory(category: string): void {
     this.selectedCategory = category;
     this.selectedCategoryEmit.emit(this.selectedCategory)
   }
+ 
 
 }

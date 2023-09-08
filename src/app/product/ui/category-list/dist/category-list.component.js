@@ -10,11 +10,19 @@ exports.CategoryListComponent = void 0;
 var core_1 = require("@angular/core");
 var CategoryListComponent = /** @class */ (function () {
     function CategoryListComponent() {
-        this.productCategories = [];
+        this.filteredProductCategories = [];
+        this.selectedCategoryEmit = new core_1.EventEmitter();
     }
+    CategoryListComponent.prototype.emitSelectedCategory = function (category) {
+        this.selectedCategory = category;
+        this.selectedCategoryEmit.emit(this.selectedCategory);
+    };
     __decorate([
         core_1.Input()
-    ], CategoryListComponent.prototype, "productCategories");
+    ], CategoryListComponent.prototype, "filteredProductCategories");
+    __decorate([
+        core_1.Output()
+    ], CategoryListComponent.prototype, "selectedCategoryEmit");
     CategoryListComponent = __decorate([
         core_1.Component({
             selector: 'app-category-list',

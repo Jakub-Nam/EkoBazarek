@@ -4,4 +4,8 @@
         {{product.name}}
     </mat-list-option>
 </mat-selection-list>   -->
-<button *ngFor="let productCategory of filteredProductCategories" (click)="emitSelectedCategory(productCategory.id)">{{ productCategory.id }}</button>
+<mat-selection-list [multiple]="false">
+    <mat-list-option  *ngFor="let productCategory of filteredProductCategories" checkboxPosition="before" (click)="emitSelectedCategory(productCategory.id)">
+        {{productCategory.name}}
+    </mat-list-option>
+</mat-selection-list>

@@ -9,73 +9,54 @@
 		<img src="../../../../assets/pictures/mountain-64.png" alt="">
 		<span>Kliknij lub upuść plik</span>
 	</div>
+	<span>ICONA Maksymalny rozmiar pliku 1mb. Wpieramy formaty *.jpg, *gif, *png.</span>
+	<form [formGroup]="productForm" (ngSubmit)="addProductToDb()">
+		<div class="container__in-column">
+			<mat-form-field MatFormFieldControl="productName" appearance="outline">
+				<mat-label>Nazwa Produktu*</mat-label>
+				<input matInput placeholder="Placeholder" formControlName="productName">
+			</mat-form-field>
 
-	<mat-form-field MatFormFieldControl="productName" appearance="outline">
-		<mat-label>Nazwa Produktu*</mat-label>
-		<input matInput placeholder="Placeholder">
-		<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+			<mat-form-field>
+				<mat-label>Opis</mat-label>
+				<textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMaxRows="7"
+					formControlName="desc"></textarea>
+			</mat-form-field>
+		</div>
 
-	</mat-form-field>
+		<div class="container__in-row">
+			<mat-form-field>
+				<mat-label>Typ Produktu*</mat-label>
+				<mat-select formControlName="productType">
+					<mat-option *ngFor="let type of productTypes" [value]="type.id">{{type.name}}</mat-option>
+				</mat-select>
+			</mat-form-field>
 
-	<mat-form-field>
-		<mat-label>Opis</mat-label>
-		<textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMaxRows="7"></textarea>
-	</mat-form-field>
-	<div class="container__inline">
-		<!-- <mat-form-field MatFormFieldControl="productName" appearance="outline">
-			<mat-label>Typ Produktu*</mat-label>
-			<input matInput placeholder="Placeholder">
-			<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-			<mat-hint>Hint</mat-hint> 
-		</mat-form-field> -->
-		<!-- <mat-form-field>
-			 <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> 
-			<mat-label>Typ Produktu*</mat-label>
-			<mat-select [(value)]="selectedType">
-				<mat-option *ngFor="let type of productTypes"value="type.id" >{{type.name}}</mat-option>
-			</mat-select>
-		</mat-form-field> -->
-		<div>
-			<p>apsdpaspdaspdpa</p>
-			<div *ngFor="let type of  this.productTypes ">
-				<p>	{{type.name}}</p>
-				
-				<p>	type</p>
+			<mat-form-field>
+				<mat-label>Kategoria*</mat-label>
+				<mat-select formControlName="category">
+					<mat-option *ngFor="let category of productCategories"
+						[value]="category.id">{{category.name}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+
+			<mat-form-field appearance="outline">
+				<mat-label>Cena za jednostkę w PLN</mat-label>
+				<input matInput placeholder="Placeholder" formControlName="price">
+				<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+			</mat-form-field>
+
+			<mat-form-field>
+				<mat-label>Jednostka*</mat-label>
+				<mat-select formControlName="unit">
+					<mat-option *ngFor="let unit of productUnits" [value]="unit.id">{{unit.name}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+
+			<div class="btn-container">
+				<button (click)="resetForm()"class="btn-reset">Reset</button>
+				<button type="submit" class="btn-add">Dodaj</button>
 			</div>
-		</div>	
-
-			
-		<!-- <mat-form-field MatFormFieldControl="productName" appearance="outline">
-			<mat-label>Kategoria*</mat-label>
-			<input matInput placeholder="Placeholder">
-			<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-		</mat-form-field> -->
-		<mat-form-field>
-			<mat-label>Kategoria*</mat-label>
-			<mat-select>
-				<mat-option value="option">Option</mat-option>
-			</mat-select>
-		</mat-form-field>
-
-		<mat-form-field MatFormFieldControl="productName" appearance="outline">
-			<mat-label>Cena za jednostkę w PLN</mat-label>
-			<input matInput placeholder="Placeholder">
-			<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-		</mat-form-field>
-
-		<!-- 
-		<mat-form-field MatFormFieldControl="productName" appearance="outline">
-			<mat-label>Jednostka*</mat-label>
-			<input matInput placeholder="Placeholder">
-			<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-		</mat-form-field> -->
-		<mat-form-field>
-			<mat-label>Jednostka*</mat-label>
-			<mat-select>
-				<mat-option value="option">Option</mat-option>
-			</mat-select>
-		</mat-form-field>
-	</div>
-
-
-</div>		<button (click)="check()">aASDASD</button>
+		</div>
+	</form>
+</div> 

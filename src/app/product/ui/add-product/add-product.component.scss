@@ -4,45 +4,62 @@
   display: flex;
   flex-direction: column;
   margin: 3rem 0rem;
-  width: 40%;
+  width: 70%;
   margin-top: 3rem;
   margin-left: 7rem;
   h3 {
     font-size: 48px;
     color: $third-font-color;
   }
-  .container__inline {
+  .container__in-column {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+
     justify-content: space-between;
     flex-wrap: wrap;
-    mat-form-field{
-
-      width: 160px;
+    mat-form-field {
       mat-label {
         font-size: 12px;
       }
     }
   }
+  .container__in-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    mat-form-field {
+      width: 30%;
+
+      mat-label {
+        font-size: 12px;
+      }
+    }
+  }
+  span {
+    font-size: 12px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
 }
 
 .container-dropzone {
-  width: 450px;
-  height: 200px;
-  padding: 2rem;
+  width: 540px;
+  height: 260px;
+  max-width: 540px;
+  max-height: 260px;
   text-align: center;
   position: relative;
-  margin: 0 auto;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   background-color: $forth-background-color;
   justify-content: center;
 
   img {
-    width: 64px;
-    height: 64px;
+    width: 152px;
+    height: 116px;
     align-self: center;
-    margin: 2rem;
   }
   input {
     opacity: 0;
@@ -67,8 +84,34 @@
   }
 
   span {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
     color: #38424c;
+    margin: 2rem 0;
   }
 }
+.btn-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: end;
+  button {
+    width: 99px;
+    height: 42px;
+    border: none;
+    font-weight: 550;
+  }
+  .btn-reset {
+    background-color: transparent;
+  }
+  .btn-add {
+    color: $secondary-font-color;
+    background-color: $primary-background-color;
+  }
+}
+// .mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+
+// }
+// mat-form-field .mat-mdc-text-field-wrapper {
+//   background-color: white;
+// }

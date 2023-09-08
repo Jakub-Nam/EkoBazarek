@@ -1,52 +1,139 @@
-body {
-  font-family: Arial, sans-serif;
-}
-
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-input[type=text],
-input[type=email],
-input[type=password],
-textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.form-row {
+form {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 5rem;
 }
-
-.form-row input {
-  flex: 1;
-  margin-right: 10px;
+form h3 {
+  font-size: 48px;
+  font-weight: 500;
+  color: #412F22;
 }
-
-button {
-  background-color: #007bff;
-  color: #fff;
+form label {
+  font-size: 12px;
+}
+form .form-group {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+form .form-group label {
+  font-weight: 500;
+}
+form .form-group input {
+  border: 0;
+  font-size: 12px;
+  height: 36px;
+  width: 100%;
+}
+form .form-group .group__form-input {
+  display: flex;
+  flex-direction: column;
+  min-width: 48.7%;
+  margin-bottom: 1rem;
+}
+form .btn-group {
+  display: flex;
+  justify-content: end;
+}
+form .btn-group button {
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+  margin-top: 2rem;
+  padding: 0.5rem 1.8rem;
+  border-radius: 2px;
+  margin-left: 1rem;
+}
+form h4 {
+  font-size: 14px;
+  color: #412F22;
+  font-weight: 600;
+}
+form .button-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-width: 100%;
+  justify-content: end;
+}
+form .button-wrapper button {
+  border: none;
+  width: 99px;
+  height: 42px;
+}
+form .button-wrapper .reset-btn {
+  color: black;
+  border: none;
+  background-color: transparent;
+}
+form .button-wrapper .save-btn {
+  color: #FFFFFF;
+  background-color: #46aa42;
 }
 
-button.secondary {
-  background-color: #ccc;
+.form-group-inline {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 2rem;
+}
+.form-group-inline input {
+  margin-bottom: 2rem;
+}
+.form-group-inline textarea {
+  border: none;
+  resize: none;
+  outline: none;
+  padding: 0.7rem;
+}
+
+.form-input-row {
+  display: flex;
+  flex-direction: row;
+  min-width: 100%;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+.form-input-row .street {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  width: 50%;
+}
+.form-input-row .house-accomodation-number {
+  display: flex;
+  width: 25%;
+  flex-direction: column;
+  align-self: center;
+}
+.form-input-row .house-accomodation-number input {
+  width: 100%;
+}
+
+.span-wrapper {
+  margin-top: 1rem;
+}
+.span-wrapper span {
+  padding-left: 4px;
+  font-weight: 450;
+}
+
+.red-validator {
+  color: red;
+  font-size: 12px;
+  font-weight: 550;
+  display: flex;
+  align-items: center;
+}
+
+.green-validator {
+  color: green;
+  font-size: 12px;
+  font-weight: 550;
+  display: flex;
+  align-items: center;
+}
+.green-validator mat-icon {
+  margin-right: 0.2rem;
 }

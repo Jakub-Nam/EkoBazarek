@@ -11,10 +11,30 @@ var core_1 = require("@angular/core");
 var TypeListComponent = /** @class */ (function () {
     function TypeListComponent() {
         this.productTypes = [];
+        this.selectedTypeEmit = new core_1.EventEmitter();
     }
+    // public selectedType: string | null = 'MEAT';
+    // public changeSelectedType(type: string): void {
+    //   console.log(type)
+    //   // this.selectedType = type;
+    //   // this.selectedTypeEmit.emit(this.selectedType)
+    // }
+    TypeListComponent.prototype.console = function (x) {
+        console.log(x);
+    };
+    TypeListComponent.prototype.onSelectionChange = function (event) {
+        var selectedOption = event;
+        var selectedTypes = selectedOption.source._value;
+        console.log(selectedTypes);
+        // PROBLEM Z USTALENIEM TYPU
+        this.selectedTypeEmit.emit(selectedTypes);
+    };
     __decorate([
         core_1.Input()
     ], TypeListComponent.prototype, "productTypes");
+    __decorate([
+        core_1.Output()
+    ], TypeListComponent.prototype, "selectedTypeEmit");
     TypeListComponent = __decorate([
         core_1.Component({
             selector: 'app-type-list',

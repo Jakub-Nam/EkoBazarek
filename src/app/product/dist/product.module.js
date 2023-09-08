@@ -22,6 +22,8 @@ var form_field_1 = require("@angular/material/form-field");
 var input_1 = require("@angular/material/input");
 var text_field_1 = require("@angular/cdk/text-field");
 var select_1 = require("@angular/material/select");
+var forms_1 = require("@angular/forms");
+var checkbox_1 = require("@angular/material/checkbox");
 var materialComponents = [
     icon_1.MatIconModule,
     list_1.MatListModule,
@@ -29,7 +31,8 @@ var materialComponents = [
     form_field_1.MatFormFieldModule,
     input_1.MatInputModule,
     text_field_1.TextFieldModule,
-    select_1.MatSelectModule
+    select_1.MatSelectModule,
+    checkbox_1.MatCheckboxModule,
 ];
 var ProductModule = /** @class */ (function () {
     function ProductModule() {
@@ -41,13 +44,12 @@ var ProductModule = /** @class */ (function () {
                 type_list_component_1.TypeListComponent,
                 category_list_component_1.CategoryListComponent,
                 product_list_component_1.ProductListComponent,
-                add_product_component_1.AddProductComponent
+                add_product_component_1.AddProductComponent,
             ],
             imports: [
                 common_1.CommonModule,
                 product_routing_module_1.ProductRoutingModule,
-                // ReactiveFormsModule,
-                // FormsModule,
+                forms_1.ReactiveFormsModule,
                 materialComponents
             ]
         })

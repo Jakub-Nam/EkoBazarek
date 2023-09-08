@@ -28,7 +28,6 @@
             <input id="repeatPassword" type="text" formControlName="repeatPassword">
         </div>
 
-
         <div *ngIf="password && (password.dirty || password.touched)">
             <div class="span-wrapper">
                 <span>Hasło musi spełniać następujące wymagania:</span>
@@ -79,39 +78,30 @@
             </div>
         </div>
 
-
-
         <div class="form-group-inline">
-
             <h4>ADRES I INFORMACJE O GOSPODARSTWIE</h4>
             <label for="farmName">Nazwa gospodarstwa*</label>
             <input id="farmName" type="text" formControlName="farmName">
             <label for="farmDesc">Opis gospodarstwa*</label>
             <textarea id="farmDesc" type="text" formControlName="farmDesc" rows="5" cols="40"></textarea>
-
-            <!-- <input id="farmDesc" type="text" formControlName="farmDesc"> -->
         </div>
-
 
         <div class="form-input-row">
             <div class="street">
                 <label for="street">Ulica*</label>
                 <input id="street" type="text" formControlName="street">
             </div>
+
             <div class="house-accomodation-number ">
                 <label for="streetNumber">Numer domu*</label>
                 <input id="streetNumber" type="number" formControlName="streetNumber">
             </div>
+
             <div class="house-accomodation-number ">
                 <label for="flatNumber">Numer mieszkania</label>
                 <input id="flatNumber" type="text" formControlName="flatNumber">
             </div>
         </div>
-
-
-
-
-
 
         <div class="group__form-input">
             <label for="city">Miasto/Wieś*</label>
@@ -121,22 +111,17 @@
         <div class="group__form-input">
             <label for="postCode">Kod pocztowy*</label>
             <input id="postCode" type="text" formControlName="postCode">
-
         </div>
 
         <div class="group__form-input">
             <label for="voivodeship">Województwo*</label>
             <input id="voivodeship" type="text" formControlName="voivodeship">
-
         </div>
 
         <div class="group__form-input">
             <label for="county">Powiat*</label>
             <input id="county" type="text" formControlName="county">
         </div>
-
-
-
 
         <div class="group__form-input">
             <label for="district">Gmina*</label>
@@ -145,10 +130,7 @@
         <div class="button-wrapper">
             <button (click)="resetForm()">Reset</button>
        
-            <button type="submit">Zapisz</button>
+            <button class="save-btn" type="submit">Zapisz</button>
         </div>
-
-   
     </div>
-
 </form>

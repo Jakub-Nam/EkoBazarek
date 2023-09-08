@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [hidden]="!isProducts">
     <section class="container-filters">
         <div>
             <h3>Produkty</h3>
@@ -21,11 +21,9 @@
     </section>
     <section class="container-products">
         <app-product-list [hidden]="!isProducts" (viewTogglerEvent)="toggleView($event)"></app-product-list>
-
-        <app-add-product [productTypes]="productTypes" [hidden]="isProducts"></app-add-product>
-
-
-        <!-- <router-outlet></router-outlet> -->
-        <!-- <p *ngFor="let product of filteredProducts">{{product.name }}</p> -->
     </section>
 </div>
+<div *ngFor="let products of filteredProducts">
+   {{products.name}} 
+</div>
+<app-add-product [productTypes]="productTypes"  [productUnits]='productUnits' [productCategories]="productCategories"   [products]="products" [hidden]="isProducts"></app-add-product>

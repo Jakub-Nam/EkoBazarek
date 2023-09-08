@@ -15,7 +15,8 @@ import {MatInputModule} from '@angular/material/input';
 import {TextFieldModule} from '@angular/cdk/text-field';
 
 import {MatSelectModule} from '@angular/material/select';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatCheckboxChange, MatCheckboxModule} from '@angular/material/checkbox';
 const materialComponents: unknown[] =
   [
     MatIconModule,
@@ -24,7 +25,8 @@ const materialComponents: unknown[] =
     MatFormFieldModule,
     MatInputModule,
     TextFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule,
   ];
 
 @NgModule({
@@ -33,14 +35,12 @@ const materialComponents: unknown[] =
     TypeListComponent,
     CategoryListComponent,
     ProductListComponent,
-    AddProductComponent
+    AddProductComponent,
   ],
   imports: [
     CommonModule,
     ProductRoutingModule,
-    // ReactiveFormsModule,
-    // FormsModule,
-
+    ReactiveFormsModule,
     materialComponents
   ]
 })

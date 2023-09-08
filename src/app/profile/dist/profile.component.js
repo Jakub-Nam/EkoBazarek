@@ -71,22 +71,17 @@ var ProfileComponent = /** @class */ (function () {
                 error: function (err) { return console.error('Observer got an error: ' + err); }
             });
             this.changePassword(requestBody)
-                .subscribe({
-                next: function (res) {
-                    console.log(res);
-                },
-                error: function (err) { return console.error('Observer got an error: ' + err); }
-            });
+                .subscribe();
         }
     };
     ProfileComponent.prototype.changePassword = function (reqBody) {
+        var url = 'https://api-eko-bazarek.azurewebsites.net/api/users/change-password';
         var httpOptions = {
             headers: new http_1.HttpHeaders({
                 'Content-Type': 'application/json',
                 'Authorization': "Bearer " + this.token
             })
         };
-        var url = 'https://api-eko-bazarek.azurewebsites.net/api/users/change-password';
         return this.http.post(url, reqBody, httpOptions)
             .pipe(rxjs_1.map(function (data) {
             console.log(data);

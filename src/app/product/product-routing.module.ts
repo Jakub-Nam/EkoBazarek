@@ -9,11 +9,6 @@ const routes: Routes = [
     component: ProductComponent,
     pathMatch: 'full'
   },
-  {
-    path: 'add-product',
-    component: AddProductComponent,
-    pathMatch: 'full'
-  },
 
   // { path: 'second-component', component: SecondComponent },
 ];

@@ -32,7 +32,7 @@ export interface ReponseLoginData {
     token: string,
     user: User
 }
-export interface Product {
+export interface ProductResponseData {
     id: string,
     name: string,
     desc: string,
@@ -42,4 +42,17 @@ export interface Product {
     unit: string,
     createdBy: string,
     createDate: number
+}
+export interface ProductToSend {
+    productName: string | null | undefined,
+    type: string | null | undefined,
+    category: string | null | undefined,
+    price: string | null | undefined,
+    unit: string | null | undefined,
+    desc?: string | null | undefined,
+}
+
+export interface ProductUnit {
+    id: string,
+    name: string
 }

@@ -78,25 +78,21 @@ export class ProfileComponent {
       });
 
       this.changePassword(requestBody)
-        .subscribe({
-          next: (res) => {
-            console.log(res)
-          },
-          error: (err: Error) => console.error('Observer got an error: ' + err),
-        });
+        .subscribe();
     }
 
   }
 
 
   changePassword(reqBody: OldNewPasswords): Observable<void> {
+    const url = 'https://api-eko-bazarek.azurewebsites.net/api/users/change-password'
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.token}`
       })
     };
-    const url = 'https://api-eko-bazarek.azurewebsites.net/api/users/change-password'
+    
     return this.http.post<void>(url, reqBody, httpOptions)
       .pipe(
         map((data) => {
@@ -109,4 +105,6 @@ export class ProfileComponent {
         })
       );
   }
+
+  //t odo serwisu!!! ^
 }

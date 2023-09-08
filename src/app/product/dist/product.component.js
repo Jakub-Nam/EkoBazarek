@@ -9,14 +9,14 @@ exports.__esModule = true;
 exports.ProductComponent = void 0;
 var core_1 = require("@angular/core");
 var ProductComponent = /** @class */ (function () {
-    function ProductComponent(dataAccess, cdr) {
+    function ProductComponent(dataAccess) {
         this.dataAccess = dataAccess;
-        this.cdr = cdr;
         this.isProducts = true;
         this.productTypes = [];
         this.productCategories = [];
         this.filteredProductCategories = [];
         this.filteredProducts = [];
+        this.productUnits = [];
         this.products = [
             {
                 id: "4cf938da-51cc-41c6-b7b1-763433bbce83",
@@ -56,9 +56,9 @@ var ProductComponent = /** @class */ (function () {
     }
     ProductComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.filteredProducts = this.products;
         this.dataAccess.getProductTypes$.subscribe({
             next: function (productTypes) {
-                console.log(productTypes);
                 _this.productTypes = productTypes;
                 _this.filteredProducts = _this.products;
             },
@@ -71,10 +71,26 @@ var ProductComponent = /** @class */ (function () {
             },
             error: function (err) { return console.error('Observer got an error: ' + err); }
         });
+        this.dataAccess.getProductUnits$.subscribe({
+            next: function (productUnits) {
+                _this.productUnits = productUnits;
+                console.log(_this.productUnits);
+            },
+            error: function (err) { return console.error('Observer got an error: ' + err); }
+        });
     };
     ProductComponent.prototype.filter = function (selectedType) {
-        this.filterProductsByType(selectedType);
-        this.filterCategories(selectedType);
+        selectedType.forEach(function (type) {
+            console.log(type);
+            // Wykonaj operacje na wybranych typach
+        });
+        // Jeśli selectedType jest null, możesz obsłużyć ten przypadek lub zostawić go pusty
+        // selectedType?.forEach(type => {
+        //   console.log(type)
+        //   // this.filterProductsByType(type)
+        // })
+        // console.log(selectedTypes)
+        // this.filterCategoriesByType(selectedType);
     };
     ProductComponent.prototype.filterProductsByType = function (selectedType) {
         return this.filteredProducts = this.products.filter(function (product) {
@@ -84,7 +100,7 @@ var ProductComponent = /** @class */ (function () {
             return true;
         });
     };
-    ProductComponent.prototype.filterCategories = function (selectedType) {
+    ProductComponent.prototype.filterCategoriesByType = function (selectedType) {
         return this.filteredProductCategories = this.productCategories.filter(function (category) {
             if (category.type !== selectedType) {
                 return false;

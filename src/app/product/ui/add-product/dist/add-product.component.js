@@ -7,28 +7,65 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 exports.AddProductComponent = void 0;
+var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
-var rxjs_1 = require("rxjs");
+var forms_1 = require("@angular/forms");
 var AddProductComponent = /** @class */ (function () {
-    function AddProductComponent() {
-        // private productTypesArr!: ProductTypes[]
-        // @Input() public set productTypes(value: ProductTypes[]) {
-        //   console.log(value, 'jestem w dziecku')
-        //   this.productTypesArr = value;
-        //   console.log(this.productTypesArr, 'hmmmm')
-        // }
-        this.productTypes = [{
-                id: '',
-                name: ''
-            }];
-        // public get productTypes(): ProductTypes[] {
-        //   return this.productTypesArr
-        // }
+    function AddProductComponent(formBuilder, dataAccess, userService) {
+        this.formBuilder = formBuilder;
+        this.dataAccess = dataAccess;
+        this.userService = userService;
+        this.productForm = this.formBuilder.group({
+            productName: ['Marchew Zlota', forms_1.Validators.required],
+            desc: ['Niesamowita, niepowtarzalna'],
+            productType: ['', forms_1.Validators.required],
+            category: ['', forms_1.Validators.required],
+            price: ['25', forms_1.Validators.required],
+            unit: ['', forms_1.Validators.required]
+        });
         this.files = [];
-        this.typesSubject = new rxjs_1.BehaviorSubject([]);
     }
-    AddProductComponent.prototype.check = function () {
-        console.log(this.productTypes);
+    //ProductToSend
+    AddProductComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.userService.getResponseData().subscribe({
+            next: function (res) {
+                _this.token = res.token;
+                console.log(_this.token);
+            },
+            error: function (err) { return console.error('Observer got an error: ' + err); }
+        });
+    };
+    AddProductComponent.prototype.addProductToDb = function () {
+        var formValues = {
+            productName: this.productForm.value.productName,
+            type: this.productForm.value.productType,
+            category: this.productForm.value.category,
+            price: this.productForm.value.price,
+            unit: this.productForm.value.unit,
+            desc: this.productForm.value.desc
+        }; //Czy to jest dobre rozwiazanie????
+        // const headers = new HttpHeaders();
+        // headers.set('Content-Type', 'application/json')
+        // headers.set('Authorization', `Bearer ${this.token}`)
+        var httpOptions = {
+            headers: new http_1.HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + this.token
+            })
+        };
+        console.log(httpOptions, 'addProductToDb');
+        this.dataAccess.postProduct(formValues, httpOptions).subscribe(({
+            next: function (res) {
+                console.log(res);
+            },
+            error: function (err) { return console.error('Observer got an error: ' + err); }
+        }));
+    };
+    AddProductComponent.prototype.onSubmit = function () {
+    };
+    AddProductComponent.prototype.resetForm = function () {
+        this.productForm.reset();
     };
     // ngOnInit(){
     //   this.productTypes = this.productTypes.filter(type => {
@@ -112,6 +149,15 @@ var AddProductComponent = /** @class */ (function () {
     __decorate([
         core_1.Input()
     ], AddProductComponent.prototype, "productTypes");
+    __decorate([
+        core_1.Input()
+    ], AddProductComponent.prototype, "productCategories");
+    __decorate([
+        core_1.Input()
+    ], AddProductComponent.prototype, "productUnits");
+    __decorate([
+        core_1.Input()
+    ], AddProductComponent.prototype, "products");
     AddProductComponent = __decorate([
         core_1.Component({
             selector: 'app-add-product',
