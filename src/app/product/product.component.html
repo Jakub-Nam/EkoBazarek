@@ -1,3 +1,7 @@
+<div *ngFor="let products of filteredProducts">
+    {{products.name}}
+</div>
+
 <div class="container" [hidden]="!isProducts">
     <section class="container-filters">
         <div>
@@ -6,15 +10,16 @@
         </div>
         <h5>typ</h5>
         <ul>
-            <app-type-list [productTypes]="productTypes" (selectedTypeEmit)="filter($event)">
+            <app-type-list [productTypes]="productTypes" (selectedTypeEmit)="getFilteredProducts($event)">
             </app-type-list>
-
         </ul>
         <h5>Kategoria</h5>
-        <ul>
-            <app-category-list [filteredProductCategories]="filteredProductCategories"
-                (selectedCategoryEmit)="filterByCategories($event)"></app-category-list>
 
+        <ul>
+            <app-category-list 
+                [filteredProductCategories]="filteredProductCategories"
+                (selectedCategoryEmit)="filterByCategories($event)">
+            </app-category-list>
         </ul>
 
 
@@ -23,7 +28,6 @@
         <app-product-list [hidden]="!isProducts" (viewTogglerEvent)="toggleView($event)"></app-product-list>
     </section>
 </div>
-<div *ngFor="let products of filteredProducts">
-   {{products.name}} 
-</div>
-<app-add-product [productTypes]="productTypes"  [productUnits]='productUnits' [productCategories]="productCategories"   [products]="products" [hidden]="isProducts"></app-add-product>
+
+<app-add-product [productTypes]="productTypes" [productUnits]='productUnits' [productCategories]="productCategories"
+    [products]="products" [hidden]="isProducts"></app-add-product>

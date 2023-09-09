@@ -13,6 +13,7 @@ import { DataAccessService } from '../shared/services/data-access/data-access.se
 export class ProductComponent implements OnInit {
   public isProducts: boolean = true;
   public productTypes: ProductTypes[] = [];
+  public productFilteredTypes: ProductTypes[] = [];
   public productCategories: ProductCategory[] = [];
   public filteredProductCategories: ProductCategory[] = [];
   public filteredProducts: ProductResponseData[] = [];
@@ -56,10 +57,10 @@ export class ProductComponent implements OnInit {
 
   public selectedCategory: string | null = "CHICKEN";
 
-  constructor(public dataAccess: DataAccessService) { }
+  constructor( public dataAccess: DataAccessService ) { }
 
   ngOnInit() {
-    this.filteredProducts = this.products
+    this.filteredProducts = this.products;
     this.dataAccess.getProductTypes$.subscribe({
       next: (productTypes) => {
         this.productTypes = productTypes
@@ -83,49 +84,37 @@ export class ProductComponent implements OnInit {
       },
       error: (err: Error) => console.error('Observer got an error: ' + err),
     });
-
-
-
   }
 
-  public filter(selectedType: string[]) {
-
-    
-      selectedType.forEach(type => {
-        console.log(type);
-        // Wykonaj operacje na wybranych typach
-      });
-
-
-   
-      // Jeśli selectedType jest null, możesz obsłużyć ten przypadek lub zostawić go pusty
-    
-    // selectedType?.forEach(type => {
-    //   console.log(type)
-    //   // this.filterProductsByType(type)
-    // })
-    
-    // console.log(selectedTypes)
-    // this.filterCategoriesByType(selectedType);
+  public getFilteredProducts(selectedType: string[]) {
+    this.filterCategoriesByType(selectedType)
+    this.filterProductsByType(selectedType)
   }
 
-  public filterProductsByType(selectedType?: string): ProductResponseData[] {
-    return this.filteredProducts = this.products.filter(product => {
-      if (product.type !== selectedType) {
-        return false;
+  public filterProductsByType(selectedType: string[]): void {
+    this.filteredProducts = [];
+    this.products.forEach(product => {
+      for (let i = 0; i < selectedType.length; i++) {
+        if (product.type !== selectedType[i]) {
+        } else {
+          this.filteredProducts.push(product)
+        }
       }
-      return true;
     });
+
   }
 
-  public filterCategoriesByType(selectedType: string): ProductCategory[] {
-    return this.filteredProductCategories = this.productCategories.filter(category => {
-      if (category.type !== selectedType) {
-        return false;
+  public filterCategoriesByType(selectedType: string[]): void {
+    this.filteredProductCategories = [];
+    this.productCategories.forEach(category => {
+      for (let i = 0; i < selectedType.length; i++) {
+        if (category.type !== selectedType[i]) {
+        } else {
+          this.filteredProductCategories.push(category)
+        }
       }
-
-      return true;
     });
+
   }
 
   public filterByCategories(selectedCategory: string): ProductResponseData[] {

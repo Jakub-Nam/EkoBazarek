@@ -1,4 +1,4 @@
-<div *ngIf="registrationView">
+<div class="registration-container" *ngIf="registrationView">
     <app-registration (sendingProfileEvent)="createAccount()" [profileForm]="profileForm"></app-registration>
 </div>
 <div *ngIf="!registrationView" >

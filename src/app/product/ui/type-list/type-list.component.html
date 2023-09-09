@@ -4,9 +4,8 @@
     </mat-list-option>
 </mat-selection-list> -->
 
-    <mat-selection-list [multiple]="true" (selectionChange)="onSelectionChange($event)">
-        <mat-list-option *ngFor="let type of productTypes" [value]="type.id">
-          {{ type.name }}
-        </mat-list-option>
-      </mat-selection-list>
-    
+<mat-selection-list [multiple]="true" (selectionChange)="onSelectionChange($event)">
+  <mat-list-option *ngFor="let type of productTypes" [value]="type.id">
+    {{ type.name }}
+  </mat-list-option>
+</mat-selection-list>

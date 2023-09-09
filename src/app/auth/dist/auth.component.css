@@ -1,0 +1,10 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.registration-container {
+  margin-top: 4rem;
+  width: 50%;
+  margin-left: 160px;
+}

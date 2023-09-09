@@ -15,7 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 
 export class AuthComponent implements OnInit {
-    public registrationView: boolean = false;
+    public registrationView: boolean = true;
     public loginForm = this.fb.group({
         email: ['', [Validators.required]],
         password: ['', [

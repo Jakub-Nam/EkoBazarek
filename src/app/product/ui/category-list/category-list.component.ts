@@ -8,13 +8,17 @@ import { ProductCategory } from '../../../shared/interfaces/interfaces';
 })
 export class CategoryListComponent {
   @Input() public filteredProductCategories: ProductCategory[] = [];
+  @Input() public allCategoriesSelected!: boolean;
   @Output() selectedCategoryEmit = new EventEmitter<string>();
   public selectedCategory!: string;
+
+
+
 
   public emitSelectedCategory(category: string): void {
     this.selectedCategory = category;
     this.selectedCategoryEmit.emit(this.selectedCategory)
   }
- 
+  
 
 }

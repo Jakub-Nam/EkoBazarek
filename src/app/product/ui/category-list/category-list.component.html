@@ -4,8 +4,18 @@
         {{product.name}}
     </mat-list-option>
 </mat-selection-list>   -->
-<mat-selection-list [multiple]="false">
-    <mat-list-option  *ngFor="let productCategory of filteredProductCategories" checkboxPosition="before" (click)="emitSelectedCategory(productCategory.id)">
+
+<mat-selection-list [multiple]="false" >
+    <mat-list-option  
+    *ngFor="let productCategory of filteredProductCategories" 
+    
+    checkboxPosition="before" 
+    (click)="emitSelectedCategory(productCategory.id)"
+    >
         {{productCategory.name}}
     </mat-list-option>
 </mat-selection-list>
+<!-- [selected]="allSelected" zlesposob
+     checkboxPosition="before" 
+ -->
+ 

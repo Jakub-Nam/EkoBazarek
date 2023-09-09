@@ -13,6 +13,7 @@ var ProductComponent = /** @class */ (function () {
         this.dataAccess = dataAccess;
         this.isProducts = true;
         this.productTypes = [];
+        this.productFilteredTypes = [];
         this.productCategories = [];
         this.filteredProductCategories = [];
         this.filteredProducts = [];
@@ -79,33 +80,34 @@ var ProductComponent = /** @class */ (function () {
             error: function (err) { return console.error('Observer got an error: ' + err); }
         });
     };
-    ProductComponent.prototype.filter = function (selectedType) {
-        selectedType.forEach(function (type) {
-            console.log(type);
-            // Wykonaj operacje na wybranych typach
-        });
-        // Jeśli selectedType jest null, możesz obsłużyć ten przypadek lub zostawić go pusty
-        // selectedType?.forEach(type => {
-        //   console.log(type)
-        //   // this.filterProductsByType(type)
-        // })
-        // console.log(selectedTypes)
-        // this.filterCategoriesByType(selectedType);
+    ProductComponent.prototype.getFilteredProducts = function (selectedType) {
+        this.filterCategoriesByType(selectedType);
+        this.filterProductsByType(selectedType);
     };
     ProductComponent.prototype.filterProductsByType = function (selectedType) {
-        return this.filteredProducts = this.products.filter(function (product) {
-            if (product.type !== selectedType) {
-                return false;
+        var _this = this;
+        this.filteredProducts = [];
+        this.products.forEach(function (product) {
+            for (var i = 0; i < selectedType.length; i++) {
+                if (product.type !== selectedType[i]) {
+                }
+                else {
+                    _this.filteredProducts.push(product);
+                }
             }
-            return true;
         });
     };
     ProductComponent.prototype.filterCategoriesByType = function (selectedType) {
-        return this.filteredProductCategories = this.productCategories.filter(function (category) {
-            if (category.type !== selectedType) {
-                return false;
+        var _this = this;
+        this.filteredProductCategories = [];
+        this.productCategories.forEach(function (category) {
+            for (var i = 0; i < selectedType.length; i++) {
+                if (category.type !== selectedType[i]) {
+                }
+                else {
+                    _this.filteredProductCategories.push(category);
+                }
             }
-            return true;
         });
     };
     ProductComponent.prototype.filterByCategories = function (selectedCategory) {

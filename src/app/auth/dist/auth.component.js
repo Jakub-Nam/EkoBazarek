@@ -17,7 +17,7 @@ var AuthComponent = /** @class */ (function () {
         this.userService = userService;
         this.route = route;
         this._snackBar = _snackBar;
-        this.registrationView = false;
+        this.registrationView = true;
         this.loginForm = this.fb.group({
             email: ['', [forms_1.Validators.required]],
             password: ['', [

@@ -21,6 +21,9 @@ var CategoryListComponent = /** @class */ (function () {
         core_1.Input()
     ], CategoryListComponent.prototype, "filteredProductCategories");
     __decorate([
+        core_1.Input()
+    ], CategoryListComponent.prototype, "allCategoriesSelected");
+    __decorate([
         core_1.Output()
     ], CategoryListComponent.prototype, "selectedCategoryEmit");
     CategoryListComponent = __decorate([
