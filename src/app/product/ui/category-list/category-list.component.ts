@@ -7,8 +7,9 @@ import { ProductCategory } from '../../../shared/interfaces/interfaces';
   styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent {
-  @Input() public filteredProductCategories: ProductCategory[] = [];
-  @Input() public allCategoriesSelected!: boolean;
+  @Input() public filteredProductCategories!: ProductCategory[];
+  // @Input() public allCategoriesSelected!: boolean;
+  @Input() public allSelected!: boolean;
   @Output() selectedCategoryEmit = new EventEmitter<string>();
   public selectedCategory!: string;
 
@@ -20,5 +21,8 @@ export class CategoryListComponent {
     this.selectedCategoryEmit.emit(this.selectedCategory)
   }
   
+  check(){
+    console.log(this.allSelected)
+  }
 
 }

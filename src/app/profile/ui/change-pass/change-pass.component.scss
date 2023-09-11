@@ -1,13 +1,14 @@
+@import "../../../global-styles.scss";
+
 .container {
     display: flex;
     flex-direction: column;
-
-
+   
     .form-group {
         display: flex;
         flex-direction: column;
         margin-top: 2rem;
-        // flex-wrap: wrap;
+        width: 515px;
         label {
             font-weight: 600;
         }
@@ -38,5 +39,12 @@
             margin-left: 1rem;
         }
     }
- 
+    button {
+        border: none;
+        width: 99px;
+        height: 42px;
+        color: $secondary-font-color;
+        background-color: $primary-background-color;
+        align-self: end;
+    }
 }

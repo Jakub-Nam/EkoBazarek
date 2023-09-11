@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegistrationComponent } from './ui/registration/registration.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { PassValidationComponent } from './ui/pass-validation/pass-validation.component';
+
 
 const materialComponents: unknown[] = 
 [
@@ -14,7 +14,6 @@ const materialComponents: unknown[] =
   declarations:
     [
       RegistrationComponent,
-      PassValidationComponent,
     ],
   imports:
     [

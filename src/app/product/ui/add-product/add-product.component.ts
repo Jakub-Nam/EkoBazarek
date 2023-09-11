@@ -34,65 +34,52 @@ export class AddProductComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private dataAccess: DataAccessService, private userService: UserService) { }
 
   //ProductToSend
-  ngOnInit() {
+  ngOnInit(): void {
     this.userService.getResponseData().subscribe({
       next: (res) => {
         this.token = res.token
-        console.log(this.token)
       },
       error: (err: Error) => console.error('Observer got an error: ' + err),
     });
   }
 
 
-  addProductToDb() {
+  public addProductToDb(): void {
 
-    let formValues: ProductToSend =
-    {
-      productName: this.productForm.value.productName,
-      type: this.productForm.value.productType,
-      category: this.productForm.value.category,
-      price: this.productForm.value.price,
-      unit: this.productForm.value.unit,
-      desc: this.productForm.value.desc,
-    }; //Czy to jest dobre rozwiazanie????
 
-    // const headers = new HttpHeaders();
-    // headers.set('Content-Type', 'application/json')
-    // headers.set('Authorization', `Bearer ${this.token}`)
-    let httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.token}`
-      })
-    };
+    const formData = new FormData();
 
-    console.log(httpOptions, 'addProductToDb')
+    formData.append('name', this.productForm?.get('productName')?.value as string);
+    formData.append('type', this.productForm?.get('productType')?.value as string);
+    formData.append('category', this.productForm?.get('category')?.value as string);
+    formData.append('price', this.productForm?.get('price')?.value as string);
+    formData.append('unit', this.productForm?.get('unit')?.value as string);
+    formData.append('desc', this.productForm?.get('desc')?.value as string);
 
-    this.dataAccess.postProduct(formValues, httpOptions).subscribe(({
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'multipart/form-data')
+    headers.set('Authorization', `Bearer ${this.token}`)
+
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'multipart/form-data',
+    //     'Authorization': `Bearer ${this.token}`
+    //   })
+    // };
+
+    this.dataAccess.postProduct(formData, headers).subscribe(({
       next: (res) => {
 
         console.log(res)
       },
       error: (err: Error) => console.error('Observer got an error: ' + err),
-    })
-    );
+    }));
   }
 
-  onSubmit() {
 
-  }
-  resetForm(){
+  public resetForm(): void {
     this.productForm.reset();
   }
-
-  // ngOnInit(){
-  //   this.productTypes = this.productTypes.filter(type => {
-  //     return true;
-  //   })
-
-  // }
-
 
 
 

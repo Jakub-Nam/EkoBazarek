@@ -12,12 +12,13 @@ import { DataAccessService } from '../shared/services/data-access/data-access.se
 })
 export class ProductComponent implements OnInit {
   public isProducts: boolean = true;
-  public productTypes: ProductTypes[] = [];
-  public productFilteredTypes: ProductTypes[] = [];
-  public productCategories: ProductCategory[] = [];
-  public filteredProductCategories: ProductCategory[] = [];
-  public filteredProducts: ProductResponseData[] = [];
-  public productUnits: ProductUnit[] = [];
+  public productTypes!: ProductTypes[];
+  public productFilteredTypes!: ProductTypes[];
+  public productCategories!: ProductCategory[];
+  public filteredProductCategories!: ProductCategory[];
+  public filteredProducts!: ProductResponseData[];
+  public productUnits!: ProductUnit[];
+  public allSelected: boolean = true;
   public products: ProductResponseData[] =
     [
       {
@@ -57,13 +58,13 @@ export class ProductComponent implements OnInit {
 
   public selectedCategory: string | null = "CHICKEN";
 
-  constructor( public dataAccess: DataAccessService ) { }
+  constructor(public dataAccess: DataAccessService) { }
 
   ngOnInit() {
     this.filteredProducts = this.products;
     this.dataAccess.getProductTypes$.subscribe({
       next: (productTypes) => {
-        this.productTypes = productTypes
+        this.productTypes = productTypes;
         this.filteredProducts = this.products;
       },
       error: (err: Error) => console.error('Observer got an error: ' + err),
@@ -71,24 +72,23 @@ export class ProductComponent implements OnInit {
 
     this.dataAccess.getProductCategories$.subscribe({
       next: (productCategories) => {
-        this.productCategories = productCategories
-        this.filteredProductCategories = this.productCategories
+        this.productCategories = productCategories;
+        this.filteredProductCategories = productCategories;
       },
       error: (err: Error) => console.error('Observer got an error: ' + err),
     });
 
     this.dataAccess.getProductUnits$.subscribe({
       next: (productUnits) => {
-        this.productUnits = productUnits
-        console.log(this.productUnits)
+        this.productUnits = productUnits;
       },
       error: (err: Error) => console.error('Observer got an error: ' + err),
     });
   }
 
-  public getFilteredProducts(selectedType: string[]) {
-    this.filterCategoriesByType(selectedType)
-    this.filterProductsByType(selectedType)
+  public filterProductsAndCategories(selectedType: string[]): void {
+    this.filterCategoriesByType(selectedType);
+    this.filterProductsByType(selectedType);
   }
 
   public filterProductsByType(selectedType: string[]): void {
@@ -132,16 +132,3 @@ export class ProductComponent implements OnInit {
   }
 
 }
-
-
-
-
-
-  // this.http.get<ProductCategory[]>('https://api-eko-bazarek.azurewebsites.net/api/products/categories')
-    //   .subscribe({
-    //     next: (productCategories) => {
-    //       console.log(productCategories)
-    //       this.productCategories = productCategories
-    //     },
-    //     error: (err: Error) => console.error('Observer got an error: ' + err),
-    //   });

@@ -5,11 +5,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/shared/auth.service';
 import { UserService } from '../shared/services/user-service/user.service';
 import { Observable, catchError, map } from 'rxjs';
+import { OldNewPasswords } from '../shared/interfaces/interfaces';
+import { DataAccessService } from '../shared/services/data-access/data-access.service';
 
-interface OldNewPasswords {
-  oldPassword: string | null | undefined,
-  newPassword: string | null | undefined
-}
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -58,7 +57,7 @@ export class ProfileComponent {
 
   });
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private authService: AuthService, private userService: UserService) {
+  constructor(private fb: FormBuilder, private userService: UserService, private dataAccess: DataAccessService) {
 
   }
 
@@ -77,34 +76,22 @@ export class ProfileComponent {
         error: (err: Error) => console.error('Observer got an error: ' + err),
       });
 
-      this.changePassword(requestBody)
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.token}`
+        })
+      };
+
+      this.dataAccess.changePassword(requestBody, httpOptions)
         .subscribe();
+        // next, errr
     }
 
   }
 
 
-  changePassword(reqBody: OldNewPasswords): Observable<void> {
-    const url = 'https://api-eko-bazarek.azurewebsites.net/api/users/change-password'
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.token}`
-      })
-    };
-    
-    return this.http.post<void>(url, reqBody, httpOptions)
-      .pipe(
-        map((data) => {
-          console.log(data);
-          return data;
-        }),
-        catchError(err => {
-          console.log(err);
-          throw err;
-        })
-      );
-  }
+ 
 
   //t odo serwisu!!! ^
 }

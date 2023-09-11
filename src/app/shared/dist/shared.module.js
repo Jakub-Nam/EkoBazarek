@@ -11,6 +11,10 @@ var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var registration_component_1 = require("./ui/registration/registration.component");
 var forms_1 = require("@angular/forms");
+var icon_1 = require("@angular/material/icon");
+var materialComponents = [
+    icon_1.MatIconModule,
+];
 var SharedModule = /** @class */ (function () {
     function SharedModule() {
     }
@@ -22,6 +26,7 @@ var SharedModule = /** @class */ (function () {
             imports: [
                 common_1.CommonModule,
                 forms_1.ReactiveFormsModule,
+                materialComponents
             ],
             exports: [
                 registration_component_1.RegistrationComponent

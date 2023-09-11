@@ -11,13 +11,11 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var validators_1 = require("../auth/shared/validators/validators");
 var http_1 = require("@angular/common/http");
-var rxjs_1 = require("rxjs");
 var ProfileComponent = /** @class */ (function () {
-    function ProfileComponent(fb, http, authService, userService) {
+    function ProfileComponent(fb, userService, dataAccess) {
         this.fb = fb;
-        this.http = http;
-        this.authService = authService;
         this.userService = userService;
+        this.dataAccess = dataAccess;
         this.token = '';
         this.profileForm = this.fb.group({
             firstName: ['Jakub', forms_1.Validators.required],
@@ -70,26 +68,16 @@ var ProfileComponent = /** @class */ (function () {
                 },
                 error: function (err) { return console.error('Observer got an error: ' + err); }
             });
-            this.changePassword(requestBody)
+            var httpOptions = {
+                headers: new http_1.HttpHeaders({
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + this.token
+                })
+            };
+            this.dataAccess.changePassword(requestBody, httpOptions)
                 .subscribe();
+            // next, errr
         }
-    };
-    ProfileComponent.prototype.changePassword = function (reqBody) {
-        var url = 'https://api-eko-bazarek.azurewebsites.net/api/users/change-password';
-        var httpOptions = {
-            headers: new http_1.HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + this.token
-            })
-        };
-        return this.http.post(url, reqBody, httpOptions)
-            .pipe(rxjs_1.map(function (data) {
-            console.log(data);
-            return data;
-        }), rxjs_1.catchError(function (err) {
-            console.log(err);
-            throw err;
-        }));
     };
     ProfileComponent = __decorate([
         core_1.Component({

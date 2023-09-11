@@ -31,47 +31,38 @@ var AddProductComponent = /** @class */ (function () {
         this.userService.getResponseData().subscribe({
             next: function (res) {
                 _this.token = res.token;
-                console.log(_this.token);
             },
             error: function (err) { return console.error('Observer got an error: ' + err); }
         });
     };
     AddProductComponent.prototype.addProductToDb = function () {
-        var formValues = {
-            productName: this.productForm.value.productName,
-            type: this.productForm.value.productType,
-            category: this.productForm.value.category,
-            price: this.productForm.value.price,
-            unit: this.productForm.value.unit,
-            desc: this.productForm.value.desc
-        }; //Czy to jest dobre rozwiazanie????
-        // const headers = new HttpHeaders();
-        // headers.set('Content-Type', 'application/json')
-        // headers.set('Authorization', `Bearer ${this.token}`)
-        var httpOptions = {
-            headers: new http_1.HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + this.token
-            })
-        };
-        console.log(httpOptions, 'addProductToDb');
-        this.dataAccess.postProduct(formValues, httpOptions).subscribe(({
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
+        var formData = new FormData();
+        formData.append('name', (_b = (_a = this.productForm) === null || _a === void 0 ? void 0 : _a.get('productName')) === null || _b === void 0 ? void 0 : _b.value);
+        formData.append('type', (_d = (_c = this.productForm) === null || _c === void 0 ? void 0 : _c.get('productType')) === null || _d === void 0 ? void 0 : _d.value);
+        formData.append('category', (_f = (_e = this.productForm) === null || _e === void 0 ? void 0 : _e.get('category')) === null || _f === void 0 ? void 0 : _f.value);
+        formData.append('price', (_h = (_g = this.productForm) === null || _g === void 0 ? void 0 : _g.get('price')) === null || _h === void 0 ? void 0 : _h.value);
+        formData.append('unit', (_k = (_j = this.productForm) === null || _j === void 0 ? void 0 : _j.get('unit')) === null || _k === void 0 ? void 0 : _k.value);
+        formData.append('desc', (_m = (_l = this.productForm) === null || _l === void 0 ? void 0 : _l.get('desc')) === null || _m === void 0 ? void 0 : _m.value);
+        var headers = new http_1.HttpHeaders();
+        headers.set('Content-Type', 'multipart/form-data');
+        headers.set('Authorization', "Bearer " + this.token);
+        // const httpOptions = {
+        //   headers: new HttpHeaders({
+        //     'Content-Type': 'multipart/form-data',
+        //     'Authorization': `Bearer ${this.token}`
+        //   })
+        // };
+        this.dataAccess.postProduct(formData, headers).subscribe(({
             next: function (res) {
                 console.log(res);
             },
             error: function (err) { return console.error('Observer got an error: ' + err); }
         }));
     };
-    AddProductComponent.prototype.onSubmit = function () {
-    };
     AddProductComponent.prototype.resetForm = function () {
         this.productForm.reset();
     };
-    // ngOnInit(){
-    //   this.productTypes = this.productTypes.filter(type => {
-    //     return true;
-    //   })
-    // }
     /**
      * on file drop handler
      */

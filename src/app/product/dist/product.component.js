@@ -12,12 +12,7 @@ var ProductComponent = /** @class */ (function () {
     function ProductComponent(dataAccess) {
         this.dataAccess = dataAccess;
         this.isProducts = true;
-        this.productTypes = [];
-        this.productFilteredTypes = [];
-        this.productCategories = [];
-        this.filteredProductCategories = [];
-        this.filteredProducts = [];
-        this.productUnits = [];
+        this.allSelected = true;
         this.products = [
             {
                 id: "4cf938da-51cc-41c6-b7b1-763433bbce83",
@@ -68,19 +63,18 @@ var ProductComponent = /** @class */ (function () {
         this.dataAccess.getProductCategories$.subscribe({
             next: function (productCategories) {
                 _this.productCategories = productCategories;
-                _this.filteredProductCategories = _this.productCategories;
+                _this.filteredProductCategories = productCategories;
             },
             error: function (err) { return console.error('Observer got an error: ' + err); }
         });
         this.dataAccess.getProductUnits$.subscribe({
             next: function (productUnits) {
                 _this.productUnits = productUnits;
-                console.log(_this.productUnits);
             },
             error: function (err) { return console.error('Observer got an error: ' + err); }
         });
     };
-    ProductComponent.prototype.getFilteredProducts = function (selectedType) {
+    ProductComponent.prototype.filterProductsAndCategories = function (selectedType) {
         this.filterCategoriesByType(selectedType);
         this.filterProductsByType(selectedType);
     };
@@ -131,11 +125,3 @@ var ProductComponent = /** @class */ (function () {
     return ProductComponent;
 }());
 exports.ProductComponent = ProductComponent;
-// this.http.get<ProductCategory[]>('https://api-eko-bazarek.azurewebsites.net/api/products/categories')
-//   .subscribe({
-//     next: (productCategories) => {
-//       console.log(productCategories)
-//       this.productCategories = productCategories
-//     },
-//     error: (err: Error) => console.error('Observer got an error: ' + err),
-//   });

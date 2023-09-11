@@ -4,10 +4,15 @@
         <mat-icon class='envelope-icon' svgIcon="facebook"></mat-icon>
         <h3>SUBSKRYBUJ</h3>
         <span>Bądź pierwszym, który się dowie o naszych nowych produktach</span>
-        <div class="input-wrapper">
-            <input type="text">
-            <button>Subskrybuj</button>
-        </div>
+        <form [formGroup]="subForm" (ngSubmit)="postSubscription()" class="input-wrapper">
+            <input type="email" formControlName="email" class="input-wrapper">
+           
+            <!-- <mat-form-field MatFormFieldControl="productName" appearance="outline">
+				<mat-label>Nazwa Produktu*</mat-label>
+				<input matInput type="email" formControlName="email">
+			</mat-form-field> -->
+            <button type="submit">Subskrybuj</button>
+        </form>
         <div class="icons-wrapper">
             <mat-icon svgIcon="facebook"></mat-icon>
             <mat-icon svgIcon="instagram"></mat-icon>
@@ -19,19 +24,19 @@
         <nav>
             <ul class="nav__ul-list">
                 <li>
-                    <a href="">O nas</a>
+                    <a routerLink="#" href="">O nas</a>
                 </li>
                 <li>
-                    <a href="">Produkty</a>
+                    <a routerLink="/product"href="">Produkty</a>
                 </li>
                 <li>
-                    <a href="">Kontakt</a>
+                    <a href="#">Kontakt</a>
                 </li>
                 <li>
-                    <a href="">Warunki użytkownika</a>
+                    <a href="#">Warunki użytkownika</a>
                 </li>
                 <li>
-                    <a href="">Polityka prywatności</a>
+                    <a href="#">Polityka prywatności</a>
                 </li>
             </ul>
 
@@ -40,8 +45,6 @@
                 <span>@2023, EcoBazarek Store Powered By Domino, App icons by
                     <u>icons8</u></span>
             </div>
-
-
         </nav>
     </div>
 </footer>

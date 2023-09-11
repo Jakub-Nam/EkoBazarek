@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, of, shareReplay, tap } from 'rxjs';
-import { ProductToSend, ProductTypes, ProductUnit, ReponseLoginData } from '../../interfaces/interfaces';
+import { Observable, catchError, map, of, shareReplay, tap, throwError } from 'rxjs';
+import { OldNewPasswords, ProductToSend, ProductTypes, ProductUnit, ReponseLoginData, SubscriptionBody } from '../../interfaces/interfaces';
 import { ProductCategory } from '../../interfaces/interfaces';
 import { UserService } from '../user-service/user.service';
 
@@ -13,64 +13,73 @@ import { UserService } from '../user-service/user.service';
 export class DataAccessService {
   public getProductTypes$ = this.http.get<ProductTypes[]>('https://api-eko-bazarek.azurewebsites.net/api/products/types')
     .pipe(
+      map(type => type.sort((a, b) => a.name.localeCompare(b.name))),
       shareReplay(1),
       // catchError()
     )
 
   public getProductCategories$ = this.http.get<ProductCategory[]>('https://api-eko-bazarek.azurewebsites.net/api/products/categories')
     .pipe(
+      map(categories => categories.sort((a, b) => a.name.localeCompare(b.name))),
       shareReplay(1),
       // catchError()
     )
 
   public getProductUnits$ = this.http.get<ProductUnit[]>('https://api-eko-bazarek.azurewebsites.net/api/products/units')
     .pipe(
+      map(categories => categories.sort((a, b) => a.name.localeCompare(b.name))),
       shareReplay(1),
       // catchError()
     )
-
-
-
-  // public postProduct$ = this.postProduct(form);
-
-  // public postProduct$ = this.http.post<ProductToSend[]>('https://api-eko-bazarek.azurewebsites.net/api/products/', form, headers);
-
-
-  // public token: any = this.user.getResponseData().subscribe({
-  //   next: (user) => {
-  //     user.token = this.token;
-  //   },
-  //   error: (err: Error) => console.error('Observer got an error: ' + err),
-  // });
-  
-
-
 
 
   constructor(private http: HttpClient) {
 
   }
 
-  public postProduct(form: ProductToSend, httpOptions: {headers: HttpHeaders}) {
-    return this.http.post<ProductToSend[]>('https://api-eko-bazarek.azurewebsites.net/api/products', form, httpOptions)
+  public postSubscription(bodyReq: SubscriptionBody, httpOptions: { headers: HttpHeaders }) {
+    return this.http.post<string>('https://api-eko-bazarek.azurewebsites.net/api/subscribe', bodyReq, httpOptions)
       .pipe(
-        tap(x => console.log(x)),
         catchError(err => {
-          console.log(err);
-          return of(null)
+
+          return throwError(() => err);
         }),
         shareReplay(1),
-        
+
         // catchError()
       )
 
   }
 
+  public changePassword(reqBody: OldNewPasswords, httpOptions: { headers: HttpHeaders }): Observable<void> {
+    return this.http.post<void>('https://api-eko-bazarek.azurewebsites.net/api/users/change-password', reqBody, httpOptions)
+      .pipe(
+        map((data) => {
+          console.log(data);
+          return data;
+        }),
+        catchError(err => {
+          console.log(err);
+          throw err;
+        })
+      );
+  }
 
+  public postProduct(form: FormData,  headers: HttpHeaders) {
+    return this.http.post<any>('https://api-eko-bazarek.azurewebsites.net/api/products', form, {headers: headers})
+      .pipe(
+        catchError(err => {
+          console.log(err)
+          return of(null)
+        }),
+        shareReplay(1),
 
+        // catchError()
+      )
 
+  }// ANYYYYYYYYYYYYYYYYYYYYYY!
 }
-  
+
   // public postProduct(form: ProductToSend, headers: HttpHeaders) {
   //   let token: string;
 

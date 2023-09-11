@@ -1,8 +1,6 @@
 <div class="container">
 
-
 	<h3>Dodaj Produkty</h3>
-
 
 	<div class="container-dropzone" appDnd (fileDropped)="onFileDropped($event)">
 		<input type="file" #fileDropRef id="fileDropRef" (change)="fileBrowseHandler($event)" />
@@ -10,7 +8,7 @@
 		<span>Kliknij lub upuść plik</span>
 	</div>
 	<span>ICONA Maksymalny rozmiar pliku 1mb. Wpieramy formaty *.jpg, *gif, *png.</span>
-	<form [formGroup]="productForm" (ngSubmit)="addProductToDb()">
+	<form [formGroup]="productForm" (ngSubmit)="addProductToDb()" enctype="multipart/form-data">
 		<div class="container__in-column">
 			<mat-form-field MatFormFieldControl="productName" appearance="outline">
 				<mat-label>Nazwa Produktu*</mat-label>

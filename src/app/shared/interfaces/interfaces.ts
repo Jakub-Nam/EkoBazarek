@@ -56,3 +56,12 @@ export interface ProductUnit {
     id: string,
     name: string
 }
+
+export interface SubscriptionBody {
+    email?: string | null | undefined;
+}
+
+export interface OldNewPasswords {
+    oldPassword: string | null | undefined,
+    newPassword: string | null | undefined
+}

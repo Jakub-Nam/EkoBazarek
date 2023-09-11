@@ -10,19 +10,21 @@ exports.CategoryListComponent = void 0;
 var core_1 = require("@angular/core");
 var CategoryListComponent = /** @class */ (function () {
     function CategoryListComponent() {
-        this.filteredProductCategories = [];
         this.selectedCategoryEmit = new core_1.EventEmitter();
     }
     CategoryListComponent.prototype.emitSelectedCategory = function (category) {
         this.selectedCategory = category;
         this.selectedCategoryEmit.emit(this.selectedCategory);
     };
+    CategoryListComponent.prototype.check = function () {
+        console.log(this.allSelected);
+    };
     __decorate([
         core_1.Input()
     ], CategoryListComponent.prototype, "filteredProductCategories");
     __decorate([
         core_1.Input()
-    ], CategoryListComponent.prototype, "allCategoriesSelected");
+    ], CategoryListComponent.prototype, "allSelected");
     __decorate([
         core_1.Output()
     ], CategoryListComponent.prototype, "selectedCategoryEmit");
