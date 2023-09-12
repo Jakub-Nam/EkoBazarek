@@ -27,6 +27,7 @@ var forms_1 = require("@angular/forms");
 var form_field_1 = require("@angular/material/form-field");
 var input_1 = require("@angular/material/input");
 var auth_module_1 = require("./auth/auth.module");
+var shared_module_1 = require("./shared/shared.module");
 var materialComponents = [
     icon_1.MatIconModule,
     menu_1.MatMenuModule,
@@ -54,6 +55,7 @@ var AppModule = /** @class */ (function () {
                 auth_module_1.AuthModule,
                 forms_1.FormsModule,
                 product_module_1.ProductModule,
+                shared_module_1.SharedModule,
                 forms_1.ReactiveFormsModule,
                 materialComponents,
                 app_routing_module_1.AppRoutingModule,

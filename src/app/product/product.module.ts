@@ -5,7 +5,7 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
 import { TypeListComponent } from './ui/type-list/type-list.component';
 import { CategoryListComponent } from './ui/category-list/category-list.component';
-import { ProductListComponent } from './ui/product-list/product-list.component';
+import { ProductListComponent } from '../shared/ui/product-list/product-list.component';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { AddProductComponent } from './ui/add-product/add-product.component';
@@ -14,8 +14,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {TextFieldModule} from '@angular/cdk/text-field';
 import {MatSelectModule} from '@angular/material/select';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule} from '@angular/material/checkbox';
+import { SharedModule } from '../shared/shared.module';
 
 const materialComponents: unknown[] =
   [
@@ -34,14 +35,15 @@ const materialComponents: unknown[] =
     ProductComponent,
     TypeListComponent,
     CategoryListComponent,
-    ProductListComponent,
     AddProductComponent,
   ],
   imports: [
     CommonModule,
     ProductRoutingModule,
     ReactiveFormsModule,
-    materialComponents
+    materialComponents,
+    FormsModule,
+    SharedModule
   ]
 })
 export class ProductModule { }

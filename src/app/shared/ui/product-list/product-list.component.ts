@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ProductListComponent {
   @Output() viewTogglerEvent = new EventEmitter<boolean>();
-
+  @Input() public isAddCard: boolean = false;
   public viewTogglerEmit(): void {
     this.viewTogglerEvent.emit(false)
   }

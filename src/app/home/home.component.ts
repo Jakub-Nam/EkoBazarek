@@ -9,7 +9,7 @@ import { DataAccessService } from '../shared/services/data-access/data-access.se
 })
 export class HomeComponent {
   public productCategories: ProductCategory[] = [];
-  
+  public isAddCard: boolean = false;
 
   constructor(private data: DataAccessService) { }
 

@@ -13,6 +13,8 @@ var ProductComponent = /** @class */ (function () {
         this.dataAccess = dataAccess;
         this.isProducts = true;
         this.allSelected = true;
+        // public filteredCategories: ProductCategory[] = [];
+        this.searchTerm = '';
         this.products = [
             {
                 id: "4cf938da-51cc-41c6-b7b1-763433bbce83",
@@ -103,6 +105,7 @@ var ProductComponent = /** @class */ (function () {
                 }
             }
         });
+        // wystarczy wyfiltrowac produkty, productcategories, filter i pozniej arrow => sprawdzam, czy ten typ !! INCLUDE NA SELECTED TYPE 
     };
     ProductComponent.prototype.filterByCategories = function (selectedCategory) {
         return this.filteredProducts = this.products.filter(function (product) {
@@ -114,6 +117,12 @@ var ProductComponent = /** @class */ (function () {
     };
     ProductComponent.prototype.toggleView = function (boolean) {
         this.isProducts = boolean;
+    };
+    ProductComponent.prototype.filterProductsByName = function () {
+        var _this = this;
+        this.filteredProducts = this.products.filter(function (category) {
+            return category.name.toLowerCase().includes(_this.searchTerm.toLowerCase());
+        });
     };
     ProductComponent = __decorate([
         core_1.Component({

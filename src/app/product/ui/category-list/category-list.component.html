@@ -1,15 +1,8 @@
-
-<button (click)="check()">nacisnij</button>
-<mat-selection-list [multiple]="false" >
-    <mat-list-option  
-    *ngFor="let productCategory of filteredProductCategories" 
-    checkboxPosition="before" 
-    [selected]="allSelected"
-    (click)="emitSelectedCategory(productCategory.id)">
-        {{productCategory.name}}
-    </mat-list-option>
-</mat-selection-list>
-<!-- [selected]="allSelected" zlesposob
-     checkboxPosition="before" 
- -->
- 
+<mat-form-field>
+    <mat-label>Wybierz kategorie</mat-label>
+    <mat-select [(value)]="selectedCategory">
+        <mat-option *ngFor="let productCategory of  filteredProductCategories" [value]="productCategory.id" (click)="emitSelectedCategory(productCategory.id)">
+            {{productCategory.name}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

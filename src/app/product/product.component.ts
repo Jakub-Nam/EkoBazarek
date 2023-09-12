@@ -19,6 +19,8 @@ export class ProductComponent implements OnInit {
   public filteredProducts!: ProductResponseData[];
   public productUnits!: ProductUnit[];
   public allSelected: boolean = true;
+  // public filteredCategories: ProductCategory[] = [];
+  public searchTerm: string = '';
   public products: ProductResponseData[] =
     [
       {
@@ -106,6 +108,7 @@ export class ProductComponent implements OnInit {
 
   public filterCategoriesByType(selectedType: string[]): void {
     this.filteredProductCategories = [];
+
     this.productCategories.forEach(category => {
       for (let i = 0; i < selectedType.length; i++) {
         if (category.type !== selectedType[i]) {
@@ -114,7 +117,7 @@ export class ProductComponent implements OnInit {
         }
       }
     });
-
+    // wystarczy wyfiltrowac produkty, productcategories, filter i pozniej arrow => sprawdzam, czy ten typ !! INCLUDE NA SELECTED TYPE 
   }
 
   public filterByCategories(selectedCategory: string): ProductResponseData[] {
@@ -131,4 +134,11 @@ export class ProductComponent implements OnInit {
     this.isProducts = boolean;
   }
 
+
+
+public filterProductsByName(): void {
+  this.filteredProducts = this.products.filter(category =>
+    category.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+  );
+}
 }

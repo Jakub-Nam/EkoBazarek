@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RegistrationComponent } from './ui/registration/registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { ProductListComponent } from './ui/product-list/product-list.component';
 
 
 const materialComponents: unknown[] = 
@@ -14,6 +15,7 @@ const materialComponents: unknown[] =
   declarations:
     [
       RegistrationComponent,
+      ProductListComponent
     ],
   imports:
     [
@@ -23,7 +25,8 @@ const materialComponents: unknown[] =
     ],
   exports:
     [
-      RegistrationComponent
+      RegistrationComponent,
+      ProductListComponent
     ],
 })
 export class SharedModule { }

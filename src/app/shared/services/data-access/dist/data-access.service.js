@@ -35,8 +35,8 @@ var DataAccessService = /** @class */ (function () {
             throw err;
         }));
     };
-    DataAccessService.prototype.postProduct = function (form, headers) {
-        return this.http.post('https://api-eko-bazarek.azurewebsites.net/api/products', form, { headers: headers })
+    DataAccessService.prototype.postProduct = function (form, httpOptions) {
+        return this.http.post('https://api-eko-bazarek.azurewebsites.net/api/products', form, httpOptions)
             .pipe(rxjs_1.catchError(function (err) {
             console.log(err);
             return rxjs_1.of(null);

@@ -16,15 +16,9 @@ var CategoryListComponent = /** @class */ (function () {
         this.selectedCategory = category;
         this.selectedCategoryEmit.emit(this.selectedCategory);
     };
-    CategoryListComponent.prototype.check = function () {
-        console.log(this.allSelected);
-    };
     __decorate([
         core_1.Input()
     ], CategoryListComponent.prototype, "filteredProductCategories");
-    __decorate([
-        core_1.Input()
-    ], CategoryListComponent.prototype, "allSelected");
     __decorate([
         core_1.Output()
     ], CategoryListComponent.prototype, "selectedCategoryEmit");

@@ -9,6 +9,7 @@
     h3 {
         font-size: 48px;
         color: $third-font-color;
+        margin-bottom: 36px;
     }
     .container-filters {
         display: flex;
@@ -18,5 +19,12 @@
     .container-products {
         display: flex;
         flex-direction: row;
+    }
+    h5 {
+        font-size: 18px;
+        font-weight: 550;
+    }
+    .type {
+        padding-top: 1rem;
     }
 }

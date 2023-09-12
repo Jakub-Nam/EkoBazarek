@@ -1,7 +1,8 @@
 .section-contaier {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
+
 mat-selection-list.mat-mdc-selection-list.mat-mdc-list-base.mdc-list {
-    padding: 0px;
+  padding: 0px;
 }

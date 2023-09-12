@@ -35,6 +35,8 @@ export class AddProductComponent implements OnInit {
 
   //ProductToSend
   ngOnInit(): void {
+    console.log(this.productTypes, this.productCategories,
+      this.productUnits)
     this.userService.getResponseData().subscribe({
       next: (res) => {
         this.token = res.token
@@ -56,18 +58,23 @@ export class AddProductComponent implements OnInit {
     formData.append('unit', this.productForm?.get('unit')?.value as string);
     formData.append('desc', this.productForm?.get('desc')?.value as string);
 
-    const headers = new HttpHeaders();
-    headers.set('Content-Type', 'multipart/form-data')
-    headers.set('Authorization', `Bearer ${this.token}`)
+    // const headers = new HttpHeaders();
+    // headers.set('Content-Type', 'multipart/form-data')
+    // headers.set('Authorization', `Bearer ${this.token}`)
+    const formDataObject: any = {};
+    formData.forEach((value, key) => {
+      formDataObject[key] = value;
+    });
 
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'multipart/form-data',
-    //     'Authorization': `Bearer ${this.token}`
-    //   })
-    // };
+    console.log(formDataObject);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${this.token}`
+      })
+    };
 
-    this.dataAccess.postProduct(formData, headers).subscribe(({
+    this.dataAccess.postProduct(formData, httpOptions).subscribe(({
       next: (res) => {
 
         console.log(res)

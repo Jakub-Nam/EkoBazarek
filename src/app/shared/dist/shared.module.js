@@ -12,6 +12,7 @@ var common_1 = require("@angular/common");
 var registration_component_1 = require("./ui/registration/registration.component");
 var forms_1 = require("@angular/forms");
 var icon_1 = require("@angular/material/icon");
+var product_list_component_1 = require("./ui/product-list/product-list.component");
 var materialComponents = [
     icon_1.MatIconModule,
 ];
@@ -22,6 +23,7 @@ var SharedModule = /** @class */ (function () {
         core_1.NgModule({
             declarations: [
                 registration_component_1.RegistrationComponent,
+                product_list_component_1.ProductListComponent
             ],
             imports: [
                 common_1.CommonModule,
@@ -29,7 +31,8 @@ var SharedModule = /** @class */ (function () {
                 materialComponents
             ],
             exports: [
-                registration_component_1.RegistrationComponent
+                registration_component_1.RegistrationComponent,
+                product_list_component_1.ProductListComponent
             ]
         })
     ], SharedModule);

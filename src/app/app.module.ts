@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthModule } from './auth/auth.module';
+import { SharedModule } from './shared/shared.module';
 
 
 const materialComponents: unknown[] = 
@@ -44,7 +45,8 @@ const materialComponents: unknown[] =
     CarouselModule,
     AuthModule,
     FormsModule,
-    ProductModule,   
+    ProductModule, 
+    SharedModule,  
     ReactiveFormsModule, 
     materialComponents,
     AppRoutingModule,

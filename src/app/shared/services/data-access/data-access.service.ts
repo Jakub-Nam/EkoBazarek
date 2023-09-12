@@ -65,8 +65,8 @@ export class DataAccessService {
       );
   }
 
-  public postProduct(form: FormData,  headers: HttpHeaders) {
-    return this.http.post<any>('https://api-eko-bazarek.azurewebsites.net/api/products', form, {headers: headers})
+  public postProduct(form: FormData,  httpOptions: { headers: HttpHeaders }) {
+    return this.http.post<any>('https://api-eko-bazarek.azurewebsites.net/api/products', form, httpOptions)
       .pipe(
         catchError(err => {
           console.log(err)

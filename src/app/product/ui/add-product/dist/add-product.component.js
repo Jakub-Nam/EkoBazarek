@@ -28,6 +28,7 @@ var AddProductComponent = /** @class */ (function () {
     //ProductToSend
     AddProductComponent.prototype.ngOnInit = function () {
         var _this = this;
+        console.log(this.productTypes, this.productCategories, this.productUnits);
         this.userService.getResponseData().subscribe({
             next: function (res) {
                 _this.token = res.token;
@@ -44,16 +45,21 @@ var AddProductComponent = /** @class */ (function () {
         formData.append('price', (_h = (_g = this.productForm) === null || _g === void 0 ? void 0 : _g.get('price')) === null || _h === void 0 ? void 0 : _h.value);
         formData.append('unit', (_k = (_j = this.productForm) === null || _j === void 0 ? void 0 : _j.get('unit')) === null || _k === void 0 ? void 0 : _k.value);
         formData.append('desc', (_m = (_l = this.productForm) === null || _l === void 0 ? void 0 : _l.get('desc')) === null || _m === void 0 ? void 0 : _m.value);
-        var headers = new http_1.HttpHeaders();
-        headers.set('Content-Type', 'multipart/form-data');
-        headers.set('Authorization', "Bearer " + this.token);
-        // const httpOptions = {
-        //   headers: new HttpHeaders({
-        //     'Content-Type': 'multipart/form-data',
-        //     'Authorization': `Bearer ${this.token}`
-        //   })
-        // };
-        this.dataAccess.postProduct(formData, headers).subscribe(({
+        // const headers = new HttpHeaders();
+        // headers.set('Content-Type', 'multipart/form-data')
+        // headers.set('Authorization', `Bearer ${this.token}`)
+        var formDataObject = {};
+        formData.forEach(function (value, key) {
+            formDataObject[key] = value;
+        });
+        console.log(formDataObject);
+        var httpOptions = {
+            headers: new http_1.HttpHeaders({
+                'Content-Type': 'multipart/form-data',
+                'Authorization': "Bearer " + this.token
+            })
+        };
+        this.dataAccess.postProduct(formData, httpOptions).subscribe(({
             next: function (res) {
                 console.log(res);
             },
