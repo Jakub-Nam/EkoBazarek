@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { upperCaseValidator, specialCharacterValidator } from '../auth/shared/validators/validators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthService } from '../auth/shared/auth.service';
+import { HttpHeaders } from '@angular/common/http';
 import { UserService } from '../core/services/user-service/user.service';
-import { Observable, catchError, map } from 'rxjs';
 import { OldNewPasswords } from '../shared/interfaces/interfaces';
 import { DataAccessService } from '../core/services/data-access/data-access.service';
-
 
 @Component({
   selector: 'app-profile',
@@ -17,11 +14,11 @@ import { DataAccessService } from '../core/services/data-access/data-access.serv
 export class ProfileComponent {
   private token: string = '';
   public profileForm = this.fb.group({
-    firstName: ['Jakub', Validators.required],
-    lastName: ['Namysl', Validators.required],
-    email: ['kubanam1995@gmail.com', [Validators.required]],
-    phone: ['793793793', [Validators.required]],
-    password: ['Namysl1234!',
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    email: ['', [Validators.required]],
+    phone: ['', [Validators.required]],
+    password: ['',
       [
         Validators.required,
         Validators.minLength(8),
@@ -29,17 +26,17 @@ export class ProfileComponent {
         specialCharacterValidator(/[!@#$%^&*(),.?":{}|<>]/)
       ],
     ],
-    repeatPassword: ['Namysl1234!', [Validators.required]],
-    farmName: ['FarmaZycia', [Validators.required]],
-    farmDesc: ['lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum', [Validators.required]],
-    street: ['Farmerska', [Validators.required]],
-    streetNumber: ['12', [Validators.required]],
-    flatNumber: ['13', [Validators.required]],
-    city: ['Glisnica', [Validators.required]],
-    postCode: ['63-430', [Validators.required]],
-    voivodeship: ['wielkopolskie', [Validators.required]],
-    county: ['Ostrów Wielkopolski', [Validators.required]],
-    district: ['Odolanów', [Validators.required]],
+    repeatPassword: ['', [Validators.required]],
+    farmName: ['', [Validators.required]],
+    farmDesc: ['', [Validators.required]],
+    street: ['', [Validators.required]],
+    streetNumber: ['', [Validators.required]],
+    flatNumber: ['', [Validators.required]],
+    city: ['', [Validators.required]],
+    postCode: ['', [Validators.required]],
+    voivodeship: ['', [Validators.required]],
+    county: ['', [Validators.required]],
+    district: ['', [Validators.required]],
   });
 
 
@@ -53,7 +50,7 @@ export class ProfileComponent {
         specialCharacterValidator(/[!@#$%^&*(),.?":{}|<>]/)
       ],
     ],
-    repNewPassword: ['Namysl1234!5', [Validators.required]],
+    repNewPassword: ['', [Validators.required]],
 
   });
 
@@ -62,6 +59,13 @@ export class ProfileComponent {
   }
 
   public checkOldNewPass(): void {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+      })
+    };
+
     if (this.changePassForm.value.newPassword === this.changePassForm.value.repNewPassword) {
       let requestBody: OldNewPasswords =
       {
@@ -76,22 +80,12 @@ export class ProfileComponent {
         error: (err: Error) => console.error('Observer got an error: ' + err),
       });
 
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.token}`
-        })
-      };
-
-      this.dataAccess.changePassword(requestBody, httpOptions)
-        .subscribe();
-        // next, errr
+      this.dataAccess.changePassword(requestBody, httpOptions).subscribe({
+        next: (res) => {
+          //console.log('udalo sie)
+        },
+        error: (err: Error) => console.error('Observer got an error: ' + err),
+      });
     }
-
   }
-
-
- 
-
-  //t odo serwisu!!! ^
 }

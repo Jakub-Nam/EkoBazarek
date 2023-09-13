@@ -21,6 +21,7 @@ import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import {MatDialogModule} from '@angular/material/dialog';
+import { AddProductComponent } from './shared/ui/add-product/add-product.component';
 
 const materialComponents: unknown[] = 
 [
@@ -29,7 +30,6 @@ const materialComponents: unknown[] =
   MatFormFieldModule,
   MatInputModule,
   MatDialogModule
-  
 ]
 
 @NgModule({
@@ -53,7 +53,7 @@ const materialComponents: unknown[] =
     ReactiveFormsModule, 
     materialComponents,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

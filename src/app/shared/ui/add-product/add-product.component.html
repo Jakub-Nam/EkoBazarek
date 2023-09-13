@@ -1,5 +1,5 @@
-<div class="container">
-	<h3>Dodaj Produkty</h3>
+<div class="container" mat-dialog-content>
+	<h3 mat-dialog-title>Dodaj Produkty</h3>
 	<div class="container-dropzone" appDnd (fileDropped)="onFileDropped($event)">
 		<input type="file" #fileDropRef id="fileDropRef" (change)="fileBrowseHandler($event)" />
 		<img src="../../../../assets/pictures/mountain-64.png" alt="">
@@ -49,9 +49,10 @@
 				</mat-select>
 			</mat-form-field>
 
-			<div class="btn-container">
-				<button (click)="resetForm()"class="btn-reset">Reset</button>
-				<button type="submit" class="btn-add">Dodaj</button>
+			<div class="btn-container" mat-dialog-actions>
+				<button type="button" (click)="onClose()">Zamknij</button>
+				<button type="reset" (click)="resetForm()" class="btn-reset">Reset</button>
+				<button type="submit" [disabled]="!productForm.valid" class="btn-add">Dodaj</button>
 			</div>
 		</div>
 	</form>

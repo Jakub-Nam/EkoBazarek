@@ -4,5 +4,3 @@
 <div *ngIf="!registrationView" >
     <app-login (activateViewTogglerEvent)="viewToggler()" (activateLoginEvent)="login()" [loginForm]="loginForm"></app-login>
 </div>
-
-<button (click)="viewToggler()">zmien widok</button>

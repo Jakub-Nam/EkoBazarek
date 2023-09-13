@@ -62,7 +62,7 @@ var AppModule = /** @class */ (function () {
                 forms_1.ReactiveFormsModule,
                 materialComponents,
                 app_routing_module_1.AppRoutingModule,
-                core_module_1.CoreModule
+                core_module_1.CoreModule,
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]

@@ -24,25 +24,25 @@
         </ul>
     </section>
     <section class="container-products">
-        <app-product-list></app-product-list>
+        <app-product-list ></app-product-list>
 
         <!-- [hidden]="!isProducts" (viewTogglerEvent)="toggleView($event)"-->
     </section>
 </div>
 
-<app-add-product [productTypes]="productTypes" [productUnits]='productUnits' [productCategories]="productCategories"
-    [products]="products" [hidden]="isProducts"></app-add-product>
+<!-- <app-add-product [productTypes]="productTypes" [productUnits]='productUnits' [productCategories]="productCategories"
+    [products]="products" [hidden]="isProducts"></app-add-product> -->
 
-<h2 mat-dialog-title>siema</h2>
+<!-- <h2 mat-dialog-title>siema</h2>
 <div mat-dialog-content>
     <p>What's your favorite animal?</p>
     <!-- <mat-form-field>
     <mat-label>Favorite Animal</mat-label>
     <input matInput [(ngModel)]="data.animal">
-  </mat-form-field> -->
+  </mat-form-field> 
 </div>
 <div mat-dialog-actions>
     <button>aaaaa</button>
-    <!-- <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
-</div>
+     <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> 
+</div> -->
