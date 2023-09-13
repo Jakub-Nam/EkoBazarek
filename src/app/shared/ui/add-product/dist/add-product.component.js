@@ -5,16 +5,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 exports.__esModule = true;
 exports.AddProductComponent = void 0;
 var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
+var dialog_1 = require("@angular/material/dialog");
+var form_field_1 = require("@angular/material/form-field");
+var select_1 = require("@angular/material/select");
 var AddProductComponent = /** @class */ (function () {
-    function AddProductComponent(formBuilder, dataAccess, userService) {
+    function AddProductComponent(formBuilder, dataAccess, userService, dialogRef, data) {
         this.formBuilder = formBuilder;
         this.dataAccess = dataAccess;
         this.userService = userService;
+        this.dialogRef = dialogRef;
+        this.data = data;
         this.productForm = this.formBuilder.group({
             productName: ['Marchew Zlota', forms_1.Validators.required],
             desc: ['Niesamowita, niepowtarzalna'],
@@ -25,10 +33,8 @@ var AddProductComponent = /** @class */ (function () {
         });
         this.files = [];
     }
-    //ProductToSend
     AddProductComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log(this.productTypes, this.productCategories, this.productUnits);
         this.userService.getResponseData().subscribe({
             next: function (res) {
                 _this.token = res.token;
@@ -52,7 +58,6 @@ var AddProductComponent = /** @class */ (function () {
         formData.forEach(function (value, key) {
             formDataObject[key] = value;
         });
-        console.log(formDataObject);
         var httpOptions = {
             headers: new http_1.HttpHeaders({
                 'Content-Type': 'multipart/form-data',
@@ -159,8 +164,11 @@ var AddProductComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'app-add-product',
             templateUrl: './add-product.component.html',
-            styleUrls: ['./add-product.component.scss']
-        })
+            styleUrls: ['./add-product.component.scss'],
+            imports: [form_field_1.MatFormFieldModule, forms_1.FormsModule, select_1.MatSelectModule, forms_1.ReactiveFormsModule],
+            standalone: true
+        }),
+        __param(4, core_1.Inject(dialog_1.MAT_DIALOG_DATA))
     ], AddProductComponent);
     return AddProductComponent;
 }());

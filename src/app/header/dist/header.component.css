@@ -1,0 +1,45 @@
+header.header-container {
+  background-color: #46aa42;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem;
+}
+header.header-container div.container__header-logo {
+  display: flex;
+}
+header.header-container div.container__header-logo h1 {
+  font-size: 20px;
+  align-self: center;
+  color: #FFFFFF;
+  margin: 0px;
+}
+
+nav {
+  display: flex;
+}
+nav a {
+  padding: 0.7rem;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+nav a:hover {
+  color: #fcfe7f;
+}
+
+.links-container {
+  display: flex;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+.icon-container button {
+  border: none;
+  background-color: transparent;
+}
+.icon-container button mat-icon {
+  width: 24px;
+  height: 24px;
+  color: #FFFFFF;
+}

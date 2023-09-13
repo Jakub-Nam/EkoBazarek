@@ -1,14 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, of, shareReplay, tap, throwError } from 'rxjs';
-import { OldNewPasswords, ProductToSend, ProductTypes, ProductUnit, ReponseLoginData, SubscriptionBody } from '../../interfaces/interfaces';
-import { ProductCategory } from '../../interfaces/interfaces';
-import { UserService } from '../user-service/user.service';
+import { Observable, catchError, map, of, shareReplay, throwError } from 'rxjs';
+import { OldNewPasswords, ProductTypes, ProductUnit, SubscriptionBody } from '../../../shared/interfaces/interfaces';
+import { ProductCategory } from '../../../shared/interfaces/interfaces';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 export class DataAccessService {
   public getProductTypes$ = this.http.get<ProductTypes[]>('https://api-eko-bazarek.azurewebsites.net/api/products/types')
@@ -31,9 +28,15 @@ export class DataAccessService {
       shareReplay(1),
       // catchError()
     )
+  public getProducts$ = this.http.get<any[]>('https://api-eko-bazarek.azurewebsites.net/api/products')
+    .pipe(
+      map(product => product.sort((a, b) => a.name.localeCompare(b.name))),
+      shareReplay(1),
+      // catchError()
+    )
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {
 
   }
 
@@ -41,12 +44,10 @@ export class DataAccessService {
     return this.http.post<string>('https://api-eko-bazarek.azurewebsites.net/api/subscribe', bodyReq, httpOptions)
       .pipe(
         catchError(err => {
-
+          this.openSnackBar("Nie udalo sie zasuksrybować")
           return throwError(() => err);
         }),
         shareReplay(1),
-
-        // catchError()
       )
 
   }
@@ -65,7 +66,7 @@ export class DataAccessService {
       );
   }
 
-  public postProduct(form: FormData,  httpOptions: { headers: HttpHeaders }) {
+  public postProduct(form: FormData, httpOptions: { headers: HttpHeaders }) {
     return this.http.post<any>('https://api-eko-bazarek.azurewebsites.net/api/products', form, httpOptions)
       .pipe(
         catchError(err => {
@@ -78,20 +79,13 @@ export class DataAccessService {
       )
 
   }// ANYYYYYYYYYYYYYYYYYYYYYY!
+
+  public openSnackBar(message: string): void {
+    this._snackBar.open(message, 'Zamknij', {
+      duration: 3000,
+      horizontalPosition: 'start',
+      verticalPosition: 'top',
+    });
+  }
 }
 
-  // public postProduct(form: ProductToSend, headers: HttpHeaders) {
-  //   let token: string;
-
-
-  //   const headers = new HttpHeaders();
-  //   headers.set('Content-Type', 'application/json')
-
-
-  //   return this.http.post<ProductToSend[]>('https://api-eko-bazarek.azurewebsites.net/api/products/', form, headers)
-  //     .pipe(
-  //       shareReplay(1),
-  //       // catchError()
-  //     )
-
-  // }

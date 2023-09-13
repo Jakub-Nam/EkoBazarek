@@ -8,12 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.ProductComponent = void 0;
 var core_1 = require("@angular/core");
+var add_product_component_1 = require("../shared/ui/add-product/add-product.component");
 var ProductComponent = /** @class */ (function () {
-    function ProductComponent(dataAccess) {
+    function ProductComponent(dataAccess, dialog) {
         this.dataAccess = dataAccess;
+        this.dialog = dialog;
         this.isProducts = true;
         this.allSelected = true;
-        // public filteredCategories: ProductCategory[] = [];
         this.searchTerm = '';
         this.products = [
             {
@@ -81,31 +82,14 @@ var ProductComponent = /** @class */ (function () {
         this.filterProductsByType(selectedType);
     };
     ProductComponent.prototype.filterProductsByType = function (selectedType) {
-        var _this = this;
-        this.filteredProducts = [];
-        this.products.forEach(function (product) {
-            for (var i = 0; i < selectedType.length; i++) {
-                if (product.type !== selectedType[i]) {
-                }
-                else {
-                    _this.filteredProducts.push(product);
-                }
-            }
+        this.filteredProducts = this.products.filter(function (product) {
+            return selectedType.includes(product.type);
         });
     };
     ProductComponent.prototype.filterCategoriesByType = function (selectedType) {
-        var _this = this;
-        this.filteredProductCategories = [];
-        this.productCategories.forEach(function (category) {
-            for (var i = 0; i < selectedType.length; i++) {
-                if (category.type !== selectedType[i]) {
-                }
-                else {
-                    _this.filteredProductCategories.push(category);
-                }
-            }
+        this.filteredProductCategories = this.productCategories.filter(function (category) {
+            return selectedType.includes(category.type);
         });
-        // wystarczy wyfiltrowac produkty, productcategories, filter i pozniej arrow => sprawdzam, czy ten typ !! INCLUDE NA SELECTED TYPE 
     };
     ProductComponent.prototype.filterByCategories = function (selectedCategory) {
         return this.filteredProducts = this.products.filter(function (product) {
@@ -122,6 +106,15 @@ var ProductComponent = /** @class */ (function () {
         var _this = this;
         this.filteredProducts = this.products.filter(function (category) {
             return category.name.toLowerCase().includes(_this.searchTerm.toLowerCase());
+        });
+    };
+    ProductComponent.prototype.openDialog = function () {
+        var dialogRef = this.dialog.open(add_product_component_1.AddProductComponent, {
+            data: { name: 'this.name', animal: 'this.animal' }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log('The dialog was closed');
+            // this.animal = result;
         });
     };
     ProductComponent = __decorate([

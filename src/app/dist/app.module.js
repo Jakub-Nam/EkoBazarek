@@ -28,11 +28,14 @@ var form_field_1 = require("@angular/material/form-field");
 var input_1 = require("@angular/material/input");
 var auth_module_1 = require("./auth/auth.module");
 var shared_module_1 = require("./shared/shared.module");
+var core_module_1 = require("./core/core.module");
+var dialog_1 = require("@angular/material/dialog");
 var materialComponents = [
     icon_1.MatIconModule,
     menu_1.MatMenuModule,
     form_field_1.MatFormFieldModule,
     input_1.MatInputModule,
+    dialog_1.MatDialogModule
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -59,6 +62,7 @@ var AppModule = /** @class */ (function () {
                 forms_1.ReactiveFormsModule,
                 materialComponents,
                 app_routing_module_1.AppRoutingModule,
+                core_module_1.CoreModule
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]

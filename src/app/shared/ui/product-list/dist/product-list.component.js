@@ -8,13 +8,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.ProductListComponent = void 0;
 var core_1 = require("@angular/core");
+var add_product_component_1 = require("../add-product/add-product.component");
 var ProductListComponent = /** @class */ (function () {
-    function ProductListComponent() {
+    function ProductListComponent(dialog) {
+        this.dialog = dialog;
         this.viewTogglerEvent = new core_1.EventEmitter();
         this.isAddCard = false;
+        this.animal = 'lew';
+        this.name = 'Kukułek';
     }
     ProductListComponent.prototype.viewTogglerEmit = function () {
         this.viewTogglerEvent.emit(false);
+    };
+    ProductListComponent.prototype.openDialog = function () {
+        var _this = this;
+        var dialogRef = this.dialog.open(add_product_component_1.AddProductComponent, {
+            data: { name: this.name, animal: this.animal }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log('The dialog was closed');
+            _this.animal = result;
+        });
     };
     __decorate([
         core_1.Output()

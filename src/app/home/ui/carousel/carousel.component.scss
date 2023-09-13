@@ -8,17 +8,14 @@
         width: 100%;
         height: 95vh;
     }
-
     .custom-carousel .carousel-inner,
     .custom-carousel .carousel-item {
         width: 100%;
         height: 100%;
     }
-
     .custom-carousel img {
         object-fit: cover;
     }
-
     .span-wrapper {
         position: absolute;
         font-size: 48px;
@@ -40,7 +37,6 @@
         border: none;
         color: $primary-font-color;
         background-color: $secondary-background-color;
-
         position: absolute;
         top: 50%;
         left: 50%;

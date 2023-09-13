@@ -10,18 +10,23 @@ exports.DataAccessService = void 0;
 var core_1 = require("@angular/core");
 var rxjs_1 = require("rxjs");
 var DataAccessService = /** @class */ (function () {
-    function DataAccessService(http) {
+    function DataAccessService(http, _snackBar) {
         this.http = http;
+        this._snackBar = _snackBar;
         this.getProductTypes$ = this.http.get('https://api-eko-bazarek.azurewebsites.net/api/products/types')
             .pipe(rxjs_1.map(function (type) { return type.sort(function (a, b) { return a.name.localeCompare(b.name); }); }), rxjs_1.shareReplay(1));
         this.getProductCategories$ = this.http.get('https://api-eko-bazarek.azurewebsites.net/api/products/categories')
             .pipe(rxjs_1.map(function (categories) { return categories.sort(function (a, b) { return a.name.localeCompare(b.name); }); }), rxjs_1.shareReplay(1));
         this.getProductUnits$ = this.http.get('https://api-eko-bazarek.azurewebsites.net/api/products/units')
             .pipe(rxjs_1.map(function (categories) { return categories.sort(function (a, b) { return a.name.localeCompare(b.name); }); }), rxjs_1.shareReplay(1));
+        this.getProducts$ = this.http.get('https://api-eko-bazarek.azurewebsites.net/api/products')
+            .pipe(rxjs_1.map(function (product) { return product.sort(function (a, b) { return a.name.localeCompare(b.name); }); }), rxjs_1.shareReplay(1));
     }
     DataAccessService.prototype.postSubscription = function (bodyReq, httpOptions) {
+        var _this = this;
         return this.http.post('https://api-eko-bazarek.azurewebsites.net/api/subscribe', bodyReq, httpOptions)
             .pipe(rxjs_1.catchError(function (err) {
+            _this.openSnackBar("Nie udalo sie zasuksrybować");
             return rxjs_1.throwError(function () { return err; });
         }), rxjs_1.shareReplay(1));
     };
@@ -42,21 +47,16 @@ var DataAccessService = /** @class */ (function () {
             return rxjs_1.of(null);
         }), rxjs_1.shareReplay(1));
     }; // ANYYYYYYYYYYYYYYYYYYYYYY!
+    DataAccessService.prototype.openSnackBar = function (message) {
+        this._snackBar.open(message, 'Zamknij', {
+            duration: 3000,
+            horizontalPosition: 'start',
+            verticalPosition: 'top'
+        });
+    };
     DataAccessService = __decorate([
-        core_1.Injectable({
-            providedIn: 'root'
-        })
+        core_1.Injectable()
     ], DataAccessService);
     return DataAccessService;
 }());
 exports.DataAccessService = DataAccessService;
-// public postProduct(form: ProductToSend, headers: HttpHeaders) {
-//   let token: string;
-//   const headers = new HttpHeaders();
-//   headers.set('Content-Type', 'application/json')
-//   return this.http.post<ProductToSend[]>('https://api-eko-bazarek.azurewebsites.net/api/products/', form, headers)
-//     .pipe(
-//       shareReplay(1),
-//       // catchError()
-//     )
-// }

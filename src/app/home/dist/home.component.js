@@ -22,6 +22,13 @@ var HomeComponent = /** @class */ (function () {
             },
             error: function (err) { return console.error('Observer got an error: ' + err); }
         });
+        this.data.getProducts$.subscribe({
+            next: function (products) {
+                console.log(products, 'produkty?');
+                // potem przypisz lokalna tablice do tychproduktow i wyswietl
+            },
+            error: function (err) { return console.error('Observer got an error: ' + err); }
+        });
     };
     HomeComponent = __decorate([
         core_1.Component({

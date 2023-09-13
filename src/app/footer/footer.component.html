@@ -1,24 +1,18 @@
 <footer>
     <div class="container">
-
-        <mat-icon class='envelope-icon' svgIcon="facebook"></mat-icon>
+        <img class='envelope-icon' src="./../../assets/icons/evelop.png">
         <h3>SUBSKRYBUJ</h3>
         <span>Bądź pierwszym, który się dowie o naszych nowych produktach</span>
         <form [formGroup]="subForm" (ngSubmit)="postSubscription()" class="input-wrapper">
             <input type="email" formControlName="email" class="input-wrapper">
-           
-            <!-- <mat-form-field MatFormFieldControl="productName" appearance="outline">
-				<mat-label>Nazwa Produktu*</mat-label>
-				<input matInput type="email" formControlName="email">
-			</mat-form-field> -->
             <button type="submit">Subskrybuj</button>
         </form>
         <div class="icons-wrapper">
-            <mat-icon svgIcon="facebook"></mat-icon>
-            <mat-icon svgIcon="instagram"></mat-icon>
-            <mat-icon svgIcon="linkedIn"></mat-icon>
-            <mat-icon svgIcon="twitter"></mat-icon>
-            <mat-icon svgIcon="youtube"></mat-icon>
+          <img src="./../../assets/icons/facebook.svg">
+          <img src="./../../assets/icons/instagram.svg">
+          <img src="./../../assets/icons/linkedIn.svg">
+          <img src="./../../assets/icons/twitter.svg">
+          <img src="./../../assets/icons/youtube.svg">
         </div>
         <hr>
         <nav>

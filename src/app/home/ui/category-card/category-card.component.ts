@@ -1,11 +1,5 @@
 import { Component, Input } from '@angular/core';
-
-interface ProductCategory {
-  iconUrl: string,
-  id: string,
-  name: string,
-  type: string,
-};
+import { ProductCategory } from 'src/app/shared/interfaces/interfaces';
 
 @Component({
   selector: 'app-category-card',

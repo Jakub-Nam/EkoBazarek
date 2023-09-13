@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductCategory, ProductTypes, ProductUnit, ProductResponseData } from '../shared/interfaces/interfaces';
-import { shareReplay, tap } from 'rxjs';
-import { DataAccessService } from '../shared/services/data-access/data-access.service';
+import { DataAccessService } from '../core/services/data-access/data-access.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddProductComponent } from '../shared/ui/add-product/add-product.component';
 
 
 @Component({
@@ -19,7 +19,6 @@ export class ProductComponent implements OnInit {
   public filteredProducts!: ProductResponseData[];
   public productUnits!: ProductUnit[];
   public allSelected: boolean = true;
-  // public filteredCategories: ProductCategory[] = [];
   public searchTerm: string = '';
   public products: ProductResponseData[] =
     [
@@ -60,7 +59,7 @@ export class ProductComponent implements OnInit {
 
   public selectedCategory: string | null = "CHICKEN";
 
-  constructor(public dataAccess: DataAccessService) { }
+  constructor(public dataAccess: DataAccessService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.filteredProducts = this.products;
@@ -94,30 +93,15 @@ export class ProductComponent implements OnInit {
   }
 
   public filterProductsByType(selectedType: string[]): void {
-    this.filteredProducts = [];
-    this.products.forEach(product => {
-      for (let i = 0; i < selectedType.length; i++) {
-        if (product.type !== selectedType[i]) {
-        } else {
-          this.filteredProducts.push(product)
-        }
-      }
-    });
-
+    this.filteredProducts = this.products.filter(product =>
+      selectedType.includes(product.type)
+    );
   }
 
   public filterCategoriesByType(selectedType: string[]): void {
-    this.filteredProductCategories = [];
-
-    this.productCategories.forEach(category => {
-      for (let i = 0; i < selectedType.length; i++) {
-        if (category.type !== selectedType[i]) {
-        } else {
-          this.filteredProductCategories.push(category)
-        }
-      }
-    });
-    // wystarczy wyfiltrowac produkty, productcategories, filter i pozniej arrow => sprawdzam, czy ten typ !! INCLUDE NA SELECTED TYPE 
+    this.filteredProductCategories = this.productCategories.filter(category =>
+      selectedType.includes(category.type)
+    );
   }
 
   public filterByCategories(selectedCategory: string): ProductResponseData[] {
@@ -134,11 +118,20 @@ export class ProductComponent implements OnInit {
     this.isProducts = boolean;
   }
 
+  public filterProductsByName(): void {
+    this.filteredProducts = this.products.filter(category =>
+      category.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddProductComponent, {
+      data: { name: 'this.name', animal: 'this.animal' },
+    });
 
-public filterProductsByName(): void {
-  this.filteredProducts = this.products.filter(category =>
-    category.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-  );
-}
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
+  }
 }

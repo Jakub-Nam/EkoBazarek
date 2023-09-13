@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ReponseLoginData } from '../../interfaces/interfaces';
+import { ReponseLoginData } from '../../../shared/interfaces/interfaces';
 
-@Injectable({
-  providedIn: 'root'
-})
-
+@Injectable()
+  // providedIn: 'root'
 export class UserService {
   private emptyResponseData: ReponseLoginData = {
     token: '',

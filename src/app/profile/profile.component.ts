@@ -3,10 +3,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { upperCaseValidator, specialCharacterValidator } from '../auth/shared/validators/validators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/shared/auth.service';
-import { UserService } from '../shared/services/user-service/user.service';
+import { UserService } from '../core/services/user-service/user.service';
 import { Observable, catchError, map } from 'rxjs';
 import { OldNewPasswords } from '../shared/interfaces/interfaces';
-import { DataAccessService } from '../shared/services/data-access/data-access.service';
+import { DataAccessService } from '../core/services/data-access/data-access.service';
 
 
 @Component({

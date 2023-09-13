@@ -1,15 +1,20 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ProductToSend, ProductTypes } from 'src/app/shared/interfaces/interfaces';
-import { DataAccessService } from 'src/app/shared/services/data-access/data-access.service';
-import { UserService } from 'src/app/shared/services/user-service/user.service';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ProductTypes } from 'src/app/shared/interfaces/interfaces';
+import { DataAccessService } from '../../../core/services/data-access/data-access.service';
+import { UserService } from '../../../core/services/user-service/user.service';
 import { __values } from 'tslib';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.scss']
+  styleUrls: ['./add-product.component.scss'],
+  imports: [MatFormFieldModule, FormsModule, MatSelectModule, ReactiveFormsModule],
+  standalone: true
 })
 export class AddProductComponent implements OnInit {
   @Input() public productTypes!: ProductTypes[];
@@ -31,12 +36,14 @@ export class AddProductComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder, private dataAccess: DataAccessService, private userService: UserService) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private dataAccess: DataAccessService, 
+    private userService: UserService,
+    public dialogRef: MatDialogRef<AddProductComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,) { }
 
-  //ProductToSend
   ngOnInit(): void {
-    console.log(this.productTypes, this.productCategories,
-      this.productUnits)
     this.userService.getResponseData().subscribe({
       next: (res) => {
         this.token = res.token
@@ -47,7 +54,6 @@ export class AddProductComponent implements OnInit {
 
 
   public addProductToDb(): void {
-
 
     const formData = new FormData();
 
@@ -66,7 +72,6 @@ export class AddProductComponent implements OnInit {
       formDataObject[key] = value;
     });
 
-    console.log(formDataObject);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'multipart/form-data',

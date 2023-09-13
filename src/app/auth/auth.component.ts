@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { specialCharacterValidator, upperCaseValidator } from './shared/validators/validators';
 import { UserCred } from './shared/userCred.interface';
-import { UserService } from '../shared/services/user-service/user.service';
+import { UserService } from '../core/services/user-service/user.service';
 import { User } from '../shared/interfaces/interfaces';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -66,7 +66,7 @@ export class AuthComponent implements OnInit {
 
     public openSnackBar(message: string): void {
         this._snackBar.open(message, 'Zamknij', {
-            // duration: 2000,
+            duration: 3000,
             horizontalPosition: 'start',
             verticalPosition: 'top',
         });
