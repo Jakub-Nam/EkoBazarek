@@ -27,11 +27,11 @@ export class AuthComponent implements OnInit {
     })
 
     public profileForm = this.fb.group({
-        firstName: ['Jakub', Validators.required],
-        lastName: ['Namysl', Validators.required],
-        email: ['kubanam1995@gmail.com', [Validators.required]],
-        phone: ['793793793', [Validators.required]],
-        password: ['Namysl1234!',
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', [Validators.required]],
+        phone: ['', [Validators.required]],
+        password: ['',
             [
                 Validators.required,
                 Validators.minLength(8),
@@ -39,17 +39,17 @@ export class AuthComponent implements OnInit {
                 specialCharacterValidator(/[!@#$%^&*(),.?":{}|<>]/)
             ],
         ],
-        repeatPassword: ['Namysl1234!', [Validators.required]],
-        farmName: ['FarmaZycia', [Validators.required]],
-        farmDesc: ['lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum', [Validators.required]],
-        street: ['Farmerska', [Validators.required]],
-        streetNumber: ['12', [Validators.required]],
-        flatNumber: ['13', [Validators.required]],
-        city: ['Glisnica', [Validators.required]],
-        postCode: ['63-430', [Validators.required]],
-        voivodeship: ['wielkopolskie', [Validators.required]],
-        county: ['Ostrów Wielkopolski', [Validators.required]],
-        district: ['Odolanów', [Validators.required]],
+        repeatPassword: ['', [Validators.required]],
+        farmName: ['', [Validators.required]],
+        farmDesc: ['', [Validators.required]],
+        street: ['', [Validators.required]],
+        streetNumber: ['', [Validators.required]],
+        flatNumber: ['', [Validators.required]],
+        city: ['', [Validators.required]],
+        postCode: ['', [Validators.required]],
+        voivodeship: ['', [Validators.required]],
+        county: ['', [Validators.required]],
+        district: ['', [Validators.required]],
     });
 
     constructor(
@@ -60,7 +60,7 @@ export class AuthComponent implements OnInit {
         private _snackBar: MatSnackBar
     ) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.registrationView = false;
     }
 

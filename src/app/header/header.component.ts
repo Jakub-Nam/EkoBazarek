@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../core/services/user-service/user.service';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,7 +12,7 @@ export class HeaderComponent implements OnInit {
   constructor(public userService: UserService, private router: Router) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.userService.getResponseData().subscribe({
       next: (res) => {
         if (res.user.farmName !== '') {

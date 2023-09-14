@@ -11,7 +11,7 @@ export class ChangePassComponent {
 
   public password: FormControlName = this.changePassForm.value.newPass;
 
-  onSubmit(){
+  public onSubmit(): void {
     this.activateChangePassEvent.emit();
   }
 }

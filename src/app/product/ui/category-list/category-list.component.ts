@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductCategory } from '../../../shared/interfaces/interfaces';
-
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
@@ -15,5 +14,4 @@ export class CategoryListComponent {
     this.selectedCategory = category;
     this.selectedCategoryEmit.emit(this.selectedCategory)
   }
-
 }

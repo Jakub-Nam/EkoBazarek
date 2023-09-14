@@ -11,7 +11,7 @@ export class TypeListComponent {
   @Input() public productTypes: ProductTypes[] = [];
   @Output() selectedTypeEmit = new EventEmitter<string[]>();
 
-  onSelectionChange(event: MatSelectionListChange) {
+  public onSelectionChange(event: MatSelectionListChange): void {
     const selectedOption = event;
     let selectedTypes = selectedOption.source._value as string[];
     this.selectedTypeEmit.emit(selectedTypes);   

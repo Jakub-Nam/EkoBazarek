@@ -46,13 +46,23 @@ var DataAccessService = /** @class */ (function () {
             console.log(err);
             return rxjs_1.of(null);
         }), rxjs_1.shareReplay(1));
-    }; // ANYYYYYYYYYYYYYYYYYYYYYY!
+    }; // ANYYYYYYYYYYYYYYYYYYYYYY! tuprzerobie na sigleton
     DataAccessService.prototype.openSnackBar = function (message) {
         this._snackBar.open(message, 'Zamknij', {
             duration: 3000,
             horizontalPosition: 'start',
             verticalPosition: 'top'
         });
+    };
+    DataAccessService.prototype.putUser = function (reqBody, httpOptions) {
+        var url = 'https://api-eko-bazarek.azurewebsites.net/api/users';
+        return this.http.post(url, reqBody, httpOptions)
+            .pipe(rxjs_1.map(function (data) {
+            return data;
+        }), rxjs_1.catchError(function (err) {
+            console.log(err);
+            throw err;
+        }));
     };
     DataAccessService = __decorate([
         core_1.Injectable()

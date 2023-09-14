@@ -10,6 +10,7 @@ import { FormControlName, FormGroup } from '@angular/forms';
 export class RegistrationComponent {
   @Input() public profileForm: FormGroup = new FormGroup({});
   @Input() public isHeader: boolean = true;
+  @Input() public isProfile: boolean = false;
   @Output() sendingProfileEvent: EventEmitter<void> = new EventEmitter();
 
   get password() { return this.profileForm.get('password'); }

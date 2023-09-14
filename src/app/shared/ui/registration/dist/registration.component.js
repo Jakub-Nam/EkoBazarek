@@ -13,6 +13,7 @@ var RegistrationComponent = /** @class */ (function () {
     function RegistrationComponent() {
         this.profileForm = new forms_1.FormGroup({});
         this.isHeader = true;
+        this.isProfile = false;
         this.sendingProfileEvent = new core_1.EventEmitter();
     }
     Object.defineProperty(RegistrationComponent.prototype, "password", {
@@ -32,6 +33,9 @@ var RegistrationComponent = /** @class */ (function () {
     __decorate([
         core_1.Input()
     ], RegistrationComponent.prototype, "isHeader");
+    __decorate([
+        core_1.Input()
+    ], RegistrationComponent.prototype, "isProfile");
     __decorate([
         core_1.Output()
     ], RegistrationComponent.prototype, "sendingProfileEvent");

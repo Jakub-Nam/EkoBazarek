@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { upperCaseValidator, specialCharacterValidator } from '../auth/shared/validators/validators';
 import { HttpHeaders } from '@angular/common/http';
 import { UserService } from '../core/services/user-service/user.service';
-import { OldNewPasswords } from '../shared/interfaces/interfaces';
+import { OldNewPasswords, ReponseLoginData, User } from '../shared/interfaces/interfaces';
 import { DataAccessService } from '../core/services/data-access/data-access.service';
 
 @Component({
@@ -18,15 +18,6 @@ export class ProfileComponent {
     lastName: ['', Validators.required],
     email: ['', [Validators.required]],
     phone: ['', [Validators.required]],
-    password: ['',
-      [
-        Validators.required,
-        Validators.minLength(8),
-        upperCaseValidator(/[A-Z]/),
-        specialCharacterValidator(/[!@#$%^&*(),.?":{}|<>]/)
-      ],
-    ],
-    repeatPassword: ['', [Validators.required]],
     farmName: ['', [Validators.required]],
     farmDesc: ['', [Validators.required]],
     street: ['', [Validators.required]],
@@ -54,7 +45,35 @@ export class ProfileComponent {
 
   });
 
-  constructor(private fb: FormBuilder, private userService: UserService, private dataAccess: DataAccessService) {
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private dataAccess: DataAccessService,
+  ) {
+    this.userService.getResponseData().subscribe({
+      next: (res: ReponseLoginData) => {
+
+        if (res.user.farmName !== '') {
+          this.profileForm.setValue({
+            firstName: res.user.firstName as string,
+            lastName: res.user.lastName as string,
+            email: res.user.email as string,
+            phone: res.user.phone as string,
+            farmName: res.user.farmName as string,
+            farmDesc: res.user.farmDesc as string,
+            street: res.user.street as string,
+            streetNumber: res.user.streetNumber as string,
+            flatNumber: res.user.flatNumber as string,
+            city: res.user.city as string,
+            postCode: res.user.postCode as string,
+            voivodeship: res.user.voivodeship as string,
+            county: res.user.county as string,
+            district: res.user.district as string,
+          });
+        }
+      },
+      error: (err: Error) => console.error('Observer got an error: ' + err),
+    });
 
   }
 
@@ -87,5 +106,37 @@ export class ProfileComponent {
         error: (err: Error) => console.error('Observer got an error: ' + err),
       });
     }
+  }
+
+  public updateUserData(): void {
+    const newDataUser: User = {
+      firstName: this.profileForm.value.firstName,
+      lastName: this.profileForm.value.lastName,
+      email: this.profileForm.value.email,
+      phone: this.profileForm.value.phone,
+      farmName: this.profileForm.value.farmName,
+      farmDesc: this.profileForm.value.farmDesc,
+      street: this.profileForm.value.street,
+      streetNumber: this.profileForm.value.streetNumber,
+      flatNumber: this.profileForm.value.flatNumber,
+      city: this.profileForm.value.city,
+      postCode: this.profileForm.value.postCode,
+      voivodeship: this.profileForm.value.voivodeship,
+      county: this.profileForm.value.county,
+      district: this.profileForm.value.district,
+    }
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+      })
+    };
+    this.dataAccess.putUser(newDataUser, httpOptions).subscribe({
+      next: (res) => {
+  console.log('SUKCES')
+      },
+      error: (err: Error) => console.error('Observer got an error: ' + err),
+    });
   }
 }

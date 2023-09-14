@@ -19,16 +19,16 @@
             <input id="phone" type="number" formControlName="phone">
         </div>
 
-        <div class="group__form-input">
+        <div class="group__form-input" *ngIf="!isProfile">
             <label for="password">Hasło* </label>
             <input id="password" type="text" formControlName="password">
         </div>
-        <div class="group__form-input">
+        <div class="group__form-input" *ngIf="!isProfile">
             <label for="repeatPassword">Powtórz hasło* </label>
             <input id="repeatPassword" type="text" formControlName="repeatPassword">
         </div>
 
-        <div *ngIf="password && (password.dirty || password.touched)">
+        <div *ngIf="password && (password.dirty || password.touched) && !isProfile">
             <div class="span-wrapper">
                 <span>Hasło musi spełniać następujące wymagania:</span>
             </div>

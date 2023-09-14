@@ -13,20 +13,11 @@ export class ProductListComponent {
   public viewTogglerEmit(): void {
     this.viewTogglerEvent.emit(false)
   }
-  animal: string = 'lew';
-  name: string = 'Kukułek';
 
   constructor(public dialog: MatDialog){}
 
   public openDialog(): void {
-    const dialogRef = this.dialog.open(AddProductComponent, {
-      data: {name: this.name, animal: this.animal},
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
+    const dialogRef = this.dialog.open(AddProductComponent)
+    dialogRef.afterClosed().subscribe();
   }
-
 }

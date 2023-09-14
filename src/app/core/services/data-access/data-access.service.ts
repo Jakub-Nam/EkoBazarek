@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of, shareReplay, throwError } from 'rxjs';
-import { OldNewPasswords, ProductTypes, ProductUnit, SubscriptionBody } from '../../../shared/interfaces/interfaces';
+import { OldNewPasswords, ProductTypes, ProductUnit, ReponseLoginData, SubscriptionBody, User } from '../../../shared/interfaces/interfaces';
 import { ProductCategory } from '../../../shared/interfaces/interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -78,7 +78,7 @@ export class DataAccessService {
         // catchError()
       )
 
-  }// ANYYYYYYYYYYYYYYYYYYYYYY!
+  }// ANYYYYYYYYYYYYYYYYYYYYYY! tuprzerobie na sigleton
 
   public openSnackBar(message: string): void {
     this._snackBar.open(message, 'Zamknij', {
@@ -86,6 +86,21 @@ export class DataAccessService {
       horizontalPosition: 'start',
       verticalPosition: 'top',
     });
+  }
+
+  public putUser(reqBody: User, httpOptions: { headers: HttpHeaders }): Observable<ReponseLoginData> {
+
+    const url = 'https://api-eko-bazarek.azurewebsites.net/api/users'
+    return this.http.post<ReponseLoginData>(url, reqBody, httpOptions)
+      .pipe(
+        map((data) => {
+          return data;
+        }),
+        catchError(err => {
+          console.log(err);
+          throw err;
+        })
+      );
   }
 }
 

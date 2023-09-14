@@ -9,7 +9,6 @@ exports.__esModule = true;
 exports.AppModule = void 0;
 var app_component_1 = require("./app.component");
 var app_routing_module_1 = require("./app-routing.module");
-// import { AuthModule } from './auth/auth.module';
 var animations_1 = require("@angular/platform-browser/animations");
 var platform_browser_1 = require("@angular/platform-browser");
 var carousel_component_1 = require("./home/ui/carousel/carousel.component");

@@ -113,8 +113,7 @@ var ProductComponent = /** @class */ (function () {
             data: { name: 'this.name', animal: 'this.animal' }
         });
         dialogRef.afterClosed().subscribe(function (result) {
-            console.log('The dialog was closed');
-            // this.animal = result;
+            console.log('The dialog was closed', result);
         });
     };
     ProductComponent = __decorate([

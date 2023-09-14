@@ -13,6 +13,7 @@ var validators_1 = require("../auth/shared/validators/validators");
 var http_1 = require("@angular/common/http");
 var ProfileComponent = /** @class */ (function () {
     function ProfileComponent(fb, userService, dataAccess) {
+        var _this = this;
         this.fb = fb;
         this.userService = userService;
         this.dataAccess = dataAccess;
@@ -22,15 +23,6 @@ var ProfileComponent = /** @class */ (function () {
             lastName: ['', forms_1.Validators.required],
             email: ['', [forms_1.Validators.required]],
             phone: ['', [forms_1.Validators.required]],
-            password: ['',
-                [
-                    forms_1.Validators.required,
-                    forms_1.Validators.minLength(8),
-                    validators_1.upperCaseValidator(/[A-Z]/),
-                    validators_1.specialCharacterValidator(/[!@#$%^&*(),.?":{}|<>]/)
-                ],
-            ],
-            repeatPassword: ['', [forms_1.Validators.required]],
             farmName: ['', [forms_1.Validators.required]],
             farmDesc: ['', [forms_1.Validators.required]],
             street: ['', [forms_1.Validators.required]],
@@ -53,6 +45,29 @@ var ProfileComponent = /** @class */ (function () {
                 ],
             ],
             repNewPassword: ['', [forms_1.Validators.required]]
+        });
+        this.userService.getResponseData().subscribe({
+            next: function (res) {
+                if (res.user.farmName !== '') {
+                    _this.profileForm.setValue({
+                        firstName: res.user.firstName,
+                        lastName: res.user.lastName,
+                        email: res.user.email,
+                        phone: res.user.phone,
+                        farmName: res.user.farmName,
+                        farmDesc: res.user.farmDesc,
+                        street: res.user.street,
+                        streetNumber: res.user.streetNumber,
+                        flatNumber: res.user.flatNumber,
+                        city: res.user.city,
+                        postCode: res.user.postCode,
+                        voivodeship: res.user.voivodeship,
+                        county: res.user.county,
+                        district: res.user.district
+                    });
+                }
+            },
+            error: function (err) { return console.error('Observer got an error: ' + err); }
         });
     }
     ProfileComponent.prototype.checkOldNewPass = function () {
@@ -81,6 +96,36 @@ var ProfileComponent = /** @class */ (function () {
                 error: function (err) { return console.error('Observer got an error: ' + err); }
             });
         }
+    };
+    ProfileComponent.prototype.updateUserData = function () {
+        var newDataUser = {
+            firstName: this.profileForm.value.firstName,
+            lastName: this.profileForm.value.lastName,
+            email: this.profileForm.value.email,
+            phone: this.profileForm.value.phone,
+            farmName: this.profileForm.value.farmName,
+            farmDesc: this.profileForm.value.farmDesc,
+            street: this.profileForm.value.street,
+            streetNumber: this.profileForm.value.streetNumber,
+            flatNumber: this.profileForm.value.flatNumber,
+            city: this.profileForm.value.city,
+            postCode: this.profileForm.value.postCode,
+            voivodeship: this.profileForm.value.voivodeship,
+            county: this.profileForm.value.county,
+            district: this.profileForm.value.district
+        };
+        var httpOptions = {
+            headers: new http_1.HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + this.token
+            })
+        };
+        this.dataAccess.putUser(newDataUser, httpOptions).subscribe({
+            next: function (res) {
+                console.log('SUKCES');
+            },
+            error: function (err) { return console.error('Observer got an error: ' + err); }
+        });
     };
     ProfileComponent = __decorate([
         core_1.Component({

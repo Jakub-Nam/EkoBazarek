@@ -5,12 +5,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ProductListComponent } from './ui/product-list/product-list.component';
 
-
 const materialComponents: unknown[] = 
 [
   MatIconModule,
 ]
-
 @NgModule({
   declarations:
     [

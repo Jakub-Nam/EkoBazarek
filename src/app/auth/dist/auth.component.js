@@ -28,11 +28,11 @@ var AuthComponent = /** @class */ (function () {
                 ]]
         });
         this.profileForm = this.fb.group({
-            firstName: ['Jakub', forms_1.Validators.required],
-            lastName: ['Namysl', forms_1.Validators.required],
-            email: ['kubanam1995@gmail.com', [forms_1.Validators.required]],
-            phone: ['793793793', [forms_1.Validators.required]],
-            password: ['Namysl1234!',
+            firstName: ['', forms_1.Validators.required],
+            lastName: ['', forms_1.Validators.required],
+            email: ['', [forms_1.Validators.required]],
+            phone: ['', [forms_1.Validators.required]],
+            password: ['',
                 [
                     forms_1.Validators.required,
                     forms_1.Validators.minLength(8),
@@ -40,17 +40,17 @@ var AuthComponent = /** @class */ (function () {
                     validators_1.specialCharacterValidator(/[!@#$%^&*(),.?":{}|<>]/)
                 ],
             ],
-            repeatPassword: ['Namysl1234!', [forms_1.Validators.required]],
-            farmName: ['FarmaZycia', [forms_1.Validators.required]],
-            farmDesc: ['lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum', [forms_1.Validators.required]],
-            street: ['Farmerska', [forms_1.Validators.required]],
-            streetNumber: ['12', [forms_1.Validators.required]],
-            flatNumber: ['13', [forms_1.Validators.required]],
-            city: ['Glisnica', [forms_1.Validators.required]],
-            postCode: ['63-430', [forms_1.Validators.required]],
-            voivodeship: ['wielkopolskie', [forms_1.Validators.required]],
-            county: ['Ostrów Wielkopolski', [forms_1.Validators.required]],
-            district: ['Odolanów', [forms_1.Validators.required]]
+            repeatPassword: ['', [forms_1.Validators.required]],
+            farmName: ['', [forms_1.Validators.required]],
+            farmDesc: ['', [forms_1.Validators.required]],
+            street: ['', [forms_1.Validators.required]],
+            streetNumber: ['', [forms_1.Validators.required]],
+            flatNumber: ['', [forms_1.Validators.required]],
+            city: ['', [forms_1.Validators.required]],
+            postCode: ['', [forms_1.Validators.required]],
+            voivodeship: ['', [forms_1.Validators.required]],
+            county: ['', [forms_1.Validators.required]],
+            district: ['', [forms_1.Validators.required]]
         });
     }
     AuthComponent.prototype.ngOnInit = function () {

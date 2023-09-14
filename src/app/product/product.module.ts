@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
 import { TypeListComponent } from './ui/type-list/type-list.component';
 import { CategoryListComponent } from './ui/category-list/category-list.component';
-import { ProductListComponent } from '../shared/ui/product-list/product-list.component';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';

@@ -16,19 +16,19 @@ var CarouselComponent = /** @class */ (function () {
     CarouselComponent.prototype.ngOnInit = function () {
         this.slides[0] = {
             id: 0,
-            src: '../../assets/krowki.jpg',
+            src: '../../assets/pictures/fruit-vegetable-1.png',
             title: 'First slide',
             subtitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
         };
         this.slides[1] = {
             id: 1,
-            src: '../../assets/krowki.jpg',
+            src: '../../assets/pictures/fruit-vegetable-2.jpg',
             title: 'Second slide',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
         };
         this.slides[2] = {
             id: 2,
-            src: '../../assets/krowki.jpg',
+            src: '../../assets/pictures/fruit-vegetable-3.jpg',
             title: 'Third slide',
             subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
         };

@@ -38,8 +38,10 @@ nav a:hover {
   border: none;
   background-color: transparent;
 }
-.icon-container button mat-icon {
+
+svg {
   width: 24px;
   height: 24px;
   color: #FFFFFF;
+  margin-right: 2rem;
 }

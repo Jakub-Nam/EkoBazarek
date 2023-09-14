@@ -1,6 +1,5 @@
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-// import { AuthModule } from './auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CarouselComponent } from './home/ui/carousel/carousel.component';
@@ -20,8 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
-import {MatDialogModule} from '@angular/material/dialog';
-import { AddProductComponent } from './shared/ui/add-product/add-product.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const materialComponents: unknown[] = 
 [

@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { ProductCategory } from 'src/app/shared/interfaces/interfaces';
-
 @Component({
   selector: 'app-category-card',
   templateUrl: './category-card.component.html',

@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable, catchError, map } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserCred } from './userCred.interface';
@@ -50,11 +50,4 @@ export class AuthService {
         })
       );
   }
-
-  
-  // logout() {
-  //   this.user.next(this.emptyUser);
-  //   // this.afAuth.signOut();
-  //   localStorage.clear();
-  // }
 }

@@ -16,14 +16,14 @@ export class FooterComponent {
     email: ['', Validators.required]
   });
 
-  constructor( 
+  constructor(
     public dataAccess: DataAccessService,
-     private formBuilder: FormBuilder,
-     private _snackBar: MatSnackBar
-     ) {
+    private formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar
+  ) {
   }
 
-  public postSubscription() {
+  public postSubscription(): void {
     let email: SubscriptionBody = this.subForm.value
 
     const headers = new HttpHeaders
@@ -41,11 +41,9 @@ export class FooterComponent {
 
   public openSnackBar(message: string): void {
     this._snackBar.open(message, 'Zamknij', {
-        duration: 3000,
-        horizontalPosition: 'start',
-        verticalPosition: 'top',
+      duration: 3000,
+      horizontalPosition: 'start',
+      verticalPosition: 'top',
     });
-}
-
-
+  }
 }

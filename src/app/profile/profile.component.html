@@ -6,7 +6,8 @@
                 DANE GOSPODARSTWA
             </ng-template>
             <div class="registration-wrapper">
-                <app-registration [isHeader]="false" [profileForm]="profileForm"></app-registration>
+                <app-registration (sendingProfileEvent)="updateUserData()" [isHeader]="false" [isProfile]="true"
+                    [profileForm]="profileForm"></app-registration>
             </div>
         </mat-tab>
 
@@ -14,7 +15,8 @@
             <ng-template mat-tab-label>
                 ZMIANA HASŁA
             </ng-template>
-            <app-change-pass [changePassForm]="changePassForm" (activateChangePassEvent)="checkOldNewPass()"></app-change-pass>
+            <app-change-pass [changePassForm]="changePassForm"
+                (activateChangePassEvent)="checkOldNewPass()"></app-change-pass>
         </mat-tab>
 
         <mat-tab>

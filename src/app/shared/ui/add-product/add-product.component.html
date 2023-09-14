@@ -1,7 +1,9 @@
 <div class="container" mat-dialog-content>
 	<h3 mat-dialog-title>Dodaj Produkty</h3>
-	<div class="container-dropzone" appDnd (fileDropped)="onFileDropped($event)">
-		<input type="file" #fileDropRef id="fileDropRef" (change)="fileBrowseHandler($event)" />
+	<div class="container-dropzone" appDnd >
+		<!-- (fileDropped)="onFileDropped($event)" ^^ -->
+		<input type="file" #fileDropRef id="fileDropRef" />
+		<!-- (change)="fileBrowseHandler($event)" ^^ -->
 		<img src="../../../../assets/pictures/mountain-64.png" alt="">
 		<span>Kliknij lub upuść plik</span>
 	</div>

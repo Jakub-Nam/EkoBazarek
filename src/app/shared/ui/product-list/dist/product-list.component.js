@@ -14,21 +14,13 @@ var ProductListComponent = /** @class */ (function () {
         this.dialog = dialog;
         this.viewTogglerEvent = new core_1.EventEmitter();
         this.isAddCard = false;
-        this.animal = 'lew';
-        this.name = 'Kukułek';
     }
     ProductListComponent.prototype.viewTogglerEmit = function () {
         this.viewTogglerEvent.emit(false);
     };
     ProductListComponent.prototype.openDialog = function () {
-        var _this = this;
-        var dialogRef = this.dialog.open(add_product_component_1.AddProductComponent, {
-            data: { name: this.name, animal: this.animal }
-        });
-        dialogRef.afterClosed().subscribe(function (result) {
-            console.log('The dialog was closed');
-            _this.animal = result;
-        });
+        var dialogRef = this.dialog.open(add_product_component_1.AddProductComponent);
+        dialogRef.afterClosed().subscribe();
     };
     __decorate([
         core_1.Output()

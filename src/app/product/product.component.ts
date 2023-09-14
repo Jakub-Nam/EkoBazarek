@@ -3,8 +3,6 @@ import { ProductCategory, ProductTypes, ProductUnit, ProductResponseData } from 
 import { DataAccessService } from '../core/services/data-access/data-access.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProductComponent } from '../shared/ui/add-product/add-product.component';
-
-
 @Component({
   selector: 'app-products',
   templateUrl: './product.component.html',
@@ -61,7 +59,7 @@ export class ProductComponent implements OnInit {
 
   constructor(public dataAccess: DataAccessService, public dialog: MatDialog) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.filteredProducts = this.products;
     this.dataAccess.getProductTypes$.subscribe({
       next: (productTypes) => {
@@ -124,14 +122,13 @@ export class ProductComponent implements OnInit {
     );
   }
 
-  openDialog(): void {
+  public openDialog(): void {
     const dialogRef = this.dialog.open(AddProductComponent, {
       data: { name: 'this.name', animal: 'this.animal' },
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // this.animal = result;
+      console.log('The dialog was closed', result);
     });
   }
 }
