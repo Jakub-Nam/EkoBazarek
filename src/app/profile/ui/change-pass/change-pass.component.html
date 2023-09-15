@@ -3,15 +3,15 @@
         <div class="form-group">
             <div class="group__form-input">
                 <label for="oldPassword">Stare hasło*</label>
-                <input id="oldPassword" type="text" formControlName="oldPassword">
+                <input id="oldPassword" type="password" formControlName="oldPassword">
             </div>
             <div class="group__form-input">
                 <label for="newPassword">Nowe hasło*</label>
-                <input id="newPassword" type="text" formControlName="newPassword">
+                <input id="newPassword" type="password" formControlName="newPassword">
             </div>
             <div class="group__form-input">
                 <label for="repNewPassword">Powtórz nowe hasło*</label>
-                <input id="repNewPassword" type="text" formControlName="repNewPassword">
+                <input id="repNewPassword" type="password" formControlName="repNewPassword">
             </div>
             <div *ngIf="password && (password.dirty || password.touched)">
 

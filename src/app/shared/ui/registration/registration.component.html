@@ -21,11 +21,11 @@
 
         <div class="group__form-input" *ngIf="!isProfile">
             <label for="password">Hasło* </label>
-            <input id="password" type="text" formControlName="password">
+            <input id="password" type="password" formControlName="password">
         </div>
         <div class="group__form-input" *ngIf="!isProfile">
             <label for="repeatPassword">Powtórz hasło* </label>
-            <input id="repeatPassword" type="text" formControlName="repeatPassword">
+            <input id="repeatPassword" type="password" formControlName="repeatPassword">
         </div>
 
         <div *ngIf="password && (password.dirty || password.touched) && !isProfile">
