@@ -6,26 +6,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.ProductRoutingModule = void 0;
+exports.AuthRoutingModule = void 0;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var product_component_1 = require("./product.component");
+var auth_component_1 = require("./auth.component");
 var routes = [
     {
         path: '',
-        component: product_component_1.ProductComponent,
-        pathMatch: 'full'
+        component: auth_component_1.AuthComponent,
+        pathMatch: "full"
     },
 ];
-var ProductRoutingModule = /** @class */ (function () {
-    function ProductRoutingModule() {
+var AuthRoutingModule = /** @class */ (function () {
+    function AuthRoutingModule() {
     }
-    ProductRoutingModule = __decorate([
+    AuthRoutingModule = __decorate([
         core_1.NgModule({
             imports: [router_1.RouterModule.forChild(routes)],
             exports: [router_1.RouterModule]
         })
-    ], ProductRoutingModule);
-    return ProductRoutingModule;
+    ], AuthRoutingModule);
+    return AuthRoutingModule;
 }());
-exports.ProductRoutingModule = ProductRoutingModule;
+exports.AuthRoutingModule = AuthRoutingModule;

@@ -32,7 +32,6 @@ const routes: Routes = [
     path: '**', 
     component: HomeComponent,
   }
-   // ^ -in future page not found comp!
 ];
 
 @NgModule({

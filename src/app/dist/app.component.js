@@ -6,26 +6,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.ProductRoutingModule = void 0;
+exports.AppComponent = void 0;
 var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var product_component_1 = require("./product.component");
-var routes = [
-    {
-        path: '',
-        component: product_component_1.ProductComponent,
-        pathMatch: 'full'
-    },
-];
-var ProductRoutingModule = /** @class */ (function () {
-    function ProductRoutingModule() {
+var AppComponent = /** @class */ (function () {
+    function AppComponent() {
+        this.title = 'AngEkoBazarek';
     }
-    ProductRoutingModule = __decorate([
-        core_1.NgModule({
-            imports: [router_1.RouterModule.forChild(routes)],
-            exports: [router_1.RouterModule]
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'app-root',
+            templateUrl: './app.component.html',
+            styleUrls: ['./app.component.scss']
         })
-    ], ProductRoutingModule);
-    return ProductRoutingModule;
+    ], AppComponent);
+    return AppComponent;
 }());
-exports.ProductRoutingModule = ProductRoutingModule;
+exports.AppComponent = AppComponent;

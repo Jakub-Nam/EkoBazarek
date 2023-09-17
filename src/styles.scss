@@ -1,10 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
-@import "@coreui/coreui/scss/coreui";
-@import "./app/global-styles.scss";
-
-
-
-
+// @import "@coreui/coreui/scss/coreui";
+@import "../node_modules/@coreui/coreui/scss/coreui.scss";
+@import "./app/colors.scss";
 * {
     margin: 0;
     padding: 0;
@@ -31,22 +27,19 @@ body {
 }
 
 // Angular material
-// Tabk
-// .mdc-tab {
-//     justify-content: start !important;
-//     padding-left: 1rem !important;
-//     padding-right: 1rem !important;
-//     max-width: 220px !important;
-//     flex: 0 0 auto !important;
-// }
-// .mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled)
+.mat-mdc-form-field {
+    .mat-mdc-text-field-wrapper.mdc-text-field.ng-tns-c1205077789-1.mdc-text-field--filled {
+        background-color: $forth-background-color;
+    }
+    .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+        background-color: $forth-background-color;
+    }
+}
+
 button .mdc-button__label {
     color: $secondary-font-color;
 }
 
-// .mdc-list-item {
-//     padding-left: 0px !important;
-// }
 mat-tab-header div.mdc-tab {
     justify-content: start;
     padding-left: 1rem;

@@ -103,7 +103,7 @@
   font-weight: 550;
 }
 .btn-container .btn-reset {
-  background-color: transparent;
+  margin: 0rem 1rem;
 }
 .btn-container .btn-add {
   color: #FFFFFF;

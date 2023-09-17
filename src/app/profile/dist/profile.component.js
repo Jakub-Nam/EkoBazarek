@@ -12,11 +12,12 @@ var forms_1 = require("@angular/forms");
 var validators_1 = require("../auth/shared/validators/validators");
 var http_1 = require("@angular/common/http");
 var ProfileComponent = /** @class */ (function () {
-    function ProfileComponent(fb, userService, dataAccess) {
+    function ProfileComponent(fb, userService, dataAccess, snackBarService) {
         var _this = this;
         this.fb = fb;
         this.userService = userService;
         this.dataAccess = dataAccess;
+        this.snackBarService = snackBarService;
         this.token = '';
         this.profileForm = this.fb.group({
             firstName: ['', forms_1.Validators.required],
@@ -46,7 +47,7 @@ var ProfileComponent = /** @class */ (function () {
             ],
             repNewPassword: ['', [forms_1.Validators.required]]
         });
-        this.userService.getResponseData().subscribe({
+        this.userService.getResponseData$().subscribe({
             next: function (res) {
                 if (res.user.farmName !== '') {
                     _this.profileForm.setValue({
@@ -66,8 +67,7 @@ var ProfileComponent = /** @class */ (function () {
                         district: res.user.district
                     });
                 }
-            },
-            error: function (err) { return console.error('Observer got an error: ' + err); }
+            }
         });
     }
     ProfileComponent.prototype.checkOldNewPass = function () {
@@ -83,21 +83,20 @@ var ProfileComponent = /** @class */ (function () {
                 "oldPassword": this.changePassForm.value.oldPassword,
                 "newPassword": this.changePassForm.value.newPassword
             };
-            this.userService.getResponseData().subscribe({
+            this.userService.getResponseData$().subscribe({
                 next: function (res) {
                     _this.token = res.token;
-                },
-                error: function (err) { return console.error('Observer got an error: ' + err); }
+                }
             });
             this.dataAccess.changePassword(requestBody, httpOptions).subscribe({
-                next: function (res) {
-                    //console.log('udalo sie)
-                },
-                error: function (err) { return console.error('Observer got an error: ' + err); }
+                next: function () {
+                    _this.snackBarService.openSnackBar('Pomyślnie zmieniono hasło.');
+                }
             });
         }
     };
     ProfileComponent.prototype.updateUserData = function () {
+        var _this = this;
         var newDataUser = {
             firstName: this.profileForm.value.firstName,
             lastName: this.profileForm.value.lastName,
@@ -121,10 +120,9 @@ var ProfileComponent = /** @class */ (function () {
             })
         };
         this.dataAccess.putUser(newDataUser, httpOptions).subscribe({
-            next: function (res) {
-                console.log('SUKCES');
-            },
-            error: function (err) { return console.error('Observer got an error: ' + err); }
+            next: function () {
+                _this.snackBarService.openSnackBar('Pomyślnie zmieniono dane uzytkownika.');
+            }
         });
     };
     ProfileComponent = __decorate([

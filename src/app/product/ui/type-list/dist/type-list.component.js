@@ -12,6 +12,7 @@ var TypeListComponent = /** @class */ (function () {
     function TypeListComponent() {
         this.productTypes = [];
         this.selectedTypeEmit = new core_1.EventEmitter();
+        this.checkboxColor = 'primary';
     }
     TypeListComponent.prototype.onSelectionChange = function (event) {
         var selectedOption = event;

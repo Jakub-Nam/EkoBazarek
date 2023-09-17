@@ -12,14 +12,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { NgModule } from '@angular/core';
-import { ProductModule } from './product/product.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const materialComponents: unknown[] = 
 [
@@ -27,7 +26,8 @@ const materialComponents: unknown[] =
   MatMenuModule,
   MatFormFieldModule,
   MatInputModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSnackBarModule 
 ]
 
 @NgModule({
@@ -44,9 +44,7 @@ const materialComponents: unknown[] =
     BrowserAnimationsModule,
     BrowserModule,
     CarouselModule,
-    AuthModule,
     FormsModule,
-    ProductModule, 
     SharedModule,  
     ReactiveFormsModule, 
     materialComponents,

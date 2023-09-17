@@ -1,0 +1,22 @@
+@import "./colors.scss";
+
+.mat-mdc-form-field {
+    .mat-mdc-text-field-wrapper.mdc-text-field.ng-tns-c1205077789-1.mdc-text-field--filled {
+        background-color: $forth-background-color;
+    }
+    .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+        background-color: $forth-background-color;
+    }
+}
+
+button .mdc-button__label {
+    color: $secondary-font-color;
+}
+
+mat-tab-header div.mdc-tab {
+    justify-content: start;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 220px;
+    flex: 0 0 auto;
+}

@@ -17,12 +17,12 @@ var HomeComponent = /** @class */ (function () {
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.data.getProductCategoriesTop$.subscribe({
+        this.data.getProductCategoriesTop.subscribe({
             next: function (productCat) {
                 _this.productCategories = productCat;
             }
         });
-        this.data.getProducts$.subscribe({
+        this.data.getProducts.subscribe({
             next: function (products) {
                 console.log(products, 'products?');
             }

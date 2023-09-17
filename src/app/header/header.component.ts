@@ -13,13 +13,14 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getResponseData().subscribe({
+    this.userService.getResponseData$().subscribe({
       next: (res) => {
-        if (res.user.farmName !== '') {
-          this.isUser = true;
-        } else {
-          this.isUser = false;
-        }
+        // if (res.user.farmName !== '') {
+        //   this.isUser = true;
+        // } else {
+        //   this.isUser = false;
+        // }
+        this.isUser = !!res.user.farmName
       },
       error: (err: Error) => console.error('Observer got an error: ' + err),
     });

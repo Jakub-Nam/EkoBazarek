@@ -14,17 +14,16 @@ export class HomeComponent {
   public products!: ProductResponseData[];
   constructor(private data: DataAccessService, private signalProdcutsService: SignalProductsService) { }
 
-  ngOnInit() {
-
-    this.data.getProductCategoriesTop$.subscribe({
+  ngOnInit(): void {
+    this.data.getProductCategoriesTop.subscribe({
       next: (productCat) => {
         this.productCategories = productCat
       }
     });
 
-    this.data.getProducts$.subscribe({
+    this.data.getProducts.subscribe({
       next: (products) => {
-        console.log(products,'products?')
+        console.log(products, 'products?')
       }
     });
     this.products = this.signalProdcutsService.signalProducts();

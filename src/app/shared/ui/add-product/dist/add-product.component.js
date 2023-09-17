@@ -42,19 +42,19 @@ var AddProductComponent = /** @class */ (function () {
     AddProductComponent.prototype.ngOnInit = function () {
         var _this = this;
         console.log(this.singalProductService.choosenProductIndex);
-        this.dataAccess.getProductTypes$.subscribe({
+        this.dataAccess.getProductTypes.subscribe({
             next: function (productTypes) {
                 _this.productTypes = productTypes;
             },
             error: function (err) { return console.error('Observer got an error: ' + err); }
         });
-        this.dataAccess.getProductCategories$.subscribe({
+        this.dataAccess.getProductCategories.subscribe({
             next: function (productCategories) {
                 _this.productCategories = productCategories;
             },
             error: function (err) { return console.error('Observer got an error: ' + err); }
         });
-        this.dataAccess.getProductUnits$.subscribe({
+        this.dataAccess.getProductUnits.subscribe({
             next: function (productUnits) {
                 _this.productUnits = productUnits;
             },

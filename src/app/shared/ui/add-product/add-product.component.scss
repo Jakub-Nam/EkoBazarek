@@ -1,4 +1,4 @@
-@import "../../../global-styles.scss";
+@import "../../../colors.scss";
 
 .container {
   display: flex;
@@ -113,16 +113,10 @@
     font-weight: 550;
   }
   .btn-reset {
-    background-color: transparent;
+    margin: 0rem 1rem;
   }
   .btn-add {
     color: $secondary-font-color;
     background-color: $primary-background-color;
   }
 }
-// .mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
-
-// }
-// mat-form-field .mat-mdc-text-field-wrapper {
-//   background-color: white;
-// }

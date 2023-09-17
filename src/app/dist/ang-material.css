@@ -1,0 +1,18 @@
+.mat-mdc-form-field .mat-mdc-text-field-wrapper.mdc-text-field.ng-tns-c1205077789-1.mdc-text-field--filled {
+  background-color: #FFFFFF;
+}
+.mat-mdc-form-field .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: #FFFFFF;
+}
+
+button .mdc-button__label {
+  color: #FFFFFF;
+}
+
+mat-tab-header div.mdc-tab {
+  justify-content: start;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 220px;
+  flex: 0 0 auto;
+}

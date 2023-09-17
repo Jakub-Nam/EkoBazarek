@@ -5,12 +5,10 @@ import { AddProductComponent } from '../shared/ui/add-product/add-product.compon
 
 const routes: Routes = [
   {
-    path: 'product',
+    path: '',
     component: ProductComponent,
     pathMatch: 'full'
   },
-
-  // { path: 'second-component', component: SecondComponent },
 ];
 
 @NgModule({

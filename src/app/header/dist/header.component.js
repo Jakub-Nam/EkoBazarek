@@ -16,14 +16,14 @@ var HeaderComponent = /** @class */ (function () {
     }
     HeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.userService.getResponseData().subscribe({
+        this.userService.getResponseData$().subscribe({
             next: function (res) {
-                if (res.user.farmName !== '') {
-                    _this.isUser = true;
-                }
-                else {
-                    _this.isUser = false;
-                }
+                // if (res.user.farmName !== '') {
+                //   this.isUser = true;
+                // } else {
+                //   this.isUser = false;
+                // }
+                _this.isUser = !!res.user.farmName;
             },
             error: function (err) { return console.error('Observer got an error: ' + err); }
         });

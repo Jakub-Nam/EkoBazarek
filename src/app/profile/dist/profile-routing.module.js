@@ -6,26 +6,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.ProductRoutingModule = void 0;
+exports.ProfileRoutingModule = void 0;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var product_component_1 = require("./product.component");
+var profile_component_1 = require("./profile.component");
 var routes = [
     {
         path: '',
-        component: product_component_1.ProductComponent,
-        pathMatch: 'full'
+        component: profile_component_1.ProfileComponent
     },
 ];
-var ProductRoutingModule = /** @class */ (function () {
-    function ProductRoutingModule() {
+var ProfileRoutingModule = /** @class */ (function () {
+    function ProfileRoutingModule() {
     }
-    ProductRoutingModule = __decorate([
+    ProfileRoutingModule = __decorate([
         core_1.NgModule({
             imports: [router_1.RouterModule.forChild(routes)],
             exports: [router_1.RouterModule]
         })
-    ], ProductRoutingModule);
-    return ProductRoutingModule;
+    ], ProfileRoutingModule);
+    return ProfileRoutingModule;
 }());
-exports.ProductRoutingModule = ProductRoutingModule;
+exports.ProfileRoutingModule = ProfileRoutingModule;

@@ -34,7 +34,7 @@ var UserService = /** @class */ (function () {
         };
         this.reponseLoginData = new rxjs_1.BehaviorSubject(this.emptyResponseData);
     }
-    UserService.prototype.getResponseData = function () {
+    UserService.prototype.getResponseData$ = function () {
         return this.reponseLoginData.asObservable();
     };
     UserService.prototype.updateResponseData = function (data) {

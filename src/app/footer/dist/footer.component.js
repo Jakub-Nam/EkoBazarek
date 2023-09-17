@@ -7,31 +7,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 exports.FooterComponent = void 0;
-var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
-var forms_2 = require("@angular/forms");
 var FooterComponent = /** @class */ (function () {
     function FooterComponent(dataAccess, formBuilder, _snackBar) {
         this.dataAccess = dataAccess;
         this.formBuilder = formBuilder;
         this._snackBar = _snackBar;
-        this.emailInput = new forms_1.FormControl('');
         this.subForm = this.formBuilder.group({
-            email: ['', forms_2.Validators.required]
+            email: ['', forms_1.Validators.required]
         });
     }
     FooterComponent.prototype.postSubscription = function () {
         var _this = this;
-        var email = this.subForm.value;
-        var headers = new http_1.HttpHeaders;
-        headers.set('Content-Type', 'application/json');
-        this.dataAccess.postSubscription(email, { headers: headers }).subscribe(({
-            next: function (res) {
+        this.dataAccess.postSubscription(this.subForm.value).subscribe(({
+            next: function () {
                 _this.openSnackBar("Subskrypcja powiodla się.");
                 _this.subForm.reset();
-            },
-            error: function (err) { return console.error('Observer got an error: ' + err); }
+            }
         }));
     };
     FooterComponent.prototype.openSnackBar = function (message) {

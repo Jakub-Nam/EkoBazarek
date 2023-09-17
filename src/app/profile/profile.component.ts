@@ -5,6 +5,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { UserService } from '../core/services/user-service/user.service';
 import { OldNewPasswords, ReponseLoginData, User } from '../shared/interfaces/interfaces';
 import { DataAccessService } from '../core/services/data-access/data-access.service';
+import { SnackBarService } from '../core/services/snack-bar/snack-bar';
 
 @Component({
   selector: 'app-profile',
@@ -49,8 +50,9 @@ export class ProfileComponent {
     private fb: FormBuilder,
     private userService: UserService,
     private dataAccess: DataAccessService,
+    private snackBarService: SnackBarService
   ) {
-    this.userService.getResponseData().subscribe({
+    this.userService.getResponseData$().subscribe({
       next: (res: ReponseLoginData) => {
 
         if (res.user.farmName !== '') {
@@ -71,8 +73,7 @@ export class ProfileComponent {
             district: res.user.district as string,
           });
         }
-      },
-      error: (err: Error) => console.error('Observer got an error: ' + err),
+      }
     });
 
   }
@@ -92,18 +93,16 @@ export class ProfileComponent {
         "newPassword": this.changePassForm.value.newPassword
       }
 
-      this.userService.getResponseData().subscribe({
+      this.userService.getResponseData$().subscribe({
         next: (res) => {
           this.token = res.token
-        },
-        error: (err: Error) => console.error('Observer got an error: ' + err),
+        }
       });
 
       this.dataAccess.changePassword(requestBody, httpOptions).subscribe({
-        next: (res) => {
-          //console.log('udalo sie)
-        },
-        error: (err: Error) => console.error('Observer got an error: ' + err),
+        next: () => {
+          this.snackBarService.openSnackBar('Pomyślnie zmieniono hasło.')
+        }
       });
     }
   }
@@ -132,11 +131,11 @@ export class ProfileComponent {
         'Authorization': `Bearer ${this.token}`
       })
     };
+
     this.dataAccess.putUser(newDataUser, httpOptions).subscribe({
-      next: (res) => {
-  console.log('SUKCES')
-      },
-      error: (err: Error) => console.error('Observer got an error: ' + err),
+      next: () => {
+        this.snackBarService.openSnackBar('Pomyślnie zmieniono dane uzytkownika.');
+      }
     });
   }
 }

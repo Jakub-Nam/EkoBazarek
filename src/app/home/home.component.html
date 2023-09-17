@@ -2,7 +2,7 @@
 <div class="container-categories">
     <h3>POPULARNE KATEGORIE</h3>
     <ul class="card-wrapper">
-        <li *ngFor="let productCategory of productCategories; let i = index">
+        <li *ngFor="let productCategory of productCategories; let i = index;">
             <app-category-card  [productCategory]="productCategory"></app-category-card>
         </li>
     </ul>

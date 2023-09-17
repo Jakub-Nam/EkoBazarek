@@ -21,20 +21,20 @@ var http_1 = require("@angular/common/http");
 var icon_1 = require("@angular/material/icon");
 var menu_1 = require("@angular/material/menu");
 var core_1 = require("@angular/core");
-var product_module_1 = require("./product/product.module");
 var forms_1 = require("@angular/forms");
 var form_field_1 = require("@angular/material/form-field");
 var input_1 = require("@angular/material/input");
-var auth_module_1 = require("./auth/auth.module");
 var shared_module_1 = require("./shared/shared.module");
 var core_module_1 = require("./core/core.module");
 var dialog_1 = require("@angular/material/dialog");
+var snack_bar_1 = require("@angular/material/snack-bar");
 var materialComponents = [
     icon_1.MatIconModule,
     menu_1.MatMenuModule,
     form_field_1.MatFormFieldModule,
     input_1.MatInputModule,
-    dialog_1.MatDialogModule
+    dialog_1.MatDialogModule,
+    snack_bar_1.MatSnackBarModule
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -54,9 +54,7 @@ var AppModule = /** @class */ (function () {
                 animations_1.BrowserAnimationsModule,
                 platform_browser_1.BrowserModule,
                 angular_1.CarouselModule,
-                auth_module_1.AuthModule,
                 forms_1.FormsModule,
-                product_module_1.ProductModule,
                 shared_module_1.SharedModule,
                 forms_1.ReactiveFormsModule,
                 materialComponents,

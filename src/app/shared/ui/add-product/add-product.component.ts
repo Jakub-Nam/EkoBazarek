@@ -56,21 +56,21 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.singalProductService.choosenProductIndex)
-    this.dataAccess.getProductTypes$.subscribe({
+    this.dataAccess.getProductTypes.subscribe({
       next: (productTypes) => {
         this.productTypes = productTypes;
       },
       error: (err: Error) => console.error('Observer got an error: ' + err),
     });
 
-    this.dataAccess.getProductCategories$.subscribe({
+    this.dataAccess.getProductCategories.subscribe({
       next: (productCategories) => {
         this.productCategories = productCategories;
       },
       error: (err: Error) => console.error('Observer got an error: ' + err),
     });
 
-    this.dataAccess.getProductUnits$.subscribe({
+    this.dataAccess.getProductUnits.subscribe({
       next: (productUnits) => {
         this.productUnits = productUnits;
       },

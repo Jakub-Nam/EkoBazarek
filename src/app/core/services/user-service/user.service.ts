@@ -30,7 +30,7 @@ export class UserService {
 
   private reponseLoginData: BehaviorSubject<ReponseLoginData> = new BehaviorSubject<ReponseLoginData>(this.emptyResponseData);
 
-  public getResponseData(): Observable<ReponseLoginData> {
+  public getResponseData$(): Observable<ReponseLoginData> {
     return this.reponseLoginData.asObservable();
   }
 

@@ -25,21 +25,21 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.filteredProducts = this.signalProductsService.signalProducts();
-    this.dataAccess.getProductTypes$.subscribe({
+    this.dataAccess.getProductTypes.subscribe({
       next: (productTypes) => {
         this.productTypes = productTypes;
         this.productFilteredTypes = productTypes;
       }
     });
 
-    this.dataAccess.getProductCategories$.subscribe({
+    this.dataAccess.getProductCategories.subscribe({
       next: (productCategories) => {
         this.productCategories = productCategories;
         this.filteredProductCategories = productCategories;
       }
     });
 
-    this.dataAccess.getProductUnits$.subscribe({
+    this.dataAccess.getProductUnits.subscribe({
       next: (productUnits) => {
         this.productUnits = productUnits;
       }
@@ -52,7 +52,6 @@ export class ProductComponent implements OnInit {
   }
 
   public filterProductsByType(selectedType: string[]): void { 
-    // if checked -> true = return filtered, false all
     this.filteredProducts = this.signalProductsService.signalProducts().filter(product =>
       selectedType.includes(product.type)
     );
