@@ -39,7 +39,7 @@ a:hover {
   height: 276px;
   box-sizing: border-box;
   background-color: #FFFFFF;
-  padding: 1rem;
+  padding: 1rem 1rem 0.5rem 1rem;
   margin: 0;
 }
 .product-container img {
@@ -66,4 +66,23 @@ a:hover {
   flex-direction: row;
   font-size: 10px;
   justify-content: space-between;
+}
+.product-container .inline-items a svg {
+  color: #535353;
+}
+
+.prod-location-icon-wrapper svg {
+  color: #535353;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.envelope-phone-wrapper svg {
+  margin-left: 1rem;
+  color: #46aa42;
+}
+
+svg {
+  width: 22px;
+  height: 22px;
 }

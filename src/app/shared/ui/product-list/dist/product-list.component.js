@@ -10,15 +10,19 @@ exports.ProductListComponent = void 0;
 var core_1 = require("@angular/core");
 var add_product_component_1 = require("../add-product/add-product.component");
 var ProductListComponent = /** @class */ (function () {
-    function ProductListComponent(dialog) {
+    function ProductListComponent(dialog, signalProductService) {
         this.dialog = dialog;
+        this.signalProductService = signalProductService;
         this.viewTogglerEvent = new core_1.EventEmitter();
         this.isAddCard = false;
     }
     ProductListComponent.prototype.viewTogglerEmit = function () {
         this.viewTogglerEvent.emit(false);
     };
-    ProductListComponent.prototype.openDialog = function () {
+    ProductListComponent.prototype.openDialog = function (i) {
+        if (i != undefined) {
+            this.signalProductService.choosenProductIndex = i;
+        }
         var dialogRef = this.dialog.open(add_product_component_1.AddProductComponent);
         dialogRef.afterClosed().subscribe();
     };
@@ -28,6 +32,9 @@ var ProductListComponent = /** @class */ (function () {
     __decorate([
         core_1.Input()
     ], ProductListComponent.prototype, "isAddCard");
+    __decorate([
+        core_1.Input()
+    ], ProductListComponent.prototype, "filteredProducts");
     ProductListComponent = __decorate([
         core_1.Component({
             selector: 'app-product-list',

@@ -11,6 +11,7 @@ var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var data_access_service_1 = require("./services/data-access/data-access.service");
 var user_service_1 = require("./services/user-service/user.service");
+var snack_bar_1 = require("./services/snack-bar/snack-bar");
 var CoreModule = /** @class */ (function () {
     function CoreModule() {
     }
@@ -22,7 +23,8 @@ var CoreModule = /** @class */ (function () {
             ],
             providers: [
                 user_service_1.UserService,
-                data_access_service_1.DataAccessService
+                data_access_service_1.DataAccessService,
+                snack_bar_1.SnackBarService
             ]
         })
     ], CoreModule);

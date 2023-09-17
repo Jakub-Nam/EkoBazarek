@@ -7,6 +7,7 @@ import { UserService } from '../core/services/user-service/user.service';
 import { User } from '../shared/interfaces/interfaces';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarService } from '../core/services/snack-bar/snack-bar';
 
 @Component({
     selector: 'app-auth',
@@ -57,19 +58,11 @@ export class AuthComponent implements OnInit {
         private authService: AuthService,
         private userService: UserService,
         private route: Router,
-        private _snackBar: MatSnackBar
+        private snackBarService: SnackBarService
     ) { }
 
     ngOnInit(): void {
         this.registrationView = false;
-    }
-
-    public openSnackBar(message: string): void {
-        this._snackBar.open(message, 'Zamknij', {
-            duration: 3000,
-            horizontalPosition: 'start',
-            verticalPosition: 'top',
-        });
     }
 
     public viewToggler(): void {
@@ -82,13 +75,8 @@ export class AuthComponent implements OnInit {
             next: (res) => {
                 this.userService.updateResponseData(res);
                 this.route.navigateByUrl('/home');
-                this.openSnackBar('Pomyślnie zalogowano.');
+                this.snackBarService.openSnackBar('Pomyślnie zalogowano.');
             },
-            error: (err: Error) => {
-                console.error('Observer got an error: ' + err),
-                    this.openSnackBar('Wystąpił błąd podczas logowania.');
-            }
-
         });
     }
 
@@ -116,10 +104,10 @@ export class AuthComponent implements OnInit {
 
             this.authService.postUser(requestBody)
                 .subscribe({
-                    next: (res) => {
+                    next: () => {
                         this.viewToggler()
-                    },
-                    error: (err: Error) => console.error('Observer got an error: ' + err),
+                        this.snackBarService.openSnackBar('Pomyślnie utworzono uzytkownika.');
+                    }
                 });
         }
     }

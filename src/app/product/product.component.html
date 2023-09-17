@@ -1,6 +1,4 @@
-<div *ngFor="let products of filteredProducts">
-    {{products.name}}
-</div>
+
 
 <div class="container" [hidden]="!isProducts">
     <section class="container-filters">
@@ -24,25 +22,6 @@
         </ul>
     </section>
     <section class="container-products">
-        <app-product-list ></app-product-list>
-
-        <!-- [hidden]="!isProducts" (viewTogglerEvent)="toggleView($event)"-->
+        <app-product-list [filteredProducts]="filteredProducts"></app-product-list>
     </section>
 </div>
-
-<!-- <app-add-product [productTypes]="productTypes" [productUnits]='productUnits' [productCategories]="productCategories"
-    [products]="products" [hidden]="isProducts"></app-add-product> -->
-
-<!-- <h2 mat-dialog-title>siema</h2>
-<div mat-dialog-content>
-    <p>What's your favorite animal?</p>
-    <!-- <mat-form-field>
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field> 
-</div>
-<div mat-dialog-actions>
-    <button>aaaaa</button>
-     <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> 
-</div> -->

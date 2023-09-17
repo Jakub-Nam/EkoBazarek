@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataAccessService } from './services/data-access/data-access.service';
 import { UserService } from './services/user-service/user.service';
+import { SnackBarService } from './services/snack-bar/snack-bar';
 
 
 
@@ -12,7 +13,8 @@ import { UserService } from './services/user-service/user.service';
   ],
   providers: [
     UserService,
-    DataAccessService
+    DataAccessService,
+    SnackBarService
   ],
   
 })

@@ -9,26 +9,25 @@ exports.__esModule = true;
 exports.HomeComponent = void 0;
 var core_1 = require("@angular/core");
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(data) {
+    function HomeComponent(data, signalProdcutsService) {
         this.data = data;
+        this.signalProdcutsService = signalProdcutsService;
         this.productCategories = [];
         this.isAddCard = false;
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.data.getProductCategories$.subscribe({
-            next: function (productTypes) {
-                _this.productCategories = productTypes;
-            },
-            error: function (err) { return console.error('Observer got an error: ' + err); }
+        this.data.getProductCategoriesTop$.subscribe({
+            next: function (productCat) {
+                _this.productCategories = productCat;
+            }
         });
         this.data.getProducts$.subscribe({
             next: function (products) {
-                console.log(products, 'produkty?');
-                // potem przypisz lokalna tablice do tychproduktow i wyswietl
-            },
-            error: function (err) { return console.error('Observer got an error: ' + err); }
+                console.log(products, 'products?');
+            }
         });
+        this.products = this.signalProdcutsService.signalProducts();
     };
     HomeComponent = __decorate([
         core_1.Component({

@@ -1,15 +1,16 @@
-import { Observable, catchError, map } from 'rxjs';
+import { EMPTY, Observable, catchError, map } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserCred } from './userCred.interface';
 import { ReponseLoginData } from 'src/app/shared/interfaces/interfaces';
 import { User } from 'src/app/shared/interfaces/interfaces';
+import { SnackBarService } from 'src/app/core/services/snack-bar/snack-bar';
 
 @Injectable({ providedIn: 'root' })
 
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
 
   login(form: UserCred): Observable<ReponseLoginData> {
 
@@ -22,12 +23,10 @@ export class AuthService {
 
     return this.http.post<ReponseLoginData>(url, form, httpOptions)
       .pipe(
-        map((data) => {
-          return data;
-        }),
         catchError(err => {
-          console.log(err);
-          throw err;
+          console.error(err);
+          this.snackBarService.openSnackBar("Nieprawidlowy login lub hasło użytkownika.");
+          return EMPTY;
         })
       )
   }
@@ -41,12 +40,10 @@ export class AuthService {
     const url = 'https://api-eko-bazarek.azurewebsites.net/api/users'
     return this.http.post<ReponseLoginData>(url, reqBody, httpOptions)
       .pipe(
-        map((data) => {
-          return data;
-        }),
         catchError(err => {
-          console.log(err);
-          throw err;
+          console.error(err);
+          this.snackBarService.openSnackBar("Nie udało się utworzyć użytkownika.");
+          return EMPTY;
         })
       );
   }

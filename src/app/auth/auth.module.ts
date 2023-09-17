@@ -9,8 +9,6 @@ import { SharedModule } from '../shared/shared.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 
-
-
 const materialComponents: unknown[] = 
 [
   MatSnackBarModule,
@@ -30,6 +28,6 @@ const materialComponents: unknown[] =
     SharedModule,
     materialComponents,
     AuthRoutingModule,
-  ]
+  ],
 })
 export class AuthModule { }

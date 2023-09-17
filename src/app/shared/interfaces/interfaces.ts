@@ -43,11 +43,11 @@ export interface ProductResponseData {
     createdBy: string,
     createDate: number
 }
-export interface ProductToSend {
+export interface Product {
     productName: string | null | undefined,
     type: string | null | undefined,
     category: string | null | undefined,
-    price: string | null | undefined,
+    price: number | null | undefined,
     unit: string | null | undefined,
     desc?: string | null | undefined,
 }

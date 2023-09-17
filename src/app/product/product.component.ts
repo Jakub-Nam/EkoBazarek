@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Signal } from '@angular/core';
 import { ProductCategory, ProductTypes, ProductUnit, ProductResponseData } from '../shared/interfaces/interfaces';
 import { DataAccessService } from '../core/services/data-access/data-access.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProductComponent } from '../shared/ui/add-product/add-product.component';
+import { SignalProductsService } from '../core/services/signal-products/signal-products.service';
 @Component({
   selector: 'app-products',
   templateUrl: './product.component.html',
@@ -18,70 +19,30 @@ export class ProductComponent implements OnInit {
   public productUnits!: ProductUnit[];
   public allSelected: boolean = true;
   public searchTerm: string = '';
-  public products: ProductResponseData[] =
-    [
-      {
-        id: "4cf938da-51cc-41c6-b7b1-763433bbce83",
-        name: "Jęczmień eko",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis auctor arcu. Vivamus interdum diam turpis, ac rutrum sem facilisis eget. Proin enim odio, egestas eget tellus ut, vestibulum lobortis felis. Nunc tortor felis, dignissim at purus at, auctor vehicula leo. Donec ornare mattis mauris non volutpat. Vestibulum faucibus fermentum tellus, non sagittis tortor ultrices et. Quisque et elementum quam.",
-        price: 0,
-        type: "CEREALS",
-        category: "BARLEY",
-        unit: "t",
-        createdBy: "4cf938da-51cc-41c6-b7b1-763433bbce83",
-        createDate: 1690093259833
-      },
-      {
-        id: "4cf938da-51cc-41c6-b7b1-763433bbce83",
-        name: "Jęczmień eko",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis auctor arcu. Vivamus interdum diam turpis, ac rutrum sem facilisis eget. Proin enim odio, egestas eget tellus ut, vestibulum lobortis felis. Nunc tortor felis, dignissim at purus at, auctor vehicula leo. Donec ornare mattis mauris non volutpat. Vestibulum faucibus fermentum tellus, non sagittis tortor ultrices et. Quisque et elementum quam.",
-        price: 0,
-        type: "CEREALS",
-        category: "RYE",
-        unit: "t",
-        createdBy: "4cf938da-51cc-41c6-b7b1-763433bbce83",
-        createDate: 1690093259833
-      },
-      {
-        id: "4cf938da-51cc-41c6-b7b1-763433bbce83",
-        name: "Skrzydełka",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis auctor arcu. Vivamus interdum diam turpis, ac rutrum sem facilisis eget. Proin enim odio, egestas eget tellus ut, vestibulum lobortis felis. Nunc tortor felis, dignissim at purus at, auctor vehicula leo. Donec ornare mattis mauris non volutpat. Vestibulum faucibus fermentum tellus, non sagittis tortor ultrices et. Quisque et elementum quam.",
-        price: 0,
-        type: "MEAT",
-        category: "PORK",
-        unit: "t",
-        createdBy: "4cf938da-51cc-41c6-b7b1-763433bbce83",
-        createDate: 1690093259833
-      }
-    ]
-
   public selectedCategory: string | null = "CHICKEN";
 
-  constructor(public dataAccess: DataAccessService, public dialog: MatDialog) { }
+  constructor(public dataAccess: DataAccessService, public dialog: MatDialog, private signalProductsService: SignalProductsService) { }
 
   ngOnInit(): void {
-    this.filteredProducts = this.products;
+    this.filteredProducts = this.signalProductsService.signalProducts();
     this.dataAccess.getProductTypes$.subscribe({
       next: (productTypes) => {
         this.productTypes = productTypes;
-        this.filteredProducts = this.products;
-      },
-      error: (err: Error) => console.error('Observer got an error: ' + err),
+        this.productFilteredTypes = productTypes;
+      }
     });
 
     this.dataAccess.getProductCategories$.subscribe({
       next: (productCategories) => {
         this.productCategories = productCategories;
         this.filteredProductCategories = productCategories;
-      },
-      error: (err: Error) => console.error('Observer got an error: ' + err),
+      }
     });
 
     this.dataAccess.getProductUnits$.subscribe({
       next: (productUnits) => {
         this.productUnits = productUnits;
-      },
-      error: (err: Error) => console.error('Observer got an error: ' + err),
+      }
     });
   }
 
@@ -90,8 +51,9 @@ export class ProductComponent implements OnInit {
     this.filterProductsByType(selectedType);
   }
 
-  public filterProductsByType(selectedType: string[]): void {
-    this.filteredProducts = this.products.filter(product =>
+  public filterProductsByType(selectedType: string[]): void { 
+    // if checked -> true = return filtered, false all
+    this.filteredProducts = this.signalProductsService.signalProducts().filter(product =>
       selectedType.includes(product.type)
     );
   }
@@ -103,7 +65,7 @@ export class ProductComponent implements OnInit {
   }
 
   public filterByCategories(selectedCategory: string): ProductResponseData[] {
-    return this.filteredProducts = this.products.filter(product => {
+    return this.filteredProducts = this.signalProductsService.signalProducts().filter(product => {
       if (product.category !== selectedCategory) {
         return false;
       }
@@ -117,7 +79,7 @@ export class ProductComponent implements OnInit {
   }
 
   public filterProductsByName(): void {
-    this.filteredProducts = this.products.filter(category =>
+    this.filteredProducts = this.signalProductsService.signalProducts().filter(category =>
       category.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }

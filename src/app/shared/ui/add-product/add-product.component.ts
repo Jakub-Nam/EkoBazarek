@@ -1,9 +1,7 @@
-import { HttpHeaders } from '@angular/common/http';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProductTypes } from 'src/app/shared/interfaces/interfaces';
+import { ProductResponseData, ProductTypes } from 'src/app/shared/interfaces/interfaces';
 import { DataAccessService } from '../../../core/services/data-access/data-access.service';
-import { UserService } from '../../../core/services/user-service/user.service';
 import { __values } from 'tslib';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,6 +10,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { priceValidator } from '../../validators/validators';
+import { SignalProductsService } from 'src/app/core/services/signal-products/signal-products.service';
 
 @Component({
   selector: 'app-add-product',
@@ -30,78 +29,74 @@ import { priceValidator } from '../../validators/validators';
 })
 
 export class AddProductComponent implements OnInit {
-  @Input() public productTypes!: ProductTypes[];
-  @Input() public productCategories!: ProductTypes[];
-  @Input() public productUnits!: ProductTypes[];
+  public productTypes!: ProductTypes[];
+  public productCategories!: ProductTypes[];
+  public productUnits!: ProductTypes[];
+  public isEdit: boolean = this.singalProductService.choosenProductIndex >= 0;
   @Input() public products!: ProductTypes[];
   public productForm = this.formBuilder.group({
-    productName: ['Marchew Zlota', [Validators.required, Validators.minLength(3)]],
-    desc: ['Niesamowita, niepowtarzalna', [Validators.maxLength(250)]],
-    productType: ['', Validators.required],
+    id: "4cf938da-51cc-41c6-b7b1-763433bbce83",
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    desc: ['', [Validators.maxLength(250)]],
+    type: ['', Validators.required],
     category: ['', Validators.required],
-    price: [25, [Validators.required, priceValidator()]],
+    price: [0, [Validators.required, priceValidator()]],
     unit: ['', Validators.required],
+    createdBy: "4cf938da-51cc-41c6-b7b1-763433bbce83",
+    createDate: 1690093259833
   });
-  public files: any[] = [];
-  public file!: File;
   public selectedType!: string;
-  public token!: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private dataAccess: DataAccessService,
-    private userService: UserService,
     public dialogRef: MatDialogRef<AddProductComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private singalProductService: SignalProductsService) { }
 
   ngOnInit(): void {
-    this.userService.getResponseData().subscribe({
-      next: (res) => {
-        this.token = res.token
+    console.log(this.singalProductService.choosenProductIndex)
+    this.dataAccess.getProductTypes$.subscribe({
+      next: (productTypes) => {
+        this.productTypes = productTypes;
       },
       error: (err: Error) => console.error('Observer got an error: ' + err),
     });
+
+    this.dataAccess.getProductCategories$.subscribe({
+      next: (productCategories) => {
+        this.productCategories = productCategories;
+      },
+      error: (err: Error) => console.error('Observer got an error: ' + err),
+    });
+
+    this.dataAccess.getProductUnits$.subscribe({
+      next: (productUnits) => {
+        this.productUnits = productUnits;
+      },
+      error: (err: Error) => console.error('Observer got an error: ' + err),
+    });
+
+    
   }
 
-
-  public addProductToDb(): void {
-    if (this.productForm.valid) {
-      const formData = new FormData();
-
-      formData.append('name', this.productForm?.get('productName')?.value as string);
-      formData.append('type', this.productForm?.get('productType')?.value as string);
-      formData.append('category', this.productForm?.get('category')?.value as string);
-      // formData.append('price', this.productForm?.get('price')?.value as number);
-      formData.append('unit', this.productForm?.get('unit')?.value as string);
-      formData.append('desc', this.productForm?.get('desc')?.value as string);
-
-      const formDataObject: any = {};
-      formData.forEach((value, key) => {
-        formDataObject[key] = value;
-      });
-
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${this.token}`
-        })
-      };
-
-      this.dataAccess.postProduct(formData, httpOptions).subscribe(({
-        next: (res) => {
-          console.log(res)
-        },
-        error: (err: Error) => console.error('Observer got an error: ' + err),
-      }));
+  public changeSignalProducts(): void {
+    let product: ProductResponseData = this.productForm.value as ProductResponseData;
+    if (this.singalProductService.choosenProductIndex >= 0) {
+      this.singalProductService.mutateSignalProdcuts(product);
+    } else {
+      this.singalProductService.addToSignalProducts(product);
     }
-
+    this.singalProductService.choosenProductIndex = -1;
   }
 
   public resetForm(): void {
     this.productForm.reset();
+    this.singalProductService.choosenProductIndex = -1;
   }
 
   public onClose(): void {
     this.dialogRef.close();
+    this.singalProductService.choosenProductIndex = -1;
   }
-}  
+}

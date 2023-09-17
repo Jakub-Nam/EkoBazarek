@@ -11,10 +11,12 @@ var rxjs_1 = require("rxjs");
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
 var AuthService = /** @class */ (function () {
-    function AuthService(http) {
+    function AuthService(http, snackBarService) {
         this.http = http;
+        this.snackBarService = snackBarService;
     }
     AuthService.prototype.login = function (form) {
+        var _this = this;
         var url = 'https://api-eko-bazarek.azurewebsites.net/api/users/login';
         var httpOptions = {
             headers: new http_1.HttpHeaders({
@@ -22,14 +24,14 @@ var AuthService = /** @class */ (function () {
             })
         };
         return this.http.post(url, form, httpOptions)
-            .pipe(rxjs_1.map(function (data) {
-            return data;
-        }), rxjs_1.catchError(function (err) {
-            console.log(err);
-            throw err;
+            .pipe(rxjs_1.catchError(function (err) {
+            console.error(err);
+            _this.snackBarService.openSnackBar("Nieprawidlowy login lub hasło użytkownika.");
+            return rxjs_1.EMPTY;
         }));
     };
     AuthService.prototype.postUser = function (reqBody) {
+        var _this = this;
         var httpOptions = {
             headers: new http_1.HttpHeaders({
                 'Content-Type': 'application/json'
@@ -37,11 +39,10 @@ var AuthService = /** @class */ (function () {
         };
         var url = 'https://api-eko-bazarek.azurewebsites.net/api/users';
         return this.http.post(url, reqBody, httpOptions)
-            .pipe(rxjs_1.map(function (data) {
-            return data;
-        }), rxjs_1.catchError(function (err) {
-            console.log(err);
-            throw err;
+            .pipe(rxjs_1.catchError(function (err) {
+            console.error(err);
+            _this.snackBarService.openSnackBar("Nie udało się utworzyć użytkownika.");
+            return rxjs_1.EMPTY;
         }));
     };
     AuthService = __decorate([

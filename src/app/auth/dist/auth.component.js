@@ -11,12 +11,12 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var validators_1 = require("./shared/validators/validators");
 var AuthComponent = /** @class */ (function () {
-    function AuthComponent(fb, authService, userService, route, _snackBar) {
+    function AuthComponent(fb, authService, userService, route, snackBarService) {
         this.fb = fb;
         this.authService = authService;
         this.userService = userService;
         this.route = route;
-        this._snackBar = _snackBar;
+        this.snackBarService = snackBarService;
         this.registrationView = true;
         this.loginForm = this.fb.group({
             email: ['', [forms_1.Validators.required]],
@@ -56,13 +56,6 @@ var AuthComponent = /** @class */ (function () {
     AuthComponent.prototype.ngOnInit = function () {
         this.registrationView = false;
     };
-    AuthComponent.prototype.openSnackBar = function (message) {
-        this._snackBar.open(message, 'Zamknij', {
-            duration: 3000,
-            horizontalPosition: 'start',
-            verticalPosition: 'top'
-        });
-    };
     AuthComponent.prototype.viewToggler = function () {
         this.registrationView = !this.registrationView;
     };
@@ -73,11 +66,7 @@ var AuthComponent = /** @class */ (function () {
             next: function (res) {
                 _this.userService.updateResponseData(res);
                 _this.route.navigateByUrl('/home');
-                _this.openSnackBar('Pomyślnie zalogowano.');
-            },
-            error: function (err) {
-                console.error('Observer got an error: ' + err),
-                    _this.openSnackBar('Wystąpił błąd podczas logowania.');
+                _this.snackBarService.openSnackBar('Pomyślnie zalogowano.');
             }
         });
     };
@@ -105,10 +94,10 @@ var AuthComponent = /** @class */ (function () {
             };
             this.authService.postUser(requestBody)
                 .subscribe({
-                next: function (res) {
+                next: function () {
                     _this.viewToggler();
-                },
-                error: function (err) { return console.error('Observer got an error: ' + err); }
+                    _this.snackBarService.openSnackBar('Pomyślnie utworzono uzytkownika.');
+                }
             });
         }
     };

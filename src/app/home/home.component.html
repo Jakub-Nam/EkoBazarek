@@ -3,12 +3,12 @@
     <h3>POPULARNE KATEGORIE</h3>
     <ul class="card-wrapper">
         <li *ngFor="let productCategory of productCategories; let i = index">
-            <app-category-card  [productCategory]="productCategory" *ngIf="i < 12"></app-category-card>
+            <app-category-card  [productCategory]="productCategory"></app-category-card>
         </li>
     </ul>
     <h3>Produkty</h3>
     <section class="container-products">
-        <app-product-list [isAddCard]="!isAddCard"></app-product-list>
+        <app-product-list  [filteredProducts]="products" [isAddCard]="!isAddCard"></app-product-list>
     </section>
 </div>
 
