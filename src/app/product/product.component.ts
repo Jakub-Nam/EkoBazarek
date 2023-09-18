@@ -47,11 +47,18 @@ export class ProductComponent implements OnInit {
   }
 
   public filterProductsAndCategories(selectedType: string[]): void {
-    this.filterCategoriesByType(selectedType);
-    this.filterProductsByType(selectedType);
+    console.log(selectedType)
+    if (selectedType[0]) {
+      this.filterCategoriesByType(selectedType);
+      this.filterProductsByType(selectedType);
+    } else {
+      this.filteredProducts = this.signalProductsService.signalProducts()
+      this.filteredProductCategories = this.productCategories
+    }
+
   }
 
-  public filterProductsByType(selectedType: string[]): void { 
+  public filterProductsByType(selectedType: string[]): void {
     this.filteredProducts = this.signalProductsService.signalProducts().filter(product =>
       selectedType.includes(product.type)
     );

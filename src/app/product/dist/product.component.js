@@ -41,8 +41,15 @@ var ProductComponent = /** @class */ (function () {
         });
     };
     ProductComponent.prototype.filterProductsAndCategories = function (selectedType) {
-        this.filterCategoriesByType(selectedType);
-        this.filterProductsByType(selectedType);
+        console.log(selectedType);
+        if (selectedType[0]) {
+            this.filterCategoriesByType(selectedType);
+            this.filterProductsByType(selectedType);
+        }
+        else {
+            this.filteredProducts = this.signalProductsService.signalProducts();
+            this.filteredProductCategories = this.productCategories;
+        }
     };
     ProductComponent.prototype.filterProductsByType = function (selectedType) {
         this.filteredProducts = this.signalProductsService.signalProducts().filter(function (product) {
