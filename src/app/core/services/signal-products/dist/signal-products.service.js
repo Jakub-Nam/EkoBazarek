@@ -35,12 +35,34 @@ var SignalProductsService = /** @class */ (function () {
             },
             {
                 id: "4cf938da-51cc-41c6-b7b1-763433bbce83",
-                name: "Skrzydełka",
+                name: "Karkowka wieprzowa",
                 desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 price: 21,
                 type: "MEAT",
                 category: "PORK",
-                unit: "t",
+                unit: "kg",
+                createdBy: "4cf938da-51cc-41c6-b7b1-763433bbce83",
+                createDate: 1690093259833
+            },
+            {
+                id: "4cf938da-51cc-41c6-b7b1-763433bbce83",
+                name: "Jonagold jablka",
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                price: 21,
+                type: "FRUITS",
+                category: "APPLE",
+                unit: "kg",
+                createdBy: "4cf938da-51cc-41c6-b7b1-763433bbce83",
+                createDate: 1690093259833
+            },
+            {
+                id: "4cf938da-51cc-41c6-b7b1-763433bbce83",
+                name: "Blask słońca",
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                price: 29,
+                type: "FRUITS",
+                category: "APPLE",
+                unit: "kg",
                 createdBy: "4cf938da-51cc-41c6-b7b1-763433bbce83",
                 createDate: 1690093259833
             }

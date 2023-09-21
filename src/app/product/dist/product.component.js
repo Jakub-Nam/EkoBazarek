@@ -41,7 +41,6 @@ var ProductComponent = /** @class */ (function () {
         });
     };
     ProductComponent.prototype.filterProductsAndCategories = function (selectedType) {
-        console.log(selectedType);
         if (selectedType[0]) {
             this.filterCategoriesByType(selectedType);
             this.filterProductsByType(selectedType);

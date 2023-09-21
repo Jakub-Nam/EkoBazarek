@@ -13,6 +13,8 @@ export class ProductListComponent {
   @Output() viewTogglerEvent = new EventEmitter<boolean>();
   @Input() public isAddCard: boolean = false;
   @Input() public filteredProducts!: ProductResponseData[];
+  @Input() public isPointerVisible: boolean = false;
+  @Input() public isOpenDialogTrue: boolean = false;
   public product!: ProductResponseData;
   public viewTogglerEmit(): void {
     this.viewTogglerEvent.emit(false)

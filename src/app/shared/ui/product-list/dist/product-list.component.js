@@ -15,6 +15,8 @@ var ProductListComponent = /** @class */ (function () {
         this.signalProductService = signalProductService;
         this.viewTogglerEvent = new core_1.EventEmitter();
         this.isAddCard = false;
+        this.isPointerVisible = false;
+        this.isOpenDialogTrue = false;
     }
     ProductListComponent.prototype.viewTogglerEmit = function () {
         this.viewTogglerEvent.emit(false);
@@ -35,6 +37,12 @@ var ProductListComponent = /** @class */ (function () {
     __decorate([
         core_1.Input()
     ], ProductListComponent.prototype, "filteredProducts");
+    __decorate([
+        core_1.Input()
+    ], ProductListComponent.prototype, "isPointerVisible");
+    __decorate([
+        core_1.Input()
+    ], ProductListComponent.prototype, "isOpenDialogTrue");
     ProductListComponent = __decorate([
         core_1.Component({
             selector: 'app-product-list',

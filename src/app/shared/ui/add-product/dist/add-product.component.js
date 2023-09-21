@@ -18,7 +18,7 @@ var select_1 = require("@angular/material/select");
 var core_2 = require("@angular/material/core");
 var common_1 = require("@angular/common");
 var input_1 = require("@angular/material/input");
-var validators_1 = require("../../validators/validators");
+var price_validator_1 = require("../../validators/price-validator");
 var AddProductComponent = /** @class */ (function () {
     function AddProductComponent(formBuilder, dataAccess, dialogRef, data, singalProductService) {
         this.formBuilder = formBuilder;
@@ -33,7 +33,7 @@ var AddProductComponent = /** @class */ (function () {
             desc: ['', [forms_1.Validators.maxLength(250)]],
             type: ['', forms_1.Validators.required],
             category: ['', forms_1.Validators.required],
-            price: [0, [forms_1.Validators.required, validators_1.priceValidator()]],
+            price: [0, [forms_1.Validators.required, price_validator_1.priceValidator()]],
             unit: ['', forms_1.Validators.required],
             createdBy: "4cf938da-51cc-41c6-b7b1-763433bbce83",
             createDate: 1690093259833
@@ -41,24 +41,20 @@ var AddProductComponent = /** @class */ (function () {
     }
     AddProductComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log(this.singalProductService.choosenProductIndex);
         this.dataAccess.getProductTypes.subscribe({
             next: function (productTypes) {
                 _this.productTypes = productTypes;
-            },
-            error: function (err) { return console.error('Observer got an error: ' + err); }
+            }
         });
         this.dataAccess.getProductCategories.subscribe({
             next: function (productCategories) {
                 _this.productCategories = productCategories;
-            },
-            error: function (err) { return console.error('Observer got an error: ' + err); }
+            }
         });
         this.dataAccess.getProductUnits.subscribe({
             next: function (productUnits) {
                 _this.productUnits = productUnits;
-            },
-            error: function (err) { return console.error('Observer got an error: ' + err); }
+            }
         });
     };
     AddProductComponent.prototype.changeSignalProducts = function () {
@@ -70,6 +66,7 @@ var AddProductComponent = /** @class */ (function () {
             this.singalProductService.addToSignalProducts(product);
         }
         this.singalProductService.choosenProductIndex = -1;
+        this.onClose();
     };
     AddProductComponent.prototype.resetForm = function () {
         this.productForm.reset();

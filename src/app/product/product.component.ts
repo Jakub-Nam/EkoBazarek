@@ -47,7 +47,6 @@ export class ProductComponent implements OnInit {
   }
 
   public filterProductsAndCategories(selectedType: string[]): void {
-    console.log(selectedType)
     if (selectedType[0]) {
       this.filterCategoriesByType(selectedType);
       this.filterProductsByType(selectedType);

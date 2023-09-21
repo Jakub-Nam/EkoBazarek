@@ -8,7 +8,7 @@ export function priceValidator(): ValidatorFn {
       return { priceInvalid: true, message: 'Cena musi być większa od zera' };
     }
 
-    if (!/^\d+(\.\d{2})?$/.test(priceValue)) {
+    if (!/^\d+\.\d{2}$/.test(priceValue)) {
       return { priceInvalid: true, message: 'Cena musi mieć dokładnie dwa miejsca po przecinku' };
     }
 

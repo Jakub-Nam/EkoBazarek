@@ -5,7 +5,7 @@
         </div>
     </a>
     <div *ngFor="let product of filteredProducts; let i = index">
-        <figure (click)="openDialog(i)" class="product-container">
+        <figure (click)="isOpenDialogTrue ? openDialog(i) : null" class="product-container" [ngStyle]="{ 'cursor': isPointerVisible ? 'pointer' : 'default' }">
             <img src="../../../../assets/pictures/food.jpg" alt="">
             <h6>{{product.name}}</h6>
             <figcaption>

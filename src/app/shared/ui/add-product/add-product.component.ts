@@ -9,7 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
-import { priceValidator } from '../../validators/validators';
+import { priceValidator } from '../../validators/price-validator';
 import { SignalProductsService } from 'src/app/core/services/signal-products/signal-products.service';
 
 @Component({
@@ -55,26 +55,22 @@ export class AddProductComponent implements OnInit {
     private singalProductService: SignalProductsService) { }
 
   ngOnInit(): void {
-    console.log(this.singalProductService.choosenProductIndex)
     this.dataAccess.getProductTypes.subscribe({
       next: (productTypes) => {
         this.productTypes = productTypes;
-      },
-      error: (err: Error) => console.error('Observer got an error: ' + err),
+      }
     });
 
     this.dataAccess.getProductCategories.subscribe({
       next: (productCategories) => {
         this.productCategories = productCategories;
-      },
-      error: (err: Error) => console.error('Observer got an error: ' + err),
+      }
     });
 
     this.dataAccess.getProductUnits.subscribe({
       next: (productUnits) => {
         this.productUnits = productUnits;
-      },
-      error: (err: Error) => console.error('Observer got an error: ' + err),
+      }
     });
 
     
@@ -88,6 +84,7 @@ export class AddProductComponent implements OnInit {
       this.singalProductService.addToSignalProducts(product);
     }
     this.singalProductService.choosenProductIndex = -1;
+    this.onClose();
   }
 
   public resetForm(): void {
